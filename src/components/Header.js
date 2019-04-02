@@ -4,7 +4,7 @@ import React from 'react'
 const Header = () => {
 
   return (
-    <div>
+    <div className="header">
       <h1>MusicApp</h1>
     </div>
   )
