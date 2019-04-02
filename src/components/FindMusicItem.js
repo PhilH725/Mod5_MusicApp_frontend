@@ -1,11 +1,11 @@
 
 import React from 'react'
 
-const FindMusicItem = () => {
+const FindMusicItem = (props) => {
 
   return (
     <div>
-      <h3>Like the other item, but with a like button/more stuff</h3>
+      <h3>{props.data.name}</h3>
     </div>
   )
 }
