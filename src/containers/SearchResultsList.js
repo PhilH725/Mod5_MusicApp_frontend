@@ -9,7 +9,7 @@ class SearchResultsList extends Component {
     return (
       <div>
         {this.props.songs.length > 0 ?
-        this.props.songs.filter(f => f.name.toLowerCase().includes(this.props.searchVal)).map(s => <FindMusicItem key={s.id} data={s}/>)
+        this.props.songs.map(s => <FindMusicItem key={s.id} data={s}/>)
         :
         "No results"}
       </div>
@@ -18,7 +18,8 @@ class SearchResultsList extends Component {
 }
 
 const mapStateToProps = state => ({
-  searchVal: state.searchVal
+  searchVal: state.searchVal,
+  songs: state.songs.filter(s => s.name.toLowerCase().includes(state.searchVal))
 })
 
 export default connect(mapStateToProps)(SearchResultsList)

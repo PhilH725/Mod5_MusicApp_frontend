@@ -1,11 +1,11 @@
 
 import React from 'react'
 import {connect} from 'react-redux'
+import {changeSearchText} from '../redux/actionCreators'
 
 class FindFilterBar extends React.Component {
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <input type='text' value={this.props.searchVal} onChange={(e) => {this.props.search(e.target.value)}} />
@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    search: (text) => {dispatch({type: "CHANGE_SEARCH_TEXT", payload: text})}
+    search: (text) => {dispatch(changeSearchText(text))}
   }
 }
 

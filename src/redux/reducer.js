@@ -1,21 +1,7 @@
 
 import { combineReducers } from 'redux'
 
-// const initialState = {
-//   songs: [],
-//   searchVal: "hands"
-// }
-
-// const favoritesReducer = (oldState=initialState, action) => {
-//   switch (action.type){
-//     case "SOMETHING":
-//       return oldState
-//     default:
-//       return oldState
-//   }
-// }
-
-const searchValReducer = (oldState="hands", action) => {
+const searchValReducer = (oldState="", action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_TEXT":
       return action.payload
@@ -24,9 +10,30 @@ const searchValReducer = (oldState="hands", action) => {
   }
 }
 
+const loadingReducer = (oldState=false, action) => {
+  switch (action.type) {
+    case "LOADING_SONGS":
+      return true
+    case "FETCHED_SONGS":
+      return false
+    default:
+      return oldState
+  }
+}
+
+const songsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_SONGS":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const rootReducer = combineReducers({
-  searchVal: searchValReducer
-  //state : reducer
+  searchVal: searchValReducer,
+  songs: songsReducer,
+  loading: loadingReducer
 })
 
 export default rootReducer
