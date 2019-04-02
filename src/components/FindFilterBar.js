@@ -1,9 +1,9 @@
 
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {changeSearchText} from '../redux/actionCreators'
 
-class FindFilterBar extends React.Component {
+class FindFilterBar extends Component {
 
   render() {
     return (

@@ -19,7 +19,7 @@ class SearchResultsList extends Component {
 
 const mapStateToProps = state => ({
   searchVal: state.searchVal,
-  songs: state.songs.filter(s => s.name.toLowerCase().includes(state.searchVal))
+  songs: state.songs.filter(s => s.name.toLowerCase().includes(state.searchVal.toLowerCase()))
 })
 
 export default connect(mapStateToProps)(SearchResultsList)
