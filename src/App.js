@@ -3,13 +3,15 @@ import Header from './components/Header'
 import Navbar from './components/Navbar'
 import MainContainer from './containers/MainContainer'
 import './App.css';
-import {fetchingSongs} from './redux/actionCreators'
 import {connect} from 'react-redux'
+import {fetchingSongs} from './redux/actionCreators'
+import {fetchingFavorites} from './redux/actionCreators'
 
 class App extends Component {
 
   componentDidMount() {
     this.props.fetchingSongs()
+    this.props.fetchingFavorites()
   }
 
   render() {
@@ -25,7 +27,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingSongs: () => {dispatch(fetchingSongs())}
+    fetchingSongs: () => dispatch(fetchingSongs()),
+    fetchingFavorites: () => dispatch(fetchingFavorites())
   }
 }
 

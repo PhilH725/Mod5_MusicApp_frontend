@@ -30,10 +30,50 @@ const songsReducer = (oldState=[], action) => {
   }
 }
 
+const mySongsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_FAVORITES":
+      return action.payload.user_songs
+    default:
+      return oldState
+  }
+}
+
+const myArtistsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_FAVORITES":
+      return action.payload.user_artists
+    default:
+      return oldState
+  }
+}
+
+const myAlbumsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_FAVORITES":
+      return action.payload.user_albums
+    default:
+      return oldState
+  }
+}
+
+const myGenresReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_FAVORITES":
+      return action.payload.user_genres
+    default:
+      return oldState
+  }
+}
+
 const rootReducer = combineReducers({
   searchVal: searchValReducer,
   songs: songsReducer,
-  loading: loadingReducer
+  loading: loadingReducer,
+  mySongs: mySongsReducer,
+  myArtists: myArtistsReducer,
+  myAlbums: myAlbumsReducer,
+  myGenres: myGenresReducer
 })
 
 export default rootReducer

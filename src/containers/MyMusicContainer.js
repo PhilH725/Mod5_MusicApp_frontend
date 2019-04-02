@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react'
 import MusicItemList from './MusicItemList'
+import {connect} from 'react-redux'
 
 class MyMusicContainer extends Component {
 
@@ -8,13 +9,20 @@ class MyMusicContainer extends Component {
     return (
       <div>
         <h2>My Music:</h2>
-        <MusicItemList title={'Genres'} />
-        <MusicItemList title={'Artists'} />
-        <MusicItemList title={'Albums'} />
-        <MusicItemList title={'Songs'} />
+        <MusicItemList title={'Genres'} items={this.props.mySongs}/>
+        <MusicItemList title={'Artists'} items={this.props.mySongs}/>
+        <MusicItemList title={'Albums'} items={this.props.mySongs}/>
+        <MusicItemList title={'Songs'} items={this.props.mySongs}/>
       </div>
     )
   }
 }
 
-export default MyMusicContainer
+const mapStateToProps = state => {
+  console.log(state)
+  return ({
+    mySongs: state.mySongs
+  })
+}
+
+export default connect(mapStateToProps)(MyMusicContainer)

@@ -14,6 +14,21 @@ function fetchingSongs() {
   }
 }
 
+function fetchedFavorites(favorites) {
+  return { type: "FETCHED_FAVORITES", payload: favorites }
+}
+
+function fetchingFavorites() {
+  return (dispatch) => {
+    fetch('http://localhost:3000/users/3')
+    .then(res => res.json())
+    .then(favorites => {
+      console.log(favorites)
+      dispatch(fetchedFavorites(favorites))
+    })
+  }
+}
+
 function loadingSongs() {
   return { type: "LOADING_SONGS"}
 }
@@ -22,4 +37,4 @@ function changeSearchText(text) {
   return { type: "CHANGE_SEARCH_TEXT", payload: text }
 }
 
-export { fetchedSongs, fetchingSongs, changeSearchText }
+export { fetchedSongs, fetchingSongs, fetchingFavorites, fetchedFavorites, changeSearchText }
