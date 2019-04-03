@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react'
 import PlaylistList from './PlaylistList'
+import NewPlaylistBar from '../components/NewPlaylistBar'
 import SelectedPlaylist from './SelectedPlaylist'
 
 class PlaylistContainer extends Component {
@@ -10,6 +11,7 @@ class PlaylistContainer extends Component {
       <div>
         <h2>Playlists:</h2>
         <PlaylistList />
+        <NewPlaylistBar />
         <SelectedPlaylist />
       </div>
     )

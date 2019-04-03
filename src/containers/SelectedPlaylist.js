@@ -16,7 +16,7 @@ class SelectedPlaylist extends Component {
       :
       <div>
         <h3>Selected Playlist</h3>
-        <h4>choose a playlist</h4>
+        <h4>Choose a playlist</h4>
       </div>
     )
   }
