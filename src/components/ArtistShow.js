@@ -1,5 +1,6 @@
 
 import React, {Component} from 'react'
+import Item from './Item'
 import {fetchingItem} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
@@ -10,15 +11,16 @@ class ArtistShow extends Component {
   }
 
   render() {
+    console.log('artist show is rendered')
     return (
       this.props.activeItem ?
-      <h1>{this.props.activeItem.name}</h1>
-      :
       <div>
-        <h3>Genre/Artist/Album/Song title</h3>
-        <div>information on the selected thing</div>
-        <div>{this.props.id}</div>
+        <h1>{this.props.activeItem.name}</h1>
+        <h3>Albums: </h3>
+        {this.props.activeItem.albums.map(a => <Item key={a.id} title={"albums"} data={a} />)}
       </div>
+      :
+      <h3>Loading...</h3>
     )
   }
 }

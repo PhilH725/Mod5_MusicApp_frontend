@@ -1,6 +1,5 @@
 
 import React from 'react'
-// import ItemShow from '../components/ItemShow'
 import {Link} from 'react-router-dom'
 
 const Item = (props) => {

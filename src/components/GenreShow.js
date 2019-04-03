@@ -12,13 +12,12 @@ class AlbumShow extends Component {
   render() {
     return (
       this.props.activeItem ?
-      <h1>{this.props.activeItem.name}</h1>
-      :
       <div>
-        <h3>Genre/Artist/Album/Song title</h3>
-        <div>information on the selected thing</div>
-        <div>{this.props.id}</div>
+        <h1>{this.props.activeItem.name}</h1>
+        <p>Info on this genre goes here...</p>
       </div>
+      :
+      <h3>Loading...</h3>
     )
   }
 }
