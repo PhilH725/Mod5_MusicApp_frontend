@@ -12,7 +12,7 @@ class AlbumShow extends Component {
 
   render() {
     return (
-      this.props.activeItem ?
+      this.props.activeItem.songs ?
       <div>
         <h1>{this.props.activeItem.name}</h1>
         <h3>Released: {this.props.activeItem.release_year}</h3>

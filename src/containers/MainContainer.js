@@ -7,10 +7,15 @@ import SongShow from '../components/SongShow'
 import ArtistShow from '../components/ArtistShow'
 import AlbumShow from '../components/AlbumShow'
 import GenreShow from '../components/GenreShow'
+import {resetActiveItem} from '../redux/actionCreators'
 import { Route, Switch } from 'react-router-dom'
 import {connect} from 'react-redux'
 
 class MainContainer extends Component {
+
+  componentDidMount() {
+    this.props.resetActiveItem()
+  }
 
   render() {
     return (
@@ -47,10 +52,14 @@ class MainContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return ({
-    songs: state.mySongs
-  })
+// const mapStateToProps = state => {
+//   return ({
+//     activeItem: null
+//   })
+// }
+
+const mapDispatchToProps = dispatch => {
+  return {resetActiveItem: () => dispatch(resetActiveItem())}
 }
 
-export default connect(mapStateToProps)(MainContainer)
+export default connect(null, mapDispatchToProps)(MainContainer)

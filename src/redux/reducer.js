@@ -66,10 +66,12 @@ const myGenresReducer = (oldState=[], action) => {
   }
 }
 
-const activeItemReducer = (oldState=null, action) => {
+const activeItemReducer = (oldState={}, action) => {
   switch (action.type) {
     case "FETCHED_ITEM":
       return action.payload
+    case "RESET_ACTIVE_ITEM":
+      return {}
     default:
       return oldState
   }

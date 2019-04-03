@@ -8,9 +8,7 @@ class SelectedPlaylist extends Component {
     return (
       <div>
         <h3>Selected Playlist</h3>
-        <Item />
-        <Item />
-        <Item />
+
       </div>
     )
   }

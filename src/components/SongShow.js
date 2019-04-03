@@ -11,7 +11,7 @@ class SongShow extends Component {
 
   render() {
     return (
-      this.props.activeItem ?
+      this.props.activeItem.genre ?
       <div>
         <h1>{this.props.activeItem.name}</h1>
         <h3>Artist: {this.props.activeItem.artist.name}</h3>

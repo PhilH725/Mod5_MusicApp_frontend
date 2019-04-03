@@ -11,9 +11,8 @@ class ArtistShow extends Component {
   }
 
   render() {
-    console.log('artist show is rendered')
     return (
-      this.props.activeItem ?
+      this.props.activeItem.albums ?
       <div>
         <h1>{this.props.activeItem.name}</h1>
         <h3>Albums: </h3>

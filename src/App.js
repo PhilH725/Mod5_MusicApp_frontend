@@ -12,6 +12,7 @@ class App extends Component {
   componentDidMount() {
     this.props.fetchingSongs()
     this.props.fetchingFavorites()
+    this.props.fetchingPlaylists()
   }
 
   render() {
@@ -28,7 +29,8 @@ class App extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     fetchingSongs: () => dispatch(fetchingSongs()),
-    fetchingFavorites: () => dispatch(fetchingFavorites())
+    fetchingFavorites: () => dispatch(fetchingFavorites()),
+    fetchingPlaylists: () => dispatch(fetchingPlaylists())
   }
 }
 
