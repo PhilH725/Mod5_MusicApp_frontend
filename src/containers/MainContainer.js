@@ -3,21 +3,13 @@ import React, {Component} from 'react'
 import MyMusicContainer from './MyMusicContainer'
 import FindMusicContainer from './FindMusicContainer'
 import PlaylistContainer from './PlaylistContainer'
-import ItemShow from '../components/ItemShow'
+import SongShow from '../components/SongShow'
+import ArtistShow from '../components/SongShow'
+import AlbumShow from '../components/SongShow'
+import GenreShow from '../components/SongShow'
 import { Route, Switch } from 'react-router-dom'
 import {connect} from 'react-redux'
 
-// <Route path="/paintings/:id" render={(props)=> {
-//   console.log(this.state.paintingsList)
-//   let paintingId = props.match.params.id
-//   let painting = this.state.paintingsList.find(p => p.id === paintingId)
-//   console.log("painting exists?", painting)
-//   return this.state.loading ? null : (
-//     <PaintingDetails
-//     painting={painting}
-//     />
-//   )
-// }}/>
 class MainContainer extends Component {
 
   render() {
@@ -27,17 +19,27 @@ class MainContainer extends Component {
 
           <Route path="/items/songs/:id" render={ (props) => {
             let songId = props.match.params.id
-            // let song = this.props.songs.find(s => s.id === songId)
-            // debugger
-            return <ItemShow id={songId}/>
+            return <SongShow type={"songs"} id={songId}/>
           }} />
 
+          <Route path="/items/artists/:id" render={ (props) => {
+            let artistId = props.match.params.id
+            return <ArtistShow type={"artists"} id={artistId}/>
+          }} />
 
+          <Route path="/items/albums/:id" render={ (props) => {
+            let albumId = props.match.params.id
+            return <AlbumShow type={"albums"} id={albumId}/>
+          }} />
+
+          <Route path="/items/genres/:id" render={ (props) => {
+            let genreId = props.match.params.id
+            return <GenreShow type={"genres"} id={genreId}/>
+          }} />
 
           <Route exact path="/my_music" component={MyMusicContainer} />
           <Route exact path="/find_music" component={FindMusicContainer} />
           <Route exact path="/playlist" component={PlaylistContainer} />
-          <Route exact path="/songs/undefined" component={PlaylistContainer} />
           <Route exact path="/" />
         </Switch>
       </div>
