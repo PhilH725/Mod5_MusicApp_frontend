@@ -14,6 +14,7 @@ class MainContainer extends Component {
           <Route exact path="/my_music" component={MyMusicContainer} />
           <Route exact path="/find_music" component={FindMusicContainer} />
           <Route exact path="/playlist" component={PlaylistContainer} />
+          <Route exact path="/songs/undefined" component={PlaylistContainer} />
           <Route exact path="/" />
         </Switch>
       </div>
