@@ -5,7 +5,6 @@ import Item from '../components/Item'
 class MusicItemList extends Component {
 
   render() {
-    // debugger
     return (
       <div>
         <h3>{this.props.title}</h3>

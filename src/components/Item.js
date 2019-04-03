@@ -2,11 +2,11 @@
 import React from 'react'
 import ItemShow from '../components/ItemShow'
 
-const Item = () => {
+const Item = (props) => {
 
   return (
     <div>
-      <h4>Genre/Artist/Album/Song name</h4>
+      <h4>{props.data.name}</h4>
     </div>
   )
 }
