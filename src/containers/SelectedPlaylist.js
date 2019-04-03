@@ -11,6 +11,7 @@ class SelectedPlaylist extends Component {
       <div>
         <h3>Selected Playlist</h3>
         <h4>{this.props.selectedPlaylist.name}</h4>
+        {this.props.selectedPlaylist.songs.map(s => <Item key={s.id} title={"songs"} data={s} />)}
       </div>
       :
       <div>
