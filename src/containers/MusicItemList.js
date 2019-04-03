@@ -8,7 +8,7 @@ class MusicItemList extends Component {
     return (
       <div>
         <h3>{this.props.title}</h3>
-        {this.props.items.map(i => <Item key={i.id} data={i} />)}
+        {this.props.items.map((i, index) => <Item key={index} data={i} />)}
       </div>
     )
   }

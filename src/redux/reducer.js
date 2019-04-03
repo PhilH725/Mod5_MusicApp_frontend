@@ -33,7 +33,7 @@ const songsReducer = (oldState=[], action) => {
 const mySongsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
-      return action.payload.user_songs
+      return action.payload.my_songs
     default:
       return oldState
   }
@@ -42,7 +42,7 @@ const mySongsReducer = (oldState=[], action) => {
 const myArtistsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
-      return action.payload.user_artists
+      return action.payload.my_artists
     default:
       return oldState
   }
@@ -51,7 +51,7 @@ const myArtistsReducer = (oldState=[], action) => {
 const myAlbumsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
-      return action.payload.user_albums
+      return action.payload.my_albums
     default:
       return oldState
   }
@@ -60,7 +60,7 @@ const myAlbumsReducer = (oldState=[], action) => {
 const myGenresReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
-      return action.payload.user_genres
+      return action.payload.my_genres
     default:
       return oldState
   }

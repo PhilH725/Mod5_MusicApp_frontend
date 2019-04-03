@@ -23,7 +23,6 @@ function fetchingFavorites() {
     fetch('http://localhost:3000/users/3')
     .then(res => res.json())
     .then(favorites => {
-      console.log(favorites)
       dispatch(fetchedFavorites(favorites))
     })
   }
