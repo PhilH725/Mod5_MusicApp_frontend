@@ -1,6 +1,10 @@
 
 import React, {Component} from 'react'
-import MusicItemList from './MusicItemList'
+// import MusicItemList from './MusicItemList'
+import MySongsContainer from './MySongsContainer'
+import MyArtistsContainer from './MyArtistsContainer'
+import MyAlbumsContainer from './MyAlbumsContainer'
+import MyGenresContainer from './MyGenresContainer'
 import {connect} from 'react-redux'
 
 class MyMusicContainer extends Component {
@@ -9,10 +13,10 @@ class MyMusicContainer extends Component {
     return (
       <div>
         <h2>My Music:</h2>
-        <MusicItemList title={'Genres'} items={this.props.myGenres}/>
-        <MusicItemList title={'Artists'} items={this.props.myArtists}/>
-        <MusicItemList title={'Albums'} items={this.props.myAlbums}/>
-        <MusicItemList title={'Songs'} items={this.props.mySongs}/>
+        <MySongsContainer title={'Genres'} items={this.props.myGenres}/>
+        <MyArtistsContainer title={'Artists'} items={this.props.myArtists}/>
+        <MyAlbumsContainer title={'Albums'} items={this.props.myAlbums}/>
+        <MyGenresContainer title={'Songs'} items={this.props.mySongs}/>
       </div>
     )
   }

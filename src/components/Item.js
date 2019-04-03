@@ -8,7 +8,7 @@ const Item = (props) => {
   return (
     <div>
       <h4>
-        <Link to={`/items/${props.title.toLowerCase()}/id`}>
+        <Link to={`/items/${props.title.toLowerCase()}/${props.data.id}`}>
         {props.data.name}
         </Link>
       </h4>
