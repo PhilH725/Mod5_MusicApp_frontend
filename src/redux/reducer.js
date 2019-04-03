@@ -66,6 +66,15 @@ const myGenresReducer = (oldState=[], action) => {
   }
 }
 
+const activeItemReducer = (oldState=null, action) => {
+  switch (action.type) {
+    case "FETCHED_ITEM":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const rootReducer = combineReducers({
   searchVal: searchValReducer,
   songs: songsReducer,
@@ -73,7 +82,8 @@ const rootReducer = combineReducers({
   mySongs: mySongsReducer,
   myArtists: myArtistsReducer,
   myAlbums: myAlbumsReducer,
-  myGenres: myGenresReducer
+  myGenres: myGenresReducer,
+  activeItem: activeItemReducer
 })
 
 export default rootReducer

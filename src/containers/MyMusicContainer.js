@@ -13,10 +13,10 @@ class MyMusicContainer extends Component {
     return (
       <div>
         <h2>My Music:</h2>
-        <MySongsContainer title={'Genres'} items={this.props.myGenres}/>
+        <MySongsContainer title={'Songs'} items={this.props.mySongs}/>
         <MyArtistsContainer title={'Artists'} items={this.props.myArtists}/>
         <MyAlbumsContainer title={'Albums'} items={this.props.myAlbums}/>
-        <MyGenresContainer title={'Songs'} items={this.props.mySongs}/>
+        <MyGenresContainer title={'Genres'} items={this.props.myGenres}/>
       </div>
     )
   }
