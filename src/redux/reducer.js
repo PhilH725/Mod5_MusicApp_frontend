@@ -66,12 +66,30 @@ const myGenresReducer = (oldState=[], action) => {
   }
 }
 
+const myPlaylistsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_PLAYLISTS":
+      return action.payload.playlists
+    default:
+      return oldState
+  }
+}
+
 const activeItemReducer = (oldState={}, action) => {
   switch (action.type) {
     case "FETCHED_ITEM":
       return action.payload
     case "RESET_ACTIVE_ITEM":
       return {}
+    default:
+      return oldState
+  }
+}
+
+const selectedPlaylistReducer = (oldState=null, action) => {
+  switch (action.type) {
+    case "CHANGE_SELECTED_PLAYLIST":
+      return action.payload
     default:
       return oldState
   }
@@ -85,7 +103,9 @@ const rootReducer = combineReducers({
   myArtists: myArtistsReducer,
   myAlbums: myAlbumsReducer,
   myGenres: myGenresReducer,
-  activeItem: activeItemReducer
+  myPlaylists: myPlaylistsReducer,
+  activeItem: activeItemReducer,
+  selectedPlaylist: selectedPlaylistReducer
 })
 
 export default rootReducer

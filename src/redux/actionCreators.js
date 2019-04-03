@@ -42,12 +42,16 @@ function fetchingItem(itemType, id) {
   }
 }
 
+function fetchedPlaylists(playlists) {
+  return { type: "FETCHED_PLAYLISTS", payload: playlists }
+}
+
 function fetchingPlaylists() {
   return (dispatch) => {
     fetch('http://localhost:3000/users/3')
     .then(res => res.json())
     .then(playlists => {
-      
+      dispatch(fetchedPlaylists(playlists))
     })
   }
 }
@@ -64,4 +68,8 @@ function resetActiveItem() {
   return { type: "RESET_ACTIVE_ITEM" }
 }
 
-export { fetchedSongs, fetchingSongs, fetchingFavorites, fetchedFavorites, fetchingItem, changeSearchText, resetActiveItem }
+function changeSelectedPlaylist(playlist) {
+  return { type: "CHANGE_SELECTED_PLAYLIST", payload: playlist }
+}
+
+export { fetchedSongs, fetchingSongs, fetchingFavorites, fetchedFavorites, fetchingItem, fetchingPlaylists, changeSearchText, resetActiveItem, changeSelectedPlaylist }

@@ -6,6 +6,7 @@ import './App.css';
 import {connect} from 'react-redux'
 import {fetchingSongs} from './redux/actionCreators'
 import {fetchingFavorites} from './redux/actionCreators'
+import {fetchingPlaylists} from './redux/actionCreators'
 
 class App extends Component {
 
