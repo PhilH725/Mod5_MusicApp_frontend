@@ -56,6 +56,29 @@ function fetchingPlaylists() {
   }
 }
 
+function createdNewPlaylist(playlist) {
+  return { type: "CREATE_NEW_PLAYLIST", payload: playlist }
+}
+
+function creatingNewPlaylist(name, id) {
+  // debugger
+  return (dispatch) => {
+    fetch('http://localhost:3000/playlists', {
+      method: 'POST',
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        name: name,
+        user_id: id
+      })
+    })
+    .then(res => res.json())
+    .then(playlist => {
+      // debugger
+      dispatch(createdNewPlaylist(playlist))
+    })
+  }
+}
+
 function loadingSongs() {
   return { type: "LOADING_SONGS"}
 }
@@ -68,8 +91,12 @@ function resetActiveItem() {
   return { type: "RESET_ACTIVE_ITEM" }
 }
 
+function updateNewPlaylistText(text) {
+  return { type: "UPDATE_NEW_PLAYLIST_TEXT", payload: text }
+}
+
 function changeSelectedPlaylist(playlist) {
   return { type: "CHANGE_SELECTED_PLAYLIST", payload: playlist }
 }
 
-export { fetchedSongs, fetchingSongs, fetchingFavorites, fetchedFavorites, fetchingItem, fetchingPlaylists, changeSearchText, resetActiveItem, changeSelectedPlaylist }
+export { fetchingSongs, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist }
