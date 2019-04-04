@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react'
-import PlaylistAddSongItem from '../components/PlaylistAddSongItem'
+import NewPlaylistSongItem from '../components/NewPlaylistSongItem'
+import {addNewPlaylistSong} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
 class NewPlaylistAddSongsContainer extends Component {
@@ -8,7 +9,7 @@ class NewPlaylistAddSongsContainer extends Component {
   render() {
     return (
       <div>
-        {this.props.songs.map(s => <PlaylistAddSongItem key={s.id} song={s} />)}
+        {this.props.songs.map(s => <NewPlaylistSongItem key={s.id} song={s} handleClick={this.props.addNewPlaylistSong}/>)}
       </div>
     )
   }
@@ -18,4 +19,10 @@ const mapStateToProps = state => ({
   songs: state.mySongs
 })
 
-export default connect(mapStateToProps)(NewPlaylistAddSongsContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    addNewPlaylistSong: (song) => dispatch(addNewPlaylistSong(song))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPlaylistAddSongsContainer)

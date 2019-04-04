@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react'
-import SongItemLight from '../components/SongItemLight'
+import NewPlaylistSongItem from '../components/NewPlaylistSongItem'
+import {removeNewPlaylistSong} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
 class NewPlaylistPreviewContainer extends Component {
@@ -10,7 +11,7 @@ class NewPlaylistPreviewContainer extends Component {
       <div>
         ---------------------------
 
-        {this.props.newPlaylistSongs.map(s => <SongItemLight key={s.id} song={s} />)}
+        {this.props.newPlaylistSongs.map(s => <NewPlaylistSongItem key={s.id} song={s} handleClick={this.props.removeNewPlaylistSong}/>)}
       </div>
     )
   }
@@ -20,4 +21,10 @@ const mapStateToProps = state => ({
   newPlaylistSongs: state.newPlaylistSongs
 })
 
-export default connect(mapStateToProps)(NewPlaylistPreviewContainer)
+const mapDispatchToProps = dispatch => {
+  return {
+    removeNewPlaylistSong: (song) => dispatch(removeNewPlaylistSong(song))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewPlaylistPreviewContainer)
