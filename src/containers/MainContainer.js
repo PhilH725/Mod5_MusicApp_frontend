@@ -7,6 +7,8 @@ import SongShow from '../components/SongShow'
 import ArtistShow from '../components/ArtistShow'
 import AlbumShow from '../components/AlbumShow'
 import GenreShow from '../components/GenreShow'
+import EditPlaylist from './EditPlaylist'
+import CreatePlaylistContainer from './CreatePlaylistContainer'
 import {resetActiveItem} from '../redux/actionCreators'
 import { Route, Switch } from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -42,9 +44,17 @@ class MainContainer extends Component {
             return <GenreShow type={"genres"} id={genreId}/>
           }} />
 
+          <Route path="/playlists/edit/:id" render={ (props) => {
+            let playlistId = props.match.params.id
+            playlistId=1
+            return <EditPlaylist id={playlistId} />
+          }} />
+
+          <Route path="/playlists/new" component={CreatePlaylistContainer} />
+
           <Route exact path="/my_music" component={MyMusicContainer} />
           <Route exact path="/find_music" component={FindMusicContainer} />
-          <Route exact path="/playlist" component={PlaylistContainer} />
+          <Route exact path="/playlists" component={PlaylistContainer} />
           <Route exact path="/" />
         </Switch>
       </div>

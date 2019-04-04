@@ -20,7 +20,7 @@ function fetchedFavorites(favorites) {
 
 function fetchingFavorites() {
   return (dispatch) => {
-    fetch('http://localhost:3000/users/3')
+    fetch('http://localhost:3000/users/1')
     .then(res => res.json())
     .then(favorites => {
       dispatch(fetchedFavorites(favorites))
@@ -48,7 +48,7 @@ function fetchedPlaylists(playlists) {
 
 function fetchingPlaylists() {
   return (dispatch) => {
-    fetch('http://localhost:3000/users/3')
+    fetch('http://localhost:3000/users/1')
     .then(res => res.json())
     .then(playlists => {
       dispatch(fetchedPlaylists(playlists))
@@ -61,7 +61,6 @@ function createdNewPlaylist(playlist) {
 }
 
 function creatingNewPlaylist(name, id) {
-  // debugger
   return (dispatch) => {
     fetch('http://localhost:3000/playlists', {
       method: 'POST',
@@ -73,8 +72,21 @@ function creatingNewPlaylist(name, id) {
     })
     .then(res => res.json())
     .then(playlist => {
-      // debugger
       dispatch(createdNewPlaylist(playlist))
+    })
+  }
+}
+
+function fetchedPlaylistToEdit(playlist) {
+  return { type: "FETCHED_PLAYLIST_TO_EDIT", payload: playlist }
+}
+
+function fetchingPlaylistToEdit(id) {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/playlists/${id}`)
+    .then(res => res.json())
+    .then(playlist => {
+      dispatch(fetchedPlaylistToEdit(playlist))
     })
   }
 }
@@ -99,4 +111,4 @@ function changeSelectedPlaylist(playlist) {
   return { type: "CHANGE_SELECTED_PLAYLIST", payload: playlist }
 }
 
-export { fetchingSongs, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist }
+export { fetchingSongs, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit }

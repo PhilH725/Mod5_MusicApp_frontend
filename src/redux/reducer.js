@@ -106,6 +106,15 @@ const newPlaylistTextReducer = (oldState="", action) => {
   }
 }
 
+const editingPlaylistReducer = (oldState={}, action) => {
+  switch (action.type) {
+    case "FETCHED_PLAYLIST_TO_EDIT":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const rootReducer = combineReducers({
   searchVal: searchValReducer,
   songs: songsReducer,
@@ -117,7 +126,8 @@ const rootReducer = combineReducers({
   myPlaylists: myPlaylistsReducer,
   activeItem: activeItemReducer,
   selectedPlaylist: selectedPlaylistReducer,
-  newPlaylistNameText: newPlaylistTextReducer
+  newPlaylistNameText: newPlaylistTextReducer,
+  editingPlaylist: editingPlaylistReducer
 })
 
 export default rootReducer

@@ -10,7 +10,7 @@ class NewPlaylistBar extends Component {
     return (
       <div>
         <input type="text" value={this.props.newPlaylistNameText} onChange={(e)=>{this.props.updateNewPlaylistText(e.target.value)}}/>
-        <button onClick={()=>{this.props.creatingNewPlaylist(this.props.newPlaylistNameText, 3)}}>Create New</button>
+        <button onClick={()=>{this.props.creatingNewPlaylist(this.props.newPlaylistNameText, 1)}}>Create New</button>
       </div>
     )
   }
