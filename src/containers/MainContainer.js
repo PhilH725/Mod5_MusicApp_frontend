@@ -8,7 +8,7 @@ import ArtistShow from '../components/ArtistShow'
 import AlbumShow from '../components/AlbumShow'
 import GenreShow from '../components/GenreShow'
 import EditPlaylist from './EditPlaylist'
-import CreatePlaylistContainer from './CreatePlaylistContainer'
+import NewPlaylistContainer from './NewPlaylistContainer'
 import {resetActiveItem} from '../redux/actionCreators'
 import { Route, Switch } from 'react-router-dom'
 import {connect} from 'react-redux'
@@ -50,7 +50,7 @@ class MainContainer extends Component {
             return <EditPlaylist id={playlistId} />
           }} />
 
-          <Route path="/playlists/new" component={CreatePlaylistContainer} />
+          <Route path="/playlists/new" component={NewPlaylistContainer} />
 
           <Route exact path="/my_music" component={MyMusicContainer} />
           <Route exact path="/find_music" component={FindMusicContainer} />

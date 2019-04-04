@@ -60,7 +60,8 @@ function createdNewPlaylist(playlist) {
   return { type: "CREATE_NEW_PLAYLIST", payload: playlist }
 }
 
-function creatingNewPlaylist(name, id) {
+function creatingNewPlaylist(name, songs, id) {
+  //have to do something different with the songs
   return (dispatch) => {
     fetch('http://localhost:3000/playlists', {
       method: 'POST',

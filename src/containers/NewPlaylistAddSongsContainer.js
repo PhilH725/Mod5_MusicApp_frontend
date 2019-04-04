@@ -10,13 +10,14 @@ class NewPlaylistAddSongsContainer extends Component {
     return (
       <div>
         {this.props.songs.map(s => <NewPlaylistSongItem key={s.id} song={s} handleClick={this.props.addNewPlaylistSong}/>)}
+        -----------------------------------------------
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  songs: state.mySongs
+  songs: state.mySongs.filter(s => !state.newPlaylistSongs.includes(s))
 })
 
 const mapDispatchToProps = dispatch => {

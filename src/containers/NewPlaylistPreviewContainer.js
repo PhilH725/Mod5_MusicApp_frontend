@@ -9,8 +9,6 @@ class NewPlaylistPreviewContainer extends Component {
   render() {
     return (
       <div>
-        ---------------------------
-
         {this.props.newPlaylistSongs.map(s => <NewPlaylistSongItem key={s.id} song={s} handleClick={this.props.removeNewPlaylistSong}/>)}
       </div>
     )

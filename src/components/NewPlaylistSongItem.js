@@ -1,7 +1,5 @@
 
 import React from 'react'
-// import {addNewPlaylistSong} from '../redux/actionCreators'
-// import {connect} from 'react-redux'
 
 const NewPlaylistSongItem = (props) => {
 
@@ -11,11 +9,5 @@ const NewPlaylistSongItem = (props) => {
     </div>
   )
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addNewPlaylistSong: (song) => dispatch(addNewPlaylistSong(song))
-//   }
-// }
 
 export default NewPlaylistSongItem
