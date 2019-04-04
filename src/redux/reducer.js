@@ -115,6 +115,17 @@ const editingPlaylistReducer = (oldState={}, action) => {
   }
 }
 
+const newPlaylistSongsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "ADD_NEW_PLAYLIST_SONG":
+      return [...oldState, action.payload]
+    case "REMOVE_NEW_PLAYLIST_SONG":
+      return oldState.filter(s => s.id !== action.payload.id)
+    default:
+      return oldState
+  }
+}
+
 const rootReducer = combineReducers({
   searchVal: searchValReducer,
   songs: songsReducer,
@@ -127,7 +138,8 @@ const rootReducer = combineReducers({
   activeItem: activeItemReducer,
   selectedPlaylist: selectedPlaylistReducer,
   newPlaylistNameText: newPlaylistTextReducer,
-  editingPlaylist: editingPlaylistReducer
+  editingPlaylist: editingPlaylistReducer,
+  newPlaylistSongs: newPlaylistSongsReducer
 })
 
 export default rootReducer

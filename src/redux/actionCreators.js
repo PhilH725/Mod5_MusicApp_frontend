@@ -111,4 +111,12 @@ function changeSelectedPlaylist(playlist) {
   return { type: "CHANGE_SELECTED_PLAYLIST", payload: playlist }
 }
 
-export { fetchingSongs, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit }
+function addNewPlaylistSong(song) {
+  return { type: "ADD_NEW_PLAYLIST_SONG", payload: song }
+}
+
+function removeNewPlaylistSong(song) {
+  return { type: "REMOVE_NEW_PLAYLIST_SONG", payload: song }
+}
+
+export { fetchingSongs, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong }
