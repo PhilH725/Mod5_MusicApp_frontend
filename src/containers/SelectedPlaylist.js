@@ -1,6 +1,7 @@
 
-import React, {Component} from 'react'
-import Item from '../components/Item'
+import React, {Component, Fragment} from 'react'
+import PlaylistSongItem from '../components/PlaylistSongItem'
+import {Header, List, Grid} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class SelectedPlaylist extends Component {
@@ -8,15 +9,19 @@ class SelectedPlaylist extends Component {
   render() {
     return (
       this.props.selectedPlaylist ?
-      <div>
-        <h3>Selected Playlist</h3>
-        <h4>{this.props.selectedPlaylist.name}</h4>
-        {this.props.selectedPlaylist.songs.map(s => <Item key={s.id} title={"songs"} data={s} />)}
-      </div>
+      <Fragment>
+      <Grid.Column>
+      <Header as="h3">
+        {this.props.selectedPlaylist.name}
+      </Header>
+        <List animated celled verticalAlign='middle'>
+          {this.props.selectedPlaylist.songs.map(s => <PlaylistSongItem key={s.id} song={s} />)}
+        </List>
+        </Grid.Column>
+      </Fragment>
       :
       <div>
-        <h3>Selected Playlist</h3>
-        <h4>Choose a playlist</h4>
+        <h3>Choose a playlist</h3>
       </div>
     )
   }

@@ -1,14 +1,15 @@
 
 import React from 'react'
+import {List} from 'semantic-ui-react'
 import {changeSelectedPlaylist} from '../redux/actionCreators'
 import { connect } from 'react-redux'
 
 const PlaylistItem = (props) => {
 
   return (
-    <div onClick={props.changeSelectedPlaylist}>
+    <List.Item onClick={props.changeSelectedPlaylist}>
       <h4>{props.data.name}</h4>
-    </div>
+    </List.Item>
   )
 }
 

@@ -5,7 +5,7 @@ const Header = () => {
 
   return (
     <div>
-      <h1 className="ui header" id="header">MusicApp</h1>
+      <h1 className="ui header" id="site-header">MusicApp</h1>
     </div>
   )
 }

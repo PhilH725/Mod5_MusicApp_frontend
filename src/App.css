@@ -2,20 +2,21 @@
   text-align: center;
 }
 
-.header {
-  font-size: 1.5em;
+#site-header {
+  font-size: 2em;
   background-color: darkblue;
   color: white;
-  /* margin-top: -25px;
-  margin-bottom: -30px; */
-}
-
-#header {
-  color: white;
+  margin-bottom: -10px;
 }
 
 .navbar {
   background-color: green;
   color: white;
   margin-top: 0px;
+}
+
+#playlist-list {
+  /* border-style: solid;
+  border-width: thin; */
+  width: 200px;
 }
