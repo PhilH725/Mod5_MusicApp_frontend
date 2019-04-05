@@ -193,14 +193,38 @@ function addFavoriteSong(song) {
 }
 
 function addFavoriteArtist(artist) {
+  fetch('http://localhost:3000/user_artists', {
+    method: 'POST',
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      user_id: 1,
+      artist_id: artist.id
+    })
+  })
   return { type: "ADD_FAVORITE_ARTIST", payload: artist }
 }
 
 function addFavoriteAlbum(album) {
+  fetch('http://localhost:3000/user_albums', {
+    method: 'POST',
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      user_id: 1,
+      album_id: album.id
+    })
+  })
   return { type: "ADD_FAVORITE_ALBUM", payload: album }
 }
 
 function addFavoriteGenre(genre) {
+  fetch('http://localhost:3000/user_genres', {
+    method: 'POST',
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      user_id: 1,
+      genre_id: genre.id
+    })
+  })
   return { type: "ADD_FAVORITE_GENRE", payload: genre }
 }
 
