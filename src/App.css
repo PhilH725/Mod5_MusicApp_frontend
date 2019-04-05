@@ -6,8 +6,12 @@
   font-size: 1.5em;
   background-color: darkblue;
   color: white;
-  margin-top: -25px;
-  margin-bottom: -30px;
+  /* margin-top: -25px;
+  margin-bottom: -30px; */
+}
+
+#header {
+  color: white;
 }
 
 .navbar {

@@ -6,8 +6,8 @@ import {connect} from 'react-redux'
 const SongItemFind = (props) => {
 
   return (
-    <div onClick={()=>props.addFavoriteSong(props.song)}>
-        {props.song.name}
+    <div>
+      {props.song.name} <button onClick={()=>props.addFavoriteSong(props.song)}>Add to Favorites</button>
     </div>
   )
 }

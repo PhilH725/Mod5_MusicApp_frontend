@@ -4,8 +4,8 @@ import React from 'react'
 const Header = () => {
 
   return (
-    <div className="header">
-      <h1>MusicApp</h1>
+    <div>
+      <h1 className="ui header" id="header">MusicApp</h1>
     </div>
   )
 }
