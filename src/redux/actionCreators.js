@@ -188,4 +188,12 @@ function addFavoriteArtist(artist) {
   return { type: "ADD_FAVORITE_ARTIST", payload: artist }
 }
 
-export { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist }
+function addFavoriteAlbum(album) {
+  return { type: "ADD_FAVORITE_ALBUM", payload: album }
+}
+
+function addFavoriteGenre(genre) {
+  return { type: "ADD_FAVORITE_GENRE", payload: genre }
+}
+
+export { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }

@@ -8,7 +8,7 @@ const SearchResultsGenres = (props) => {
   return (
     <div>
       {props.genres.length > 0 ?
-      props.genres.map(s => <GenreItemFind key={s.id} genre={s}/>)
+      props.genres.map(g => <GenreItemFind key={g.id} genre={g}/>)
       :
       "No results"}
     </div>
@@ -16,7 +16,8 @@ const SearchResultsGenres = (props) => {
 }
 
 const mapStateToProps = state => ({
-  genres: state.genres.filter(s => s.name.toLowerCase().includes(state.searchText.toLowerCase()))
+  genres: state.genres.filter(g => g.name.toLowerCase().includes(state.searchText.toLowerCase()) &&
+    !state.myGenres.map(g => g.id).includes(g.id))
 })
 
 export default connect(mapStateToProps)(SearchResultsGenres)

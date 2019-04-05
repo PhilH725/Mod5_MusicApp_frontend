@@ -94,6 +94,8 @@ const myAlbumsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
       return action.payload.my_albums
+    case "ADD_FAVORITE_ALBUM":
+      return [...oldState, action.payload]
     default:
       return oldState
   }
@@ -103,6 +105,8 @@ const myGenresReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
       return action.payload.my_genres
+    case "ADD_FAVORITE_GENRE":
+      return [...oldState, action.payload]
     default:
       return oldState
   }
