@@ -1,6 +1,5 @@
 
 import React, {Component} from 'react'
-import MyMusicContainer from './MyMusicContainer'
 import FindMusicContainer from './FindMusicContainer'
 import PlaylistContainer from './PlaylistContainer'
 import SongShow from '../components/SongShow'

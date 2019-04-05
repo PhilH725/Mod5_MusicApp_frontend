@@ -1,18 +1,21 @@
 
-import React from 'react'
-import {Link} from 'react-router-dom'
+// going away from using modular item
 
-const Item = (props) => {
-
-  return (
-    <div>
-      <h4>
-        <Link to={`/items/${props.title.toLowerCase()}/${props.data.id}`}>
-        {props.data.name}
-        </Link>
-      </h4>
-    </div>
-  )
-}
-
-export default Item
+//
+// import React from 'react'
+// import {Link} from 'react-router-dom'
+//
+// const Item = (props) => {
+//
+//   return (
+//     <div>
+//       <h4>
+//         <Link to={`/items/${props.title.toLowerCase()}/${props.data.id}`}>
+//         {props.data.name}
+//         </Link>
+//       </h4>
+//     </div>
+//   )
+// }
+//
+// export default Item
