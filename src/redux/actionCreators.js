@@ -74,6 +74,20 @@ function creatingNewPlaylist(name, songs, id) {
     .then(res => res.json())
     .then(playlist => {
       dispatch(createdNewPlaylist(playlist))
+      dispatch(addingSongsToPlaylist(playlist, songs))
+    })
+  }
+}
+
+function addingSongsToPlaylist(playlist, songs) {
+  return (dispatch) => {
+    fetch('http://localhost:3000/playlist_songs', {
+      method: 'POST',
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        playlist_id: playlist.id,
+        songs: songs
+      })
     })
   }
 }

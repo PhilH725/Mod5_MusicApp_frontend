@@ -9,15 +9,13 @@ import AlbumShow from '../components/AlbumShow'
 import GenreShow from '../components/GenreShow'
 import EditPlaylist from './EditPlaylist'
 import NewPlaylistContainer from './NewPlaylistContainer'
-import {resetActiveItem} from '../redux/actionCreators'
+import MySongsContainer from './MySongsContainer'
+import MyArtistsContainer from './MyArtistsContainer'
+import MyAlbumsContainer from './MyAlbumsContainer'
+import MyGenresContainer from './MyGenresContainer'
 import { Route, Switch } from 'react-router-dom'
-import {connect} from 'react-redux'
 
 class MainContainer extends Component {
-
-  componentDidMount() {
-    this.props.resetActiveItem()
-  }
 
   render() {
     return (
@@ -52,9 +50,12 @@ class MainContainer extends Component {
 
           <Route path="/playlists/new" component={NewPlaylistContainer} />
 
-          <Route exact path="/my_music" component={MyMusicContainer} />
+          <Route exact path="/my_songs" component={MySongsContainer} />
+          <Route exact path="/my_playlists" component={PlaylistContainer} />
+          <Route exact path="/my_artists" component={MyArtistsContainer} />
+          <Route exact path="/my_albums" component={MyAlbumsContainer} />
+          <Route exact path="/my_genres" component={MyGenresContainer} />
           <Route exact path="/find_music" component={FindMusicContainer} />
-          <Route exact path="/playlists" component={PlaylistContainer} />
           <Route exact path="/" />
         </Switch>
       </div>
@@ -62,14 +63,4 @@ class MainContainer extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return ({
-//     activeItem: null
-//   })
-// }
-
-const mapDispatchToProps = dispatch => {
-  return {resetActiveItem: () => dispatch(resetActiveItem())}
-}
-
-export default connect(null, mapDispatchToProps)(MainContainer)
+export default MainContainer

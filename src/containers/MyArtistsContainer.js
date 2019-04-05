@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react'
-import Item from '../components/Item'
+import ArtistItem from '../components/ArtistItem'
 import {connect} from 'react-redux'
 
 class MyArtistsContainer extends Component {
@@ -9,7 +9,7 @@ class MyArtistsContainer extends Component {
     return (
       <div>
         <h3>My Artists:</h3>
-        {this.props.items.map(i => <Item key={i.id} data={i} title={this.props.title}/>)}
+        {this.props.artists.map(a => <ArtistItem key={a.id} artist={a} />)}
       </div>
     )
   }
@@ -17,8 +17,7 @@ class MyArtistsContainer extends Component {
 
 const mapStateToProps = state => {
   return ({
-    title: "Artists",
-    songs: state.myArtists
+    artists: state.myArtists
   })
 }
 

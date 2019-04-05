@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react'
-import Item from '../components/Item'
+import GenreItem from '../components/GenreItem'
 import {connect} from 'react-redux'
 
 class MyGenresContainer extends Component {
@@ -9,7 +9,7 @@ class MyGenresContainer extends Component {
     return (
       <div>
         <h3>My Genres:</h3>
-        {this.props.items.map((i, index) => <Item key={i.id} data={i} title={this.props.title}/>)}
+        {this.props.genres.map(g => <GenreItem key={g.id} genre={g} />)}
       </div>
     )
   }
@@ -17,8 +17,7 @@ class MyGenresContainer extends Component {
 
 const mapStateToProps = state => {
   return ({
-    title: "Genres",
-    songs: state.myGenres
+    genres: state.myGenres
   })
 }
 
