@@ -10,7 +10,7 @@ class PlaylistContainer extends Component {
     return (
       <Fragment>
         <h2>Playlists:</h2>
-        <Grid columns={2} divided>
+        <Grid celled>
           <PlaylistList />
           <SelectedPlaylist />
         </Grid>

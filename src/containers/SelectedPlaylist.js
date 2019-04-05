@@ -10,10 +10,10 @@ class SelectedPlaylist extends Component {
     return (
       this.props.selectedPlaylist ?
       <Fragment>
-      <Grid.Column>
-      <Header as="h3">
-        {this.props.selectedPlaylist.name}
-      </Header>
+        <Grid.Column width={11}>
+        <Header as="h3">
+          {this.props.selectedPlaylist.name}
+        </Header>
         <List animated celled verticalAlign='middle'>
           {this.props.selectedPlaylist.songs.map(s => <PlaylistSongItem key={s.id} song={s} />)}
         </List>
