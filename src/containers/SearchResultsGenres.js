@@ -8,7 +8,7 @@ const SearchResultsGenres = (props) => {
   return (
     <div>
       {props.genres.length > 0 ?
-      props.genres.map(s => <GenreItemFind key={s.id} album={s}/>)
+      props.genres.map(s => <GenreItemFind key={s.id} genre={s}/>)
       :
       "No results"}
     </div>

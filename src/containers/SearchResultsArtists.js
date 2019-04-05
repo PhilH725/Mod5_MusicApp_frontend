@@ -8,7 +8,7 @@ const SearchResultsArtists = (props) => {
   return (
     <div>
       {props.artists.length > 0 ?
-      props.artists.map(s => <ArtistItemFind key={s.id} song={s}/>)
+      props.artists.map(s => <ArtistItemFind key={s.id} artist={s}/>)
       :
       "No results"}
     </div>
