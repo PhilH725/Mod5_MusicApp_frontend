@@ -181,6 +181,14 @@ function removeNewPlaylistSong(song) {
 }
 
 function addFavoriteSong(song) {
+  fetch('http://localhost:3000/user_songs', {
+    method: 'POST',
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      user_id: 1,
+      song_id: song.id
+    })
+  })
   return { type: "ADD_FAVORITE_SONG", payload: song }
 }
 
