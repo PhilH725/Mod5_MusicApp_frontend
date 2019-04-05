@@ -39,6 +39,33 @@ const songsReducer = (oldState=[], action) => {
   }
 }
 
+const artistsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_ARTISTS":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
+const albumsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_ALBUMS":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
+const genresReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_GENRES":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const mySongsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
@@ -139,6 +166,9 @@ const rootReducer = combineReducers({
   searchText: searchTextReducer,
   searchType: searchTypeReducer,
   songs: songsReducer,
+  artists: artistsReducer,
+  albums: albumsReducer,
+  genres: myGenresReducer,
   loading: loadingReducer,
   mySongs: mySongsReducer,
   myArtists: myArtistsReducer,

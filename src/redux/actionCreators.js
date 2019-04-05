@@ -14,6 +14,48 @@ function fetchingSongs() {
   }
 }
 
+function fetchedArtists(artists) {
+  return { type: "FETCHED_ARTISTS", payload: artists}
+}
+
+function fetchingArtists() {
+  return (dispatch) => {
+    fetch('http://localhost:3000/artists')
+    .then(res => res.json())
+    .then(artists => {
+      dispatch(fetchedArtists(artists))
+    })
+  }
+}
+
+function fetchedAlbums(albums) {
+  return { type: "FETCHED_ALBUMS", payload: albums}
+}
+
+function fetchingAlbums() {
+  return (dispatch) => {
+    fetch('http://localhost:3000/albums')
+    .then(res => res.json())
+    .then(albums => {
+      dispatch(fetchedAlbums(albums))
+    })
+  }
+}
+
+function fetchedGenres(genres) {
+  return { type: "FETCHED_GENRES", payload: genres}
+}
+
+function fetchingGenres() {
+  return (dispatch) => {
+    fetch('http://localhost:3000/genres')
+    .then(res => res.json())
+    .then(genres => {
+      dispatch(fetchedGenres(genres))
+    })
+  }
+}
+
 function fetchedFavorites(favorites) {
   return { type: "FETCHED_FAVORITES", payload: favorites }
 }
@@ -138,4 +180,4 @@ function removeNewPlaylistSong(song) {
   return { type: "REMOVE_NEW_PLAYLIST_SONG", payload: song }
 }
 
-export { fetchingSongs, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong }
+export { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong }
