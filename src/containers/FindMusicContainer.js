@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import FindFilterBar from '../components/FindFilterBar'
-import SearchResultsList from './SearchResultsList'
+import SearchRotary from './SearchRotary'
 
 class FindMusicContainer extends Component {
 
@@ -10,7 +10,7 @@ class FindMusicContainer extends Component {
       <div>
         <h2>Find new music:</h2>
         <FindFilterBar />
-        <SearchResultsList />
+        <SearchRotary />
       </div>
     )
   }

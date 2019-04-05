@@ -114,6 +114,10 @@ function changeSearchText(text) {
   return { type: "CHANGE_SEARCH_TEXT", payload: text }
 }
 
+function changeSearchType(type) {
+  return { type: "CHANGE_SEARCH_TYPE", payload: type }
+}
+
 function resetActiveItem() {
   return { type: "RESET_ACTIVE_ITEM" }
 }
@@ -134,4 +138,4 @@ function removeNewPlaylistSong(song) {
   return { type: "REMOVE_NEW_PLAYLIST_SONG", payload: song }
 }
 
-export { fetchingSongs, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong }
+export { fetchingSongs, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong }
