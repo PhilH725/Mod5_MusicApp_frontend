@@ -8,7 +8,7 @@ const SearchResultsSongs = (props) => {
   return (
     <div>
       {props.songs.length > 0 ?
-      props.songs.map(s => <SongItemFind key={s.id} song={s}/>)
+      props.songs.map(s => <SongItemFind key={s.id} song={s} />)
       :
       "No results"}
     </div>
@@ -16,7 +16,8 @@ const SearchResultsSongs = (props) => {
 }
 
 const mapStateToProps = state => ({
-  songs: state.songs.filter(s => s.name.toLowerCase().includes(state.searchText.toLowerCase()))
+  songs: state.songs.filter(s => s.name.toLowerCase().includes(state.searchText.toLowerCase()) &&
+    !state.mySongs.map(s => s.id).includes(s.id))
 })
 
 export default connect(mapStateToProps)(SearchResultsSongs)

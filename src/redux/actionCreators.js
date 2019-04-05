@@ -180,4 +180,12 @@ function removeNewPlaylistSong(song) {
   return { type: "REMOVE_NEW_PLAYLIST_SONG", payload: song }
 }
 
-export { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong }
+function addFavoriteSong(song) {
+  return { type: "ADD_FAVORITE_SONG", payload: song }
+}
+
+function addFavoriteArtist(artist) {
+  return { type: "ADD_FAVORITE_ARTIST", payload: artist }
+}
+
+export { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist }

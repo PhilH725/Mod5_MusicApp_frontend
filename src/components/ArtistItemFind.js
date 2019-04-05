@@ -1,15 +1,21 @@
 
 import React from 'react'
+import {addFavoriteArtist} from '../redux/actionCreators'
+import {connect} from 'react-redux'
 
 const ArtistItemFind = (props) => {
 
   return (
-    <div>
-      <h4>
+    <div onClick={()=>props.addFavoriteArtist(props.artist)}>
         {props.artist.name}
-      </h4>
     </div>
   )
 }
 
-export default ArtistItemFind
+const mapDispatchToProps = dispatch => {
+  return {
+    addFavoriteArtist: (artist) => dispatch(addFavoriteArtist(artist))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ArtistItemFind)

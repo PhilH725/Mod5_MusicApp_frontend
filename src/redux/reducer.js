@@ -70,6 +70,10 @@ const mySongsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
       return action.payload.my_songs
+    case "ADD_FAVORITE_SONG":
+      return [...oldState, action.payload]
+    case "REMOVE_FAVORITE_SONG":
+      return oldState.filter(s => s.id !== action.payload.id)
     default:
       return oldState
   }
@@ -79,6 +83,8 @@ const myArtistsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
       return action.payload.my_artists
+    case "ADD_FAVORITE_ARTIST":
+      return [...oldState, action.payload]
     default:
       return oldState
   }
@@ -168,7 +174,7 @@ const rootReducer = combineReducers({
   songs: songsReducer,
   artists: artistsReducer,
   albums: albumsReducer,
-  genres: myGenresReducer,
+  genres: genresReducer,
   loading: loadingReducer,
   mySongs: mySongsReducer,
   myArtists: myArtistsReducer,

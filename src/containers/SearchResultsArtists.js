@@ -16,7 +16,8 @@ const SearchResultsArtists = (props) => {
 }
 
 const mapStateToProps = state => ({
-  artists: state.artists.filter(s => s.name.toLowerCase().includes(state.searchText.toLowerCase()))
+  artists: state.artists.filter(a => a.name.toLowerCase().includes(state.searchText.toLowerCase()) &&
+    !state.myArtists.map(a => a.id).includes(a.id))
 })
 
 export default connect(mapStateToProps)(SearchResultsArtists)
