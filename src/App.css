@@ -24,6 +24,7 @@ body {
 }
 
 .ui.small.menu {
+  /* navbar */
   color: white;
   margin-left: 40px;
   margin-right: 40px;
@@ -35,9 +36,16 @@ body {
 }
 
 .ui.items>.item>.image {
+  /* item image/all content by extension */
   margin-left: 40px;
 }
 
 .ui.items>.item .meta {
+  /* item metadata */
   margin-left: 25px;
+}
+
+.ui.accordion .title:not(.ui) {
+  /* accordion dropdown main items */
+  font-size: 1.5em;
 }

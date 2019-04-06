@@ -23,13 +23,13 @@ class AlbumItem extends Component {
           {this.props.album.name}
         </Accordion.Title>
         <Accordion.Content active={this.state.activeIndex === -1}>
-          <Item.Group>
-            {this.props.album.songs.map(s => <Item>
+          <Item.Group divided>
+            {this.props.album.songs.map(s => <Item key={s.id}>
               <Item.Image size='tiny' src={require('../img/image.png')} />
 
               <Item.Content>
                 <Item.Header>{s.name}</Item.Header>
-                <Item.Meta>more stuff</Item.Meta>
+                <Item.Meta>{s.artist}</Item.Meta>
               </Item.Content>
             </Item>)}
 
@@ -39,5 +39,6 @@ class AlbumItem extends Component {
     )
   }
 }
+//make the song children their own component
 
 export default AlbumItem
