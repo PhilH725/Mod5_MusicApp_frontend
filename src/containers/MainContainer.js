@@ -18,7 +18,7 @@ class MainContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main-container">
         <Switch>
 
           <Route path="/items/songs/:id" render={ (props) => {
