@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import NewPlaylistNameBar from '../components/NewPlaylistNameBar'
 import NewPlaylistPreviewContainer from './NewPlaylistPreviewContainer'
 import NewPlaylistAddSongsContainer from './NewPlaylistAddSongsContainer'
-import {creatingNewPlaylist} from '../redux/actionCreators'
+import {Link} from 'react-router-dom'
+import {creatingNewPlaylist, renderNewPlaylist} from '../redux/actionCreators'
 import { connect } from 'react-redux'
 
 class NewPlaylistContainer extends Component {
@@ -15,7 +16,10 @@ class NewPlaylistContainer extends Component {
         <NewPlaylistAddSongsContainer />
         <NewPlaylistNameBar />
         <NewPlaylistPreviewContainer />
-        <button onClick={() => this.props.creatingNewPlaylist(this.props.newPlaylistNameText, this.props.newPlaylistSongs, 1)}>Create New Playlist</button>
+        <Link to="/my_playlists"><button onClick={() => {
+          this.props.creatingNewPlaylist(this.props.newPlaylistNameText, this.props.newPlaylistSongs, 1)
+          this.props.renderNewPlaylist(this.props.newPlaylistNameText, this.props.newPlaylistSongs)}
+        }>Create New Playlist</button></Link>
       </div>
     )
   }
@@ -29,7 +33,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    creatingNewPlaylist: (name, songs, id) => dispatch(creatingNewPlaylist(name, songs, id))
+    creatingNewPlaylist: (name, songs, id) => dispatch(creatingNewPlaylist(name, songs, id)),
+    renderNewPlaylist: (name, songs) => dispatch(renderNewPlaylist(name, songs))
   }
 }
 

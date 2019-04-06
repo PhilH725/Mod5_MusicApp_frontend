@@ -118,6 +118,8 @@ const myPlaylistsReducer = (oldState=[], action) => {
       return action.payload.playlists
     case "CREATE_NEW_PLAYLIST":
       return [...oldState, action.payload]
+    case "DELETE_PLAYLIST":
+      return oldState.filter(p => p.id !== action.payload.id)
     default:
       return oldState
   }
@@ -136,8 +138,12 @@ const activeItemReducer = (oldState={}, action) => {
 
 const selectedPlaylistReducer = (oldState=null, action) => {
   switch (action.type) {
+    case "FETCHED_PLAYLISTS":
+      return action.payload.playlists[0]
     case "CHANGE_SELECTED_PLAYLIST":
       return action.payload
+    case "DELETE_PLAYLIST":
+      return null
     default:
       return oldState
   }

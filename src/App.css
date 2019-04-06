@@ -49,3 +49,7 @@ body {
   /* accordion dropdown main items */
   font-size: 1.5em;
 }
+
+#playlist-list {
+  height: 500px;
+}

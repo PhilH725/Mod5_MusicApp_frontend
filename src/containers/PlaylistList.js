@@ -1,23 +1,20 @@
 
 import React, {Component} from 'react'
 import PlaylistItem from '../components/PlaylistItem'
+import PlaylistActionsBar from '../components/PlaylistActionsBar'
 import {List, Grid} from 'semantic-ui-react'
 import { connect } from 'react-redux'
-
-// <div>
-//   <h3>My Playlists</h3>
-//   {this.props.playlists.map(p => <PlaylistItem key={p.id} data={p}/>)}
-// </div>
 
 class PlaylistList extends Component {
 
   render() {
     return (
       this.props.playlists.length > 0 ?
-      <Grid.Column width={5}>
-      <List celled id="playlist-list">
-        {this.props.playlists.map(p => <PlaylistItem key={p.id} data={p}/>)}
-      </List>
+      <Grid.Column floated="left" width={4}>
+        <List celled id="playlist-list">
+          {this.props.playlists.map(p => <PlaylistItem key={p.id} data={p}/>)}
+        </List>
+        <PlaylistActionsBar />
       </Grid.Column>
       :
       <h1>Loading...</h1>

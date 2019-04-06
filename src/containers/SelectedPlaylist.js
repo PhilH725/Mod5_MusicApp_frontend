@@ -10,7 +10,7 @@ class SelectedPlaylist extends Component {
     return (
       this.props.selectedPlaylist ?
       <Fragment>
-        <Grid.Column width={11}>
+        <Grid.Column floated="right" width={12}>
         <Header as="h3">
           {this.props.selectedPlaylist.name}
         </Header>

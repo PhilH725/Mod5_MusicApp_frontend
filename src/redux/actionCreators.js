@@ -102,6 +102,11 @@ function createdNewPlaylist(playlist) {
   return { type: "CREATE_NEW_PLAYLIST", payload: playlist }
 }
 
+function renderNewPlaylist(name, songs) {
+  console.log('hi')
+  return { type: "OPTIMISTICALLY_RENDER_NEW_PLAYLIST", payload: {name: name, songs: songs} }
+}
+
 function creatingNewPlaylist(name, songs, id) {
   return (dispatch) => {
     fetch('http://localhost:3000/playlists', {
@@ -227,4 +232,13 @@ function addFavoriteGenre(genre) {
   return { type: "ADD_FAVORITE_GENRE", payload: genre }
 }
 
-export { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }
+function deletePlaylist(playlist) {
+  fetch(`http://localhost:3000/playlists/${playlist.id}`, {
+    method: "DELETE"
+  })
+  .then(res => res.json())
+  .then(pl => console.log(pl))
+  return { type: "DELETE_PLAYLIST", payload: playlist }
+}
+
+export { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, renderNewPlaylist, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }
