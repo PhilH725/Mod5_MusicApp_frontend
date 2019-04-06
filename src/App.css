@@ -15,8 +15,14 @@
   margin-top: 0px;
 }
 
-#playlist-list {
-  /* border-style: solid;
-  border-width: thin; */
-  width: 200px;
+.item {
+  text-align: left;
+}
+
+.ui.items>.item>.image {
+  margin-left: 40px;
+}
+
+.ui.items>.item .meta {
+  margin-left: 25px;
 }

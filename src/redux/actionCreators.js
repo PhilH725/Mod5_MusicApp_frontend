@@ -103,7 +103,6 @@ function createdNewPlaylist(playlist) {
 }
 
 function creatingNewPlaylist(name, songs, id) {
-  //have to do something different with the songs
   return (dispatch) => {
     fetch('http://localhost:3000/playlists', {
       method: 'POST',
