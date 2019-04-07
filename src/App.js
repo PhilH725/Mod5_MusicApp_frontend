@@ -4,12 +4,7 @@ import Navbar from './components/Navbar'
 import MainContainer from './containers/MainContainer'
 import './App.css';
 import {connect} from 'react-redux'
-import {fetchingSongs} from './redux/actionCreators'
-import {fetchingArtists} from './redux/actionCreators'
-import {fetchingAlbums} from './redux/actionCreators'
-import {fetchingGenres} from './redux/actionCreators'
-import {fetchingFavorites} from './redux/actionCreators'
-import {fetchingPlaylists} from './redux/actionCreators'
+import { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingPlaylists} from './redux/actionCreators'
 
 class App extends Component {
 

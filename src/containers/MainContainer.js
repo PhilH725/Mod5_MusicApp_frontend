@@ -12,7 +12,10 @@ import MySongsContainer from './MySongsContainer'
 import MyArtistsContainer from './MyArtistsContainer'
 import MyAlbumsContainer from './MyAlbumsContainer'
 import MyGenresContainer from './MyGenresContainer'
-import { Route, Switch } from 'react-router-dom'
+import LoginContainer from './LoginContainer'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {isEmpty} from 'lodash'
 
 class MainContainer extends Component {
 
@@ -48,7 +51,9 @@ class MainContainer extends Component {
           }} />
 
           <Route path="/playlists/new" component={NewPlaylistContainer} />
-
+          <Route exact path="/login" render = { (props) => {
+            return isEmpty(this.props.user) ? <LoginContainer/> : <Redirect to="/my_songs"/>
+          }} />
           <Route exact path="/my_songs" component={MySongsContainer} />
           <Route exact path="/my_playlists" component={PlaylistContainer} />
           <Route exact path="/my_artists" component={MyArtistsContainer} />
@@ -62,4 +67,8 @@ class MainContainer extends Component {
   }
 }
 
-export default MainContainer
+const mapStateToProps = state => ({
+  user: state.user
+})
+
+export default connect(mapStateToProps)(MainContainer)

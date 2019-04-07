@@ -1,6 +1,15 @@
 
 import { combineReducers } from 'redux'
 
+const userReducer = (oldState={}, action) => {
+  switch (action.type) {
+    case "AUTHENTICATED_USER":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const searchTextReducer = (oldState="", action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_TEXT":
@@ -179,6 +188,7 @@ const newPlaylistSongsReducer = (oldState=[], action) => {
 }
 
 const rootReducer = combineReducers({
+  user: userReducer,
   searchText: searchTextReducer,
   searchType: searchTypeReducer,
   songs: songsReducer,

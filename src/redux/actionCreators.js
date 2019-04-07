@@ -1,4 +1,30 @@
 
+function authenticatedUser(user) {
+  return { type: "AUTHENTICATED_USER", payload: user }
+}
+
+function authenticatingUser(username, password) {
+  return (dispatch) => {
+    fetch('http://localhost:3000/login', {
+    	method: "POST",
+    	headers:{"Content-Type":"application/json", "Accept": "application/json"},
+    	body:JSON.stringify({
+    		username: username,
+    		password: password
+    	})
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.authenticated) {
+        dispatch(authenticatedUser(data.user))
+        localStorage.setItem('token', data.token)
+      } else {
+        alert('Incorrect username or password')
+      }
+    })
+  }
+}
+
 function fetchedSongs(songs) {
   return { type: "FETCHED_SONGS", payload: songs}
 }
@@ -241,4 +267,4 @@ function deletePlaylist(playlist) {
   return { type: "DELETE_PLAYLIST", payload: playlist }
 }
 
-export { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, renderNewPlaylist, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }
+export { authenticatingUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, renderNewPlaylist, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }
