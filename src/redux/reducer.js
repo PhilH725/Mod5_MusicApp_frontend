@@ -7,6 +7,8 @@ const userReducer = (oldState={}, action) => {
       return action.payload
     case "AUTHENTICATED_TOKEN":
       return action.payload
+    case "LOGOUT_USER":
+      return {}
     default:
       return oldState
   }
