@@ -25,6 +25,22 @@ function authenticatingUser(username, password) {
   }
 }
 
+function authenticatedToken(user) {
+  return { type: "AUTHENTICATED_TOKEN", payload: user }
+}
+
+function authenticatingToken(token) {
+  return (dispatch) => {
+  fetch('http://localhost:3000/verify_token', {
+    headers:{"Authentication": `Bearer ${token}`}
+  })
+  .then(res => res.json())
+  .then(user =>
+    dispatch(authenticatedToken(user))
+    )
+  }
+}
+
 function fetchedSongs(songs) {
   return { type: "FETCHED_SONGS", payload: songs}
 }
@@ -267,4 +283,4 @@ function deletePlaylist(playlist) {
   return { type: "DELETE_PLAYLIST", payload: playlist }
 }
 
-export { authenticatingUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, renderNewPlaylist, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }
+export { authenticatingUser, authenticatingToken, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, renderNewPlaylist, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }

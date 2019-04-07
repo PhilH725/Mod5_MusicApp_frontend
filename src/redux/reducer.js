@@ -5,6 +5,8 @@ const userReducer = (oldState={}, action) => {
   switch (action.type) {
     case "AUTHENTICATED_USER":
       return action.payload
+    case "AUTHENTICATED_TOKEN":
+      return action.payload
     default:
       return oldState
   }
