@@ -7,15 +7,19 @@ const SongItemFind = (props) => {
 
   return (
     <div>
-      {props.song.name} <button onClick={()=>props.addFavoriteSong(props.song)}>Add to Favorites</button>
+      {props.song.name} <button onClick={()=>props.addFavoriteSong(props.song, props.user.id)}>Add to Favorites</button>
     </div>
   )
 }
 
+const mapStateToProps = state => ({
+  user: state.user
+})
+
 const mapDispatchToProps = dispatch => {
   return {
-    addFavoriteSong: (song) => dispatch(addFavoriteSong(song))
+    addFavoriteSong: (song, id) => dispatch(addFavoriteSong(song, id))
   }
 }
 
-export default connect(null, mapDispatchToProps)(SongItemFind)
+export default connect(mapStateToProps, mapDispatchToProps)(SongItemFind)

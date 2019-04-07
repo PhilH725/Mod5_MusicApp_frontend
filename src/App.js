@@ -5,6 +5,7 @@ import MainContainer from './containers/MainContainer'
 import './App.css';
 import {connect} from 'react-redux'
 import { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingPlaylists, authenticatingToken} from './redux/actionCreators'
+// import {isEmpty} from 'lodash'
 
 class App extends Component {
 
@@ -13,11 +14,9 @@ class App extends Component {
     this.props.fetchingArtists()
     this.props.fetchingAlbums()
     this.props.fetchingGenres()
-    this.props.fetchingFavorites()
-    this.props.fetchingPlaylists()
     let token = localStorage.getItem('token')
     if (token) {
-    this.props.authenticatingToken(token)
+      this.props.authenticatingToken(token)
     }
   }
 
@@ -32,6 +31,10 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  user: state.user
+})
+
 const mapDispatchToProps = dispatch => {
   return {
     fetchingSongs: () => dispatch(fetchingSongs()),
@@ -44,4 +47,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

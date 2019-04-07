@@ -12,6 +12,69 @@ const userReducer = (oldState={}, action) => {
   }
 }
 
+const mySongsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_FAVORITES":
+      return action.payload.my_songs
+    case "ADD_FAVORITE_SONG":
+      return [...oldState, {id: action.payload.id,
+                            name: action.payload.name,
+                            artist: action.payload.artist.name,
+                            album: action.payload.album.name
+                          }]
+    case "REMOVE_FAVORITE_SONG":
+      return oldState.filter(s => s.id !== action.payload.id)
+    default:
+      return oldState
+  }
+}
+
+const myArtistsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_FAVORITES":
+      return action.payload.my_artists
+    case "ADD_FAVORITE_ARTIST":
+      return [...oldState, action.payload]
+    default:
+      return oldState
+  }
+}
+
+const myAlbumsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_FAVORITES":
+      return action.payload.my_albums
+    case "ADD_FAVORITE_ALBUM":
+      return [...oldState, action.payload]
+    default:
+      return oldState
+  }
+}
+
+const myGenresReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_FAVORITES":
+      return action.payload.my_genres
+    case "ADD_FAVORITE_GENRE":
+      return [...oldState, action.payload]
+    default:
+      return oldState
+  }
+}
+
+const myPlaylistsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_PLAYLISTS":
+      return action.payload
+    case "CREATE_NEW_PLAYLIST":
+      return [...oldState, action.payload]
+    case "DELETE_PLAYLIST":
+      return oldState.filter(p => p.id !== action.payload.id)
+    default:
+      return oldState
+  }
+}
+
 const searchTextReducer = (oldState="", action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_TEXT":
@@ -77,65 +140,6 @@ const genresReducer = (oldState=[], action) => {
   }
 }
 
-const mySongsReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_FAVORITES":
-      return action.payload.my_songs
-    case "ADD_FAVORITE_SONG":
-      return [...oldState, action.payload]
-    case "REMOVE_FAVORITE_SONG":
-      return oldState.filter(s => s.id !== action.payload.id)
-    default:
-      return oldState
-  }
-}
-
-const myArtistsReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_FAVORITES":
-      return action.payload.my_artists
-    case "ADD_FAVORITE_ARTIST":
-      return [...oldState, action.payload]
-    default:
-      return oldState
-  }
-}
-
-const myAlbumsReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_FAVORITES":
-      return action.payload.my_albums
-    case "ADD_FAVORITE_ALBUM":
-      return [...oldState, action.payload]
-    default:
-      return oldState
-  }
-}
-
-const myGenresReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_FAVORITES":
-      return action.payload.my_genres
-    case "ADD_FAVORITE_GENRE":
-      return [...oldState, action.payload]
-    default:
-      return oldState
-  }
-}
-
-const myPlaylistsReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_PLAYLISTS":
-      return action.payload.playlists
-    case "CREATE_NEW_PLAYLIST":
-      return [...oldState, action.payload]
-    case "DELETE_PLAYLIST":
-      return oldState.filter(p => p.id !== action.payload.id)
-    default:
-      return oldState
-  }
-}
-
 const activeItemReducer = (oldState={}, action) => {
   switch (action.type) {
     case "FETCHED_ITEM":
@@ -150,7 +154,7 @@ const activeItemReducer = (oldState={}, action) => {
 const selectedPlaylistReducer = (oldState=null, action) => {
   switch (action.type) {
     case "FETCHED_PLAYLISTS":
-      return action.payload.playlists[0]
+      return action.payload.length > 0 ? action.payload[0] : null
     case "CHANGE_SELECTED_PLAYLIST":
       return action.payload
     case "DELETE_PLAYLIST":

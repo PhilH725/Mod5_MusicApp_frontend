@@ -16,6 +16,9 @@ function authenticatingUser(username, password) {
     .then(res => res.json())
     .then(data => {
       if (data.authenticated) {
+        console.log('data:', data)
+        dispatch(fetchingFavorites(data.user.id))
+        dispatch(fetchingPlaylists(data.user.id))
         dispatch(authenticatedUser(data.user))
         localStorage.setItem('token', data.token)
       } else {
@@ -35,9 +38,26 @@ function authenticatingToken(token) {
     headers:{"Authentication": `Bearer ${token}`}
   })
   .then(res => res.json())
-  .then(user =>
+  .then(user =>{
+    dispatch(fetchingFavorites(user.id))
+    dispatch(fetchingPlaylists(user.id))
     dispatch(authenticatedToken(user))
-    )
+    })
+  }
+}
+
+function fetchedFavorites(favorites) {
+  return { type: "FETCHED_FAVORITES", payload: favorites }
+}
+
+function fetchingFavorites(userId) {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/users/${userId}`)
+    .then(res => res.json())
+    .then(favorites => {
+      console.log(favorites)
+      dispatch(fetchedFavorites(favorites))
+    })
   }
 }
 
@@ -98,20 +118,6 @@ function fetchingGenres() {
   }
 }
 
-function fetchedFavorites(favorites) {
-  return { type: "FETCHED_FAVORITES", payload: favorites }
-}
-
-function fetchingFavorites() {
-  return (dispatch) => {
-    fetch('http://localhost:3000/users/1')
-    .then(res => res.json())
-    .then(favorites => {
-      dispatch(fetchedFavorites(favorites))
-    })
-  }
-}
-
 function fetchedItem(item) {
   return { type: "FETCHED_ITEM", payload: item }
 }
@@ -130,12 +136,12 @@ function fetchedPlaylists(playlists) {
   return { type: "FETCHED_PLAYLISTS", payload: playlists }
 }
 
-function fetchingPlaylists() {
+function fetchingPlaylists(userId) {
   return (dispatch) => {
-    fetch('http://localhost:3000/users/1')
+    fetch(`http://localhost:3000/users/${userId}`)
     .then(res => res.json())
-    .then(playlists => {
-      dispatch(fetchedPlaylists(playlists))
+    .then(data => {
+      dispatch(fetchedPlaylists(data.playlists))
     })
   }
 }
@@ -149,14 +155,14 @@ function renderNewPlaylist(name, songs) {
   return { type: "OPTIMISTICALLY_RENDER_NEW_PLAYLIST", payload: {name: name, songs: songs} }
 }
 
-function creatingNewPlaylist(name, songs, id) {
+function creatingNewPlaylist(name, songs, userId) {
   return (dispatch) => {
     fetch('http://localhost:3000/playlists', {
       method: 'POST',
       headers: {"Content-Type":"application/json", Accept:"application/json"},
       body: JSON.stringify({
         name: name,
-        user_id: id
+        user_id: userId
       })
     })
     .then(res => res.json())
@@ -226,48 +232,48 @@ function removeNewPlaylistSong(song) {
   return { type: "REMOVE_NEW_PLAYLIST_SONG", payload: song }
 }
 
-function addFavoriteSong(song) {
+function addFavoriteSong(song, id) {
   fetch('http://localhost:3000/user_songs', {
     method: 'POST',
     headers: {"Content-Type":"application/json", Accept:"application/json"},
     body: JSON.stringify({
-      user_id: 1,
+      user_id: id,
       song_id: song.id
     })
   })
   return { type: "ADD_FAVORITE_SONG", payload: song }
 }
 
-function addFavoriteArtist(artist) {
+function addFavoriteArtist(artist, id) {
   fetch('http://localhost:3000/user_artists', {
     method: 'POST',
     headers: {"Content-Type":"application/json", Accept:"application/json"},
     body: JSON.stringify({
-      user_id: 1,
+      user_id: id,
       artist_id: artist.id
     })
   })
-  return { type: "ADD_FAVORITE_ARTIST", payload: artist }
+  return { type: "ADD_FAVORITE_ARTIST", payload: artist.name }
 }
 
-function addFavoriteAlbum(album) {
+function addFavoriteAlbum(album, id) {
   fetch('http://localhost:3000/user_albums', {
     method: 'POST',
     headers: {"Content-Type":"application/json", Accept:"application/json"},
     body: JSON.stringify({
-      user_id: 1,
+      user_id: id,
       album_id: album.id
     })
   })
   return { type: "ADD_FAVORITE_ALBUM", payload: album }
 }
 
-function addFavoriteGenre(genre) {
+function addFavoriteGenre(genre, id) {
   fetch('http://localhost:3000/user_genres', {
     method: 'POST',
     headers: {"Content-Type":"application/json", Accept:"application/json"},
     body: JSON.stringify({
-      user_id: 1,
+      user_id: id,
       genre_id: genre.id
     })
   })
