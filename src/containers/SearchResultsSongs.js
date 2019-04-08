@@ -1,17 +1,18 @@
 
 import React from 'react'
 import SongItemFind from '../components/SongItemFind'
+import {List} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 const SearchResultsSongs = (props) => {
 
   return (
-    <div>
+    <List celled>
       {props.songs.length > 0 ?
       props.songs.map(s => <SongItemFind key={s.id} song={s} />)
       :
       "No results"}
-    </div>
+    </List>
   )
 }
 
