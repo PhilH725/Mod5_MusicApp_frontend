@@ -2,10 +2,12 @@
 import React, {Component, Fragment} from 'react'
 import PlaylistSongItem from '../components/PlaylistSongItem'
 import {Header, List, Grid} from 'semantic-ui-react'
+import Test from '../test.js'
 import { connect } from 'react-redux'
 
 class SelectedPlaylist extends Component {
 
+  // {this.props.selectedPlaylist.songs.map(s => <PlaylistSongItem key={s.id} song={s} />)}
   render() {
     return (
       this.props.selectedPlaylist ?
@@ -15,7 +17,7 @@ class SelectedPlaylist extends Component {
           {this.props.selectedPlaylist.name}
         </Header>
         <List animated celled verticalAlign='middle'>
-          {this.props.selectedPlaylist.songs.map(s => <PlaylistSongItem key={s.id} song={s} />)}
+          <Test/>
         </List>
         </Grid.Column>
       </Fragment>
