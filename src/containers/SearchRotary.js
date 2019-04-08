@@ -51,8 +51,7 @@ class SearchRotary extends Component {
 }
 
 const mapStateToProps = state => ({
-  searchType: state.searchType,
-  songs: state.songs.filter(s => s.name.toLowerCase().includes(state.searchText.toLowerCase()))
+  searchType: state.searchType
 })
 
 export default connect(mapStateToProps)(SearchRotary)

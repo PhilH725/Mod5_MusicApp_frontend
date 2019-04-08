@@ -11,7 +11,7 @@ body {
   background-color: white;
   margin-left: 40px;
   margin-right: 40px;
-  min-height: 700px;
+  min-height: 600px;
 }
 
 #site-header {
@@ -29,6 +29,8 @@ body {
   margin-left: 40px;
   margin-right: 40px;
   margin-bottom: 5px;
+  font-size: 12px;
+  height: 20px;
 }
 
 .ui.divided.items>.item {
@@ -43,18 +45,18 @@ body {
   margin-left: 20px;
 }
 
-.ui.items>.item>.content>.header:not(.ui) {
-  /* margin-bottom: 0px; */
-}
-
 .ui.items>.item .meta {
   /* item metadata */
   margin: 0px 0px 0px 25px
 }
 
+.ui.accordion {
+  text-align: left;
+}
+
 .ui.accordion .title:not(.ui) {
   /* accordion dropdown main items */
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 #playlist-list {

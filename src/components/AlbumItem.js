@@ -25,7 +25,7 @@ class AlbumItem extends Component {
         <Accordion.Content active={this.state.activeIndex === -1}>
           <Item.Group divided>
             {this.props.album.songs.map(s => <Item key={s.id}>
-              <Item.Image size='tiny' src={require('../img/image.png')} />
+              <Item.Image size='mini' src={require('../img/image.png')} />
 
               <Item.Content>
                 <Item.Header>{s.name}</Item.Header>
