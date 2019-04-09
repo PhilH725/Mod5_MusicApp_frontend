@@ -1,15 +1,18 @@
 
 import React from 'react'
-// import {Item} from 'semantic-ui-react'
+import {Item} from 'semantic-ui-react'
 import {addFavoriteAlbum} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
 const AlbumItemFind = (props) => {
 
   return (
-    <div onClick={ () => props.addFavoriteAlbum(props.album)}>
-        <img src={props.album.images[1]} alt={props.album.name}/>{props.album.name} - {props.album.artistName}
-    </div>
+    <Item onClick={ () => props.addFavoriteAlbum(props.album)}>
+      <Item.Image src={props.album.images[1]} alt={props.album.name} float="left" />
+      <Item.Content>
+        {props.album.name} - {props.album.artistName}
+      </Item.Content>
+    </Item>
   )
 }
 
