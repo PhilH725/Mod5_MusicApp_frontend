@@ -5,7 +5,6 @@ import MainContainer from './containers/MainContainer'
 import './App.css';
 import {connect} from 'react-redux'
 import { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingPlaylists, authenticatingToken} from './redux/actionCreators'
-// import {isEmpty} from 'lodash'
 
 class App extends Component {
 
@@ -18,6 +17,7 @@ class App extends Component {
     if (token) {
       this.props.authenticatingToken(token)
     }
+
   }
 
   render() {

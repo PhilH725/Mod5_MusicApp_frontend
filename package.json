@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "last-fm": "^5.2.2",
     "react": "^16.8.6",
     "react-browser-router": "^2.1.2",
     "react-dom": "^16.8.6",
