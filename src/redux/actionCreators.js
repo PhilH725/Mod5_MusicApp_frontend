@@ -1,4 +1,6 @@
 
+import {createLastFMClient} from '../LastFM'
+
 function authenticatedUser(user) {
   return { type: "AUTHENTICATED_USER", payload: user }
 }
@@ -288,4 +290,16 @@ function deletePlaylist(playlist) {
   return { type: "DELETE_PLAYLIST", payload: playlist }
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }
+function fetchedQueryData(data) {
+  return { type: "FETCHED_QUERY_DATA", payload: data }
+}
+
+function queryLastFM(searchVal, key) {
+  return (dispatch) => {
+    createLastFMClient().trackSearch({ q: searchVal }, (err, data) => {
+      dispatch(fetchedQueryData(data.result))
+    })
+  }
+}
+
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM }

@@ -201,6 +201,16 @@ const newPlaylistSongsReducer = (oldState=[], action) => {
   }
 }
 
+const songSearchResultsReducer = (oldState=[], action) => {
+  // debugger
+  switch (action.type) {
+    case "FETCHED_QUERY_DATA":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const rootReducer = combineReducers({
   user: userReducer,
   searchText: searchTextReducer,
@@ -219,7 +229,8 @@ const rootReducer = combineReducers({
   selectedPlaylist: selectedPlaylistReducer,
   newPlaylistNameText: newPlaylistTextReducer,
   editingPlaylist: editingPlaylistReducer,
-  newPlaylistSongs: newPlaylistSongsReducer
+  newPlaylistSongs: newPlaylistSongsReducer,
+  songSearchResults: songSearchResultsReducer
 })
 
 export default rootReducer

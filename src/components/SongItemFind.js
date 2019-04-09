@@ -13,7 +13,7 @@ const SongItemFind = (props) => {
       </List.Content>
       <List.Content floated="left" verticalAlign="middle">
       <Image src={require('../img/image.png')} size="mini" floated="left"/>
-      <span>{props.song.name}</span>
+      <span>{props.song.name} - {props.song.artistName}</span>
       </List.Content>
     </List.Item>
   )
