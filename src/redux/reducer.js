@@ -172,6 +172,8 @@ const newPlaylistTextReducer = (oldState="", action) => {
   switch (action.type) {
     case "UPDATE_NEW_PLAYLIST_TEXT":
       return action.payload
+    case "ADDED_SONGS_TO_PLAYLIST":
+      return ""
     default:
       return oldState
   }
@@ -192,6 +194,8 @@ const newPlaylistSongsReducer = (oldState=[], action) => {
       return [...oldState, action.payload]
     case "REMOVE_NEW_PLAYLIST_SONG":
       return oldState.filter(s => s.id !== action.payload.id)
+    case "ADDED_SONGS_TO_PLAYLIST":
+      return []
     default:
       return oldState
   }
