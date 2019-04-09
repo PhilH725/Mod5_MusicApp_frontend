@@ -61,4 +61,4 @@ typings/
 .env
 
 # secrets
-/secret.key
+/secretKey.js
