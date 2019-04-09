@@ -202,9 +202,35 @@ const newPlaylistSongsReducer = (oldState=[], action) => {
 }
 
 const songSearchResultsReducer = (oldState=[], action) => {
-  // debugger
   switch (action.type) {
-    case "FETCHED_QUERY_DATA":
+    case "FETCHED_SONG_QUERY_DATA":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
+const artistSearchResultsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_ARTIST_QUERY_DATA":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
+const albumSearchResultsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_ALBUM_QUERY_DATA":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
+const genreSearchResultsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "FETCHED_GENRE_QUERY_DATA":
       return action.payload
     default:
       return oldState
@@ -230,7 +256,10 @@ const rootReducer = combineReducers({
   newPlaylistNameText: newPlaylistTextReducer,
   editingPlaylist: editingPlaylistReducer,
   newPlaylistSongs: newPlaylistSongsReducer,
-  songSearchResults: songSearchResultsReducer
+  songSearchResults: songSearchResultsReducer,
+  artistSearchResults: artistSearchResultsReducer,
+  albumSearchResults: albumSearchResultsReducer,
+  genreSearchResults: genreSearchResultsReducer
 })
 
 export default rootReducer

@@ -2,7 +2,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {changeSearchText, changeSearchType, queryLastFM} from '../redux/actionCreators'
-import {key} from '../secretKey'
 
 class FindFilterBar extends Component {
 
@@ -16,23 +15,23 @@ class FindFilterBar extends Component {
           <option value="albums">Albums</option>
           <option value="genres">Genres</option>
         </select>
-        <button onClick={() => this.props.queryLastFM(this.props.searchVal, key())}>Submit</button>
+        <button onClick={() => this.props.queryLastFM(this.props.searchVal, this.props.searchType)}>Submit</button>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  searchVal: state.searchText
+  searchVal: state.searchText,
+  searchType: state.searchType
 })
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeSearchText: text => dispatch(changeSearchText(text)),
     changeSearchType: type => dispatch(changeSearchType(type)),
-    queryLastFM: (searchVal, key) => dispatch(queryLastFM(searchVal, key))
+    queryLastFM: (searchVal, searchType) => dispatch(queryLastFM(searchVal, searchType))
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(FindFilterBar)

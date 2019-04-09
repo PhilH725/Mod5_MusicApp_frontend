@@ -7,7 +7,7 @@ const ArtistItemFind = (props) => {
 
   return (
     <div onClick={()=>props.addFavoriteArtist(props.artist)}>
-        {props.artist.name}
+        <img src={props.artist.images[1]} alt={props.artist.name}/> {props.artist.name}
     </div>
   )
 }

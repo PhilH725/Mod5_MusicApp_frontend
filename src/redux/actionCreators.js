@@ -290,15 +290,51 @@ function deletePlaylist(playlist) {
   return { type: "DELETE_PLAYLIST", payload: playlist }
 }
 
-function fetchedQueryData(data) {
-  return { type: "FETCHED_QUERY_DATA", payload: data }
+function fetchedSongQueryData(data) {
+  return { type: "FETCHED_SONG_QUERY_DATA", payload: data }
 }
 
-function queryLastFM(searchVal, key) {
-  return (dispatch) => {
-    createLastFMClient().trackSearch({ q: searchVal }, (err, data) => {
-      dispatch(fetchedQueryData(data.result))
-    })
+function fetchedArtistQueryData(data) {
+  return { type: "FETCHED_ARTIST_QUERY_DATA", payload: data }
+}
+
+function fetchedAlbumQueryData(data) {
+  return { type: "FETCHED_ALBUM_QUERY_DATA", payload: data }
+}
+
+function fetchedGenreQueryData(data) {
+  return { type: "FETCHED_GENRE_QUERY_DATA", payload: data }
+}
+
+function queryLastFM(searchVal, searchType) {
+  switch (searchType) {
+    case "songs":
+      return (dispatch) => {
+        createLastFMClient().trackSearch({ q: searchVal }, (err, data) => {
+          dispatch(fetchedSongQueryData(data.result))
+        })
+      }
+    case "artists":
+      return (dispatch) => {
+        createLastFMClient().artistSearch({ q: searchVal }, (err, data) => {
+          dispatch(fetchedArtistQueryData(data.result))
+        })
+      }
+    case "albums":
+      return (dispatch) => {
+        createLastFMClient().albumSearch({ q: searchVal }, (err, data) => {
+          dispatch(fetchedAlbumQueryData(data.result))
+        })
+      }
+    case "genres":
+      return (dispatch) => {
+        createLastFMClient().tagTopArtists({ tag: searchVal }, (err, data) => {
+          dispatch(fetchedGenreQueryData(data.artist))
+        })
+      }
+    default:
+      console.log('error becase searchType was passed in with an invalid value')
+      return null
   }
 }
 
