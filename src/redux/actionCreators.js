@@ -149,14 +149,6 @@ function fetchingPlaylists(userId) {
   }
 }
 
-function createdNewPlaylist(playlist) {
-  return { type: "CREATE_NEW_PLAYLIST", payload: playlist }
-}
-
-function renderNewPlaylist(name, songs) {
-  return { type: "OPTIMISTICALLY_RENDER_NEW_PLAYLIST", payload: {name: name, songs: songs} }
-}
-
 function creatingNewPlaylist(name, songs, userId) {
   return (dispatch) => {
     fetch('http://localhost:3000/playlists', {
@@ -169,10 +161,13 @@ function creatingNewPlaylist(name, songs, userId) {
     })
     .then(res => res.json())
     .then(playlist => {
-      dispatch(createdNewPlaylist(playlist))
       dispatch(addingSongsToPlaylist(playlist, songs))
     })
   }
+}
+
+function addedNewSongsToPlaylist(playlist, songs) {
+  return { type: "ADDED_SONGS_TO_PLAYLIST", payload: {...playlist, songs} }
 }
 
 function addingSongsToPlaylist(playlist, songs) {
@@ -184,6 +179,10 @@ function addingSongsToPlaylist(playlist, songs) {
         playlist_id: playlist.id,
         songs: songs
       })
+    })
+    .then(res => res.json())
+    .then(songs => {
+      dispatch(addedNewSongsToPlaylist(playlist, songs))
     })
   }
 }
@@ -289,4 +288,4 @@ function deletePlaylist(playlist) {
   return { type: "DELETE_PLAYLIST", payload: playlist }
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, renderNewPlaylist, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre }
