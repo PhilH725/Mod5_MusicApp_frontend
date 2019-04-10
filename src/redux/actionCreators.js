@@ -261,10 +261,10 @@ function addFavoriteArtist(artist, id) {
     headers: {"Content-Type":"application/json", Accept:"application/json"},
     body: JSON.stringify({
       user_id: id,
-      artist_id: artist.id
+      artistData: artist
     })
   })
-  return { type: "ADD_FAVORITE_ARTIST", payload: artist.name }
+  return { type: "ADD_FAVORITE_ARTIST", payload: artist }
 }
 
 function addFavoriteAlbum(album, id) {
