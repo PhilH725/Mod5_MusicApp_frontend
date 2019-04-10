@@ -16,8 +16,6 @@ const SearchResultsAlbums = (props) => {
 }
 
 const mapStateToProps = state => ({
-  // albums: state.albums.filter(a => a.name.toLowerCase().includes(state.searchText.toLowerCase()) &&
-  //   !state.myAlbums.map(a => a.id).includes(a.id))
   albums: state.albumSearchResults
 })
 

@@ -3,13 +3,13 @@ import React from 'react'
 import {List, Image} from 'semantic-ui-react'
 import {addFavoriteSong} from '../redux/actionCreators'
 import {connect} from 'react-redux'
-
+// props.addFavoriteSong(props.song, props.user.id)
 const SongItemFind = (props) => {
 
   return (
     <List.Item>
       <List.Content floated="right">
-        <button onClick={()=>props.addFavoriteSong(props.song, props.user.id)}>Add to Favorites</button>
+        <button onClick={()=>console.log(props.song)}>Add to Favorites</button>
       </List.Content>
       <List.Content floated="left" verticalAlign="middle">
       <Image src={require('../img/image.png')} size="mini" floated="left"/>
