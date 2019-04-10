@@ -273,7 +273,7 @@ function addFavoriteAlbum(album, id) {
     headers: {"Content-Type":"application/json", Accept:"application/json"},
     body: JSON.stringify({
       user_id: id,
-      album_id: album.id
+      albumData: album
     })
   })
   return { type: "ADD_FAVORITE_ALBUM", payload: album }

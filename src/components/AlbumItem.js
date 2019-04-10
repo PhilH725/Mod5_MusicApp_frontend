@@ -1,6 +1,6 @@
 
 import React, {Component, Fragment} from 'react'
-import {Accordion, Icon, Item} from 'semantic-ui-react'
+import {Accordion, Icon, Item, Image} from 'semantic-ui-react'
 
 // import {Link} from 'react-router-dom'
 // <Link to={`/items/albums/${this.props.album.id}`}>{this.props.album.name}</Link>
@@ -20,6 +20,7 @@ class AlbumItem extends Component {
       <Fragment>
         <Accordion.Title active={this.state.activeIndex === -1} index={0} onClick={this.handleClick}>
           <Icon name='dropdown' />
+          <Image size="tiny" src={this.props.album.image} alt={"album-art"} />
           {this.props.album.name}
         </Accordion.Title>
         <Accordion.Content active={this.state.activeIndex === -1}>

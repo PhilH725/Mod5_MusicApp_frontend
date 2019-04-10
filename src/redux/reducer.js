@@ -47,7 +47,7 @@ const myAlbumsReducer = (oldState=[], action) => {
     case "FETCHED_FAVORITES":
       return action.payload.my_albums
     case "ADD_FAVORITE_ALBUM":
-      return [...oldState, action.payload]
+      return [...oldState, {id: null, name: action.payload.name, image:null, songs: []}]
     default:
       return oldState
   }
