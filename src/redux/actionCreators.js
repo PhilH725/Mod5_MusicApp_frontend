@@ -250,7 +250,6 @@ function addFavoriteSong(song, id) {
 function addingFavoriteSong(songName, artistName, userId) {
   return (dispatch) => {
     createLastFMClient().trackInfo({ name: songName, artistName: artistName }, (err, data) => {
-      // debugger
       dispatch(addFavoriteSong(data, userId))
     })
   }
