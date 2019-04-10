@@ -241,10 +241,19 @@ function addFavoriteSong(song, id) {
     headers: {"Content-Type":"application/json", Accept:"application/json"},
     body: JSON.stringify({
       user_id: id,
-      song_id: song.id
+      songData: song
     })
   })
   return { type: "ADD_FAVORITE_SONG", payload: song }
+}
+
+function addingFavoriteSong(songName, artistName, userId) {
+  return (dispatch) => {
+    createLastFMClient().trackInfo({ name: songName, artistName: artistName }, (err, data) => {
+      // debugger
+      dispatch(addFavoriteSong(data, userId))
+    })
+  }
 }
 
 function addFavoriteArtist(artist, id) {
@@ -338,4 +347,4 @@ function queryLastFM(searchVal, searchType) {
   }
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM }
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM }

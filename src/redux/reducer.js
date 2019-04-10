@@ -19,10 +19,10 @@ const mySongsReducer = (oldState=[], action) => {
     case "FETCHED_FAVORITES":
       return action.payload.my_songs
     case "ADD_FAVORITE_SONG":
-      return [...oldState, {id: action.payload.id,
+      return [...oldState, {id: null,
                             name: action.payload.name,
-                            artist: action.payload.artist.name,
-                            album: action.payload.album.name
+                            artist: action.payload.artistName,
+                            album: action.payload.albumName
                           }]
     case "REMOVE_FAVORITE_SONG":
       return oldState.filter(s => s.id !== action.payload.id)
@@ -205,6 +205,8 @@ const songSearchResultsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_SONG_QUERY_DATA":
       return action.payload
+    case "FETCHED_SINGLE_SONG_QUERY_DATA":
+      return [...oldState, action]
     default:
       return oldState
   }
