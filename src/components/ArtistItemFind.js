@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {List, Image} from 'semantic-ui-react'
-import {addFavoriteArtist} from '../redux/actionCreators'
+import {addingFavoriteArtist} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
 const ArtistItemFind = (props) => {
@@ -9,7 +9,7 @@ const ArtistItemFind = (props) => {
   return (
     <List.Item>
       <List.Content floated="right">
-        <button onClick={()=>props.addFavoriteArtist(props.artist, props.user.id)}>Add to Favorites</button>
+        <button onClick={()=>props.addingFavoriteArtist(props.artist, props.user.id)}>Add to Favorites</button>
       </List.Content>
       <List.Content floated="left" verticalAlign="middle">
       <Image src={props.artist.images[3]} size="mini" floated="left"/>
@@ -25,7 +25,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFavoriteArtist: (artist, id) => dispatch(addFavoriteArtist(artist, id))
+    addingFavoriteArtist: (artist, id) => dispatch(addingFavoriteArtist(artist, id))
   }
 }
 
