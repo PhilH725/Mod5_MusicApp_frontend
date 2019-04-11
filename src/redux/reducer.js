@@ -39,7 +39,11 @@ const myArtistsReducer = (oldState=[], action) => {
     case "FETCHED_FAVORITES":
       return action.payload.my_artists
     case "ADD_FAVORITE_ARTIST":
-      return [...oldState, {id: null, name: action.payload.name}]
+      return [...oldState, {
+                            id: action.payload.id,
+                            name: action.payload.name,
+                            image: action.payload.artist_image
+                           }]
     default:
       return oldState
   }

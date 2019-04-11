@@ -265,20 +265,28 @@ function addingFavoriteSong(songName, artistName, artistImage, userId) {
   }
 }
 
+function addedFavoriteArtist(artistData) {
+  return { type: "ADD_FAVORITE_ARTIST", payload: artistData }
+}
+
 function addFavoriteArtist(artist, id) {
-  fetch('http://localhost:3000/user_artists', {
-    method: 'POST',
-    headers: {"Content-Type":"application/json", Accept:"application/json"},
-    body: JSON.stringify({
-      user_id: id,
-      artistData: artist
+  return (dispatch) => {
+    fetch('http://localhost:3000/user_artists', {
+      method: 'POST',
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        user_id: id,
+        artistData: artist
+      })
     })
-  })
-  return { type: "ADD_FAVORITE_ARTIST", payload: artist }
+    .then(res => res.json())
+    .then(artistData => {
+      dispatch(addedFavoriteArtist(artistData))
+    })
+  }
 }
 
 function addedFavoriteAlbum(albumData) {
-  // debugger
   return { type: "ADD_FAVORITE_ALBUM", payload: albumData }
 }
 
