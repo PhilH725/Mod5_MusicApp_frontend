@@ -12,8 +12,8 @@ const SongItemFind = (props) => {
         <button onClick={()=>props.addingFavoriteSong(props.song.name, props.song.artistName, props.user.id)}>Add to Favorites</button>
       </List.Content>
       <List.Content floated="left" verticalAlign="middle">
-      <Image src={props.song.images[3]} size="mini" floated="left"/>
-      <span>{props.song.name} - {props.song.artistName}</span>
+        <Image src={props.song.images[3]} size="mini" floated="left"/>
+        <span>{props.song.name} - {props.song.artistName}</span>
       </List.Content>
     </List.Item>
   )

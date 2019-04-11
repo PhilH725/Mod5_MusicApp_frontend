@@ -42,8 +42,11 @@ const myArtistsReducer = (oldState=[], action) => {
       return [...oldState, {
                             id: action.payload.id,
                             name: action.payload.name,
-                            image: action.payload.artist_image
+                            image: action.payload.artist_image,
+                            bio: action.payload.bio
                            }]
+    case "REMOVE_FAVORITE_ARTIST":
+      return oldState.filter(a => a.id !== action.payload.id)
     default:
       return oldState
   }

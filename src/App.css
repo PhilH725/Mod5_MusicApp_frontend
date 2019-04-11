@@ -74,11 +74,33 @@ body {
   display: inline-block;
 }
 
+#my-artists-item{
+  height: 180px;
+}
+
 #my-artists-list{
   text-align: left;
 }
 
-#artist-pic{
+#artists-pic{
   width: 150px;
   height: 150px;
+}
+
+#my-artists-content{
+  width: 400px;
+  height: 140px;
+  overflow-y: scroll;
+}
+
+#my-artists-button-container{
+  width: 100px;
+  padding-top: 25px;
+}
+
+#my-artists-button{
+  width: 100px;
+  height: 40px;
+  margin-top: 5px;
+  margin-right: 5px;
 }

@@ -407,4 +407,40 @@ function queryLastFM(searchVal, searchType) {
   }
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM }
+function unfavoriteSong(song, id) {
+  fetch('http://localhost:3000/user_songs', {
+    method: "DELETE",
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      user_id: id,
+      song_id: song.id
+    })
+  })
+  return { type: "REMOVE_FAVORITE_SONG", payload: song }
+}
+
+function unfavoriteArtist(artist, id) {
+  fetch('http://localhost:3000/user_artists', {
+    method: "DELETE",
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      user_id: id,
+      artist_id: artist.id
+    })
+  })
+  return { type: "REMOVE_FAVORITE_ARTIST", payload: artist }
+}
+
+function unfavoriteAlbum(album, id) {
+  fetch('http://localhost:3000/user_albums', {
+    method: "DELETE",
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      user_id: id,
+      album_id: album.id
+    })
+  })
+  return { type: "REMOVE_FAVORITE_ALBUM", payload: album }
+}
+
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum }

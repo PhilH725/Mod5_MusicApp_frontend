@@ -10,7 +10,7 @@ const SongItemModal = (props) => {
         <Modal.Description>
           <Header>{props.song.name}</Header>
           <p>Artist: {props.song.artist}</p>
-          <p>Album: {props.song.album}</p>
+          <p>Album: {props.song.album.name}</p>
         </Modal.Description>
       </Modal.Content>
     </Segment>
