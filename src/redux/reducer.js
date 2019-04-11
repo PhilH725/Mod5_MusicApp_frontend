@@ -19,10 +19,13 @@ const mySongsReducer = (oldState=[], action) => {
     case "FETCHED_FAVORITES":
       return action.payload.my_songs
     case "ADD_FAVORITE_SONG":
-      return [...oldState, {id: null,
+      return [...oldState, {id: action.payload.id,
                             name: action.payload.name,
-                            artist: action.payload.artistName,
-                            album: action.payload.albumName
+                            artist: action.payload.artist.name,
+                            album: {
+                              name: action.payload.album.name,
+                              image: action.payload.album.album_image
+                            }
                           }]
     case "REMOVE_FAVORITE_SONG":
       return oldState.filter(s => s.id !== action.payload.id)
@@ -43,11 +46,17 @@ const myArtistsReducer = (oldState=[], action) => {
 }
 
 const myAlbumsReducer = (oldState=[], action) => {
+  // debugger
   switch (action.type) {
     case "FETCHED_FAVORITES":
       return action.payload.my_albums
     case "ADD_FAVORITE_ALBUM":
-      return [...oldState, {id: null, name: action.payload.name, image:null, songs: []}]
+      return [...oldState, {
+                            id: action.payload.albumData.id,
+                            name: action.payload.albumData.name,
+                            image: action.payload.albumData.album_image,
+                            songs: action.payload.trackList
+                          }]
     default:
       return oldState
   }

@@ -235,22 +235,32 @@ function removeNewPlaylistSong(song) {
   return { type: "REMOVE_NEW_PLAYLIST_SONG", payload: song }
 }
 
-function addFavoriteSong(song, id) {
-  fetch('http://localhost:3000/user_songs', {
-    method: 'POST',
-    headers: {"Content-Type":"application/json", Accept:"application/json"},
-    body: JSON.stringify({
-      user_id: id,
-      songData: song
-    })
-  })
+function addedFavoriteSong(song) {
   return { type: "ADD_FAVORITE_SONG", payload: song }
 }
 
-function addingFavoriteSong(songName, artistName, userId) {
+function addFavoriteSong(song, artistImage, id) {
+  return (dispatch) => {
+    fetch('http://localhost:3000/user_songs', {
+      method: 'POST',
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        user_id: id,
+        songData: song,
+        artistImage: artistImage
+      })
+    })
+    .then(res => res.json())
+    .then(song => {
+      dispatch(addedFavoriteSong(song))
+    })
+  }
+}
+
+function addingFavoriteSong(songName, artistName, artistImage, userId) {
   return (dispatch) => {
     createLastFMClient().trackInfo({ name: songName, artistName: artistName }, (err, data) => {
-      dispatch(addFavoriteSong(data, userId))
+      dispatch(addFavoriteSong(data, artistImage, userId))
     })
   }
 }
@@ -267,16 +277,43 @@ function addFavoriteArtist(artist, id) {
   return { type: "ADD_FAVORITE_ARTIST", payload: artist }
 }
 
-function addFavoriteAlbum(album, id) {
-  fetch('http://localhost:3000/user_albums', {
-    method: 'POST',
-    headers: {"Content-Type":"application/json", Accept:"application/json"},
-    body: JSON.stringify({
-      user_id: id,
-      albumData: album
+function addedFavoriteAlbum(albumData) {
+  // debugger
+  return { type: "ADD_FAVORITE_ALBUM", payload: albumData }
+}
+
+function addingFavoriteAlbum(albumData, artistData, id) {
+  return (dispatch) => {
+    fetch('http://localhost:3000/user_albums', {
+      method: 'POST',
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        user_id: id,
+        albumData: albumData,
+        artistData: artistData
+      })
     })
-  })
-  return { type: "ADD_FAVORITE_ALBUM", payload: album }
+    .then(res => res.json())
+    .then(album => {
+      dispatch(addedFavoriteAlbum(album))
+    })
+  }
+}
+
+function addArtistInfoToNewAlbum(albumData, id) {
+  return (dispatch) => {
+    createLastFMClient().artistInfo({ name: albumData.artistName }, (err, artistData) => {
+      dispatch(addingFavoriteAlbum(albumData, artistData, id))
+    })
+  }
+}
+
+function addFavoriteAlbum(album, id) {
+  return (dispatch) => {
+    createLastFMClient().albumInfo({ name: album.name, artistName: album.artistName }, (err, albumData) => {
+      dispatch(addArtistInfoToNewAlbum(albumData, id))
+    })
+  }
 }
 
 function addFavoriteGenre(genre, id) {
