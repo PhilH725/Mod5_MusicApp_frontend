@@ -20,7 +20,7 @@ class AlbumItem extends Component {
       <Fragment>
         <Accordion.Title active={this.state.activeIndex === -1} index={0} onClick={this.handleClick}>
           <Icon name='dropdown' />
-          <Image size="tiny" src={this.props.album.image} alt={"album-art"} />
+          <Image id="my-album-dropdown-image" size="tiny" src={this.props.album.image} alt={"album-art"} />
           {this.props.album.name}
         </Accordion.Title>
         <Accordion.Content active={this.state.activeIndex === -1}>
