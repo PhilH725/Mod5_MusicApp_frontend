@@ -35,9 +35,6 @@ const Navbar = (props) => {
           <Dropdown.Item>
             <Link to={"/my_albums"} >My Albums</Link>
           </Dropdown.Item>
-          <Dropdown.Item>
-            <Link to={"/my_genres"} >My Genres</Link>
-          </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
       <Menu.Item>

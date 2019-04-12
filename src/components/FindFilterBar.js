@@ -13,7 +13,6 @@ class FindFilterBar extends Component {
           <option value="songs">Songs</option>
           <option value="artists">Artists</option>
           <option value="albums">Albums</option>
-          <option value="genres">Genres</option>
         </select>
         <button onClick={() => this.props.queryLastFM(this.props.searchVal, this.props.searchType)}>Submit</button>
       </div>
