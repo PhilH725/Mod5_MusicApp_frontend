@@ -1,6 +1,8 @@
 
 import React from 'react'
-import {Item, Button} from 'semantic-ui-react'
+import ArtistInfoModal from './ArtistInfoModal'
+import ArtistAlbumsModal from './ArtistAlbumsModal'
+import {Item, Button, Modal} from 'semantic-ui-react'
 import {unfavoriteArtist} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
@@ -16,8 +18,12 @@ const ArtistItem = (props) => {
         </Item.Description>
       </Item.Content>
       <Item.Content id="my-artists-button-container">
-        <Button id="my-artists-button" floated="right" size="mini">More Info</Button>
-        <Button id="my-artists-button" floated="right" size="mini">View Albums</Button>
+        <Modal trigger={<Button id="my-artists-button" floated="right" size="mini">More Info</Button>} centered={false}>
+          <ArtistInfoModal artist={props.artist} />
+        </Modal>
+        <Modal trigger={<Button id="my-artists-button" floated="right" size="mini">View Albums</Button>} centered={false}>
+          <ArtistAlbumsModal artist={props.artist} />
+        </Modal>
         <Button id="my-artists-button" floated="right" size="mini" onClick={()=>props.unfavoriteArtist(props.artist, props.user.id)}>Unfavorite</Button>
       </Item.Content>
     </Item>

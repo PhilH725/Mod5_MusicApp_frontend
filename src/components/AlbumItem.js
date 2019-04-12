@@ -2,8 +2,6 @@
 import React, {Component} from 'react'
 import {Accordion, Icon, Item, Image, Button, Segment} from 'semantic-ui-react'
 
-// import {Link} from 'react-router-dom'
-// <Link to={`/items/albums/${this.props.album.id}`}>{this.props.album.name}</Link>
 class AlbumItem extends Component {
   state = { activeIndex: 0 }
 
