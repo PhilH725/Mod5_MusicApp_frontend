@@ -1,19 +1,17 @@
 
-import React, {Component, Fragment} from 'react'
-import AlbumItem from '../components/AlbumItem'
-import {Accordion} from 'semantic-ui-react'
+import React, {Component} from 'react'
+import AlbumItemContainer from './AlbumItemContainer'
+import {List} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class MyAlbumsContainer extends Component {
 
   render() {
     return (
-      <Fragment>
+      <List celled>
       <h3>My Albums:</h3>
-      <Accordion>
-        {this.props.albums.sort((a,b) => a.name.localeCompare(b.name)).map(a => <AlbumItem key={a.id} album={a} />)}
-      </Accordion>
-      </Fragment>
+        {this.props.albums.sort((a,b) => a.name.localeCompare(b.name)).map(a => <AlbumItemContainer key={a.id} album={a} />)}
+      </List>
     )
   }
 }

@@ -61,6 +61,7 @@ const myArtistsReducer = (oldState=[], action) => {
 }
 
 const myAlbumsReducer = (oldState=[], action) => {
+  // debugger
   switch (action.type) {
     case "FETCHED_FAVORITES":
       return action.payload.my_albums
@@ -75,6 +76,8 @@ const myAlbumsReducer = (oldState=[], action) => {
         } else {
           return oldState
         }
+    case "REMOVE_FAVORITE_ALBUM":
+      return oldState.filter(a => a.id !== action.payload.id)
     default:
       return oldState
   }
