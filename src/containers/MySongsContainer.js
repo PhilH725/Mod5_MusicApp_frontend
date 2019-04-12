@@ -2,7 +2,7 @@
 import React, {Component} from 'react'
 import SongItem from '../components/SongItem'
 import SortMenu from '../components/SortMenu'
-import {Item} from 'semantic-ui-react'
+import {Item, Header} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class MySongsContainer extends Component {
@@ -18,7 +18,7 @@ class MySongsContainer extends Component {
 
     return (
       <Item.Group divided>
-        <h3>My Songs:</h3>
+        <Header id="my-music-header" as="h2" float="middle" dividing>My Songs</Header>
         <SortMenu />
         {this.props.songs.map(s => <SongItem key={s.id} song={s} />)}
       </Item.Group>

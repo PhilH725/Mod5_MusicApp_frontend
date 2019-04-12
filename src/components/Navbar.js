@@ -23,38 +23,54 @@ const Navbar = (props) => {
     <Menu className="ui small menu">
       <Dropdown item text=" My Music ">
         <Dropdown.Menu>
-          <Dropdown.Item>
-            <Link to={"/my_songs"} >My Songs</Link>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <Link to={"/my_playlists"} >My Playlists</Link>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <Link to={"/my_artists"} >My Artists</Link>
-          </Dropdown.Item>
-          <Dropdown.Item>
-            <Link to={"/my_albums"} >My Albums</Link>
-          </Dropdown.Item>
+          <Link to={"/my_songs"} >
+            <Dropdown.Item>
+              My Songs
+            </Dropdown.Item>
+          </Link>
+          <Link to={"/my_playlists"} >
+            <Dropdown.Item>
+              My Playlists
+            </Dropdown.Item>
+          </Link>
+          <Link to={"/my_artists"} >
+            <Dropdown.Item>
+              My Artists
+            </Dropdown.Item>
+          </Link>
+          <Link to={"/my_albums"} >
+            <Dropdown.Item>
+              My Albums
+            </Dropdown.Item>
+          </Link>
         </Dropdown.Menu>
       </Dropdown>
-      <Menu.Item>
-        <Link to={"/find_music"} >Find Music</Link>
-      </Menu.Item>
-      <Menu.Menu position="right">
+      <Link to={"/find_music"} >
         <Menu.Item>
-          <Link to={"/login"} onClick={props.logoutUser}>Logout</Link>
+          Find Music
         </Menu.Item>
+      </Link>
+      <Menu.Menu position="right">
+        <Link to={"/login"} onClick={props.logoutUser}>
+          <Menu.Item>
+            Logout
+          </Menu.Item>
+        </Link>
       </Menu.Menu>
     </Menu>
     :
     <Menu className="ui small menu">
-      <Menu.Item>
-        <Link to={"/find_music"} className="item">Find Music</Link>
-      </Menu.Item>
-      <Menu.Menu position="right">
+      <Link to={"/find_music"}>
         <Menu.Item>
-          <Link to={"/login"} className="item">Login</Link>
+          Find Music
         </Menu.Item>
+      </Link>
+      <Menu.Menu position="right">
+        <Link to={"/login"} >
+          <Menu.Item>
+            Login
+          </Menu.Item>
+        </Link>
       </Menu.Menu>
     </Menu>
   )

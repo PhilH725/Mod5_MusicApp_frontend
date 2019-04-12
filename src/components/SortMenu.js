@@ -5,15 +5,12 @@ import {updateSortType} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
 class SortMenu extends Component {
-  // state = { activeItem: 'alphabetically' }
-  //
-  // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     const { activeItem } = this.props.sortType
 
     return (
-      <Menu text>
+      <Menu id="sort-menu" text>
         <Menu.Item header>Sort By</Menu.Item>
         <Menu.Item
           name='name'
