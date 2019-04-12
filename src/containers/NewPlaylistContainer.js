@@ -13,6 +13,7 @@ class NewPlaylistContainer extends Component {
 
     return (
       <div>
+        <h1>Create a New Playlist</h1>
         <NewPlaylistAddSongsContainer />
         <NewPlaylistNameBar />
         <NewPlaylistPreviewContainer />

@@ -19,6 +19,7 @@ const mySongsReducer = (oldState=[], action) => {
     case "FETCHED_FAVORITES":
       return action.payload.my_songs
     case "ADD_FAVORITE_SONG":
+      if (!oldState.map(s => s.id).includes(action.payload.id)) {
       return [...oldState, {id: action.payload.id,
                             name: action.payload.name,
                             artist: action.payload.artist.name,
@@ -27,6 +28,9 @@ const mySongsReducer = (oldState=[], action) => {
                               image: action.payload.album.album_image
                             }
                           }]
+          } else {
+            return oldState
+          }
     case "REMOVE_FAVORITE_SONG":
       return oldState.filter(s => s.id !== action.payload.id)
     default:
@@ -39,12 +43,16 @@ const myArtistsReducer = (oldState=[], action) => {
     case "FETCHED_FAVORITES":
       return action.payload.my_artists
     case "ADD_FAVORITE_ARTIST":
+      if (!oldState.map(a => a.id).includes(action.payload.id)) {
       return [...oldState, {
                             id: action.payload.id,
                             name: action.payload.name,
                             image: action.payload.artist_image,
                             bio: action.payload.bio
                            }]
+        } else {
+          return oldState
+        }
     case "REMOVE_FAVORITE_ARTIST":
       return oldState.filter(a => a.id !== action.payload.id)
     default:
@@ -53,17 +61,20 @@ const myArtistsReducer = (oldState=[], action) => {
 }
 
 const myAlbumsReducer = (oldState=[], action) => {
-  // debugger
   switch (action.type) {
     case "FETCHED_FAVORITES":
       return action.payload.my_albums
     case "ADD_FAVORITE_ALBUM":
+    if (!oldState.map(a => a.id).includes(action.payload.id)) {
       return [...oldState, {
                             id: action.payload.albumData.id,
                             name: action.payload.albumData.name,
                             image: action.payload.albumData.album_image,
                             songs: action.payload.trackList
                           }]
+        } else {
+          return oldState
+        }
     default:
       return oldState
   }

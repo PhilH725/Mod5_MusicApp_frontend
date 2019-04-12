@@ -20,7 +20,7 @@ class SelectedPlaylist extends Component {
       </Grid.Column>
       :
       <Grid.Column floated="right" width={12}>
-        <h3>Choose a playlist</h3>
+        <h3>Choose or Create a playlist</h3>
       </Grid.Column>
     )
   }

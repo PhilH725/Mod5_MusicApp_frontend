@@ -18,7 +18,7 @@ class PlaylistList extends Component {
       </Grid.Column>
       :
       <div>
-        <h1>Loading...</h1>
+        <h2>No playlists</h2>
         <PlaylistActionsBar />
       </div>
 
