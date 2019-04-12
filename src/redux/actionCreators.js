@@ -376,6 +376,9 @@ function fetchedGenreQueryData(data) {
 }
 
 function queryLastFM(searchVal, searchType) {
+  if (searchVal === "") {
+    searchVal = " "
+  }
   switch (searchType) {
     case "songs":
       return (dispatch) => {
