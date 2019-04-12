@@ -266,6 +266,15 @@ const genreSearchResultsReducer = (oldState=[], action) => {
   }
 }
 
+const sortTypeReducer = (oldState="name", action) => {
+  switch (action.type) {
+    case "UPDATE_SORT_TYPE":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const rootReducer = combineReducers({
   user: userReducer,
   searchText: searchTextReducer,
@@ -288,7 +297,8 @@ const rootReducer = combineReducers({
   songSearchResults: songSearchResultsReducer,
   artistSearchResults: artistSearchResultsReducer,
   albumSearchResults: albumSearchResultsReducer,
-  genreSearchResults: genreSearchResultsReducer
+  genreSearchResults: genreSearchResultsReducer,
+  sortType: sortTypeReducer
 })
 
 export default rootReducer

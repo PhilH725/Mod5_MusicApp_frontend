@@ -11,7 +11,7 @@ class MyArtistsContainer extends Component {
       <Fragment>
         <h3>My Artists:</h3>
         <Item.Group id="my-artists-list" divided>
-          {this.props.artists.map(a => <ArtistItem key={a.id} artist={a} />)}
+          {this.props.artists.sort((a,b) => a.name.localeCompare(b.name)).map(a => <ArtistItem key={a.id} artist={a} />)}
         </Item.Group>
       </Fragment>
     )

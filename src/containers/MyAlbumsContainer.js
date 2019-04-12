@@ -11,7 +11,7 @@ class MyAlbumsContainer extends Component {
       <Fragment>
       <h3>My Albums:</h3>
       <Accordion>
-        {this.props.albums.map(a => <AlbumItem key={a.id} album={a} />)}
+        {this.props.albums.sort((a,b) => a.name.localeCompare(b.name)).map(a => <AlbumItem key={a.id} album={a} />)}
       </Accordion>
       </Fragment>
     )
