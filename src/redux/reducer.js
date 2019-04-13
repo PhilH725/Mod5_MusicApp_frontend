@@ -70,6 +70,7 @@ const myAlbumsReducer = (oldState=[], action) => {
       return [...oldState, {
                             id: action.payload.albumData.id,
                             name: action.payload.albumData.name,
+                            artistName: action.payload.artistName,
                             image: action.payload.albumData.album_image,
                             songs: action.payload.trackList
                           }]

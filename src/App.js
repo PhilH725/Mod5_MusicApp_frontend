@@ -9,10 +9,10 @@ import { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchin
 class App extends Component {
 
   componentDidMount() {
-    this.props.fetchingSongs()
-    this.props.fetchingArtists()
-    this.props.fetchingAlbums()
-    this.props.fetchingGenres()
+    // this.props.fetchingSongs()
+    // this.props.fetchingArtists()
+    // this.props.fetchingAlbums()
+    // this.props.fetchingGenres()
     let token = localStorage.getItem('token')
     if (token) {
       this.props.authenticatingToken(token)
