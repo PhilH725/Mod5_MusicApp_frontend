@@ -14,7 +14,7 @@ class ArtistAlbumsModal extends Component {
 
   componentDidMount() {
     createLastFMClient().artistTopAlbums({ name: this.props.artist.name }, (err, data) => {
-      let albums = this.filterSearchResults(data.result)
+      let albums = this.filterSearchResults(data.result).slice(0,10)
       this.setState({albums})
     })
   }
@@ -23,6 +23,7 @@ class ArtistAlbumsModal extends Component {
     albumData = albumData.filter(a => a.listeners > 100000 && a.name !== "(null)")
     let albums = []
     let duplicateChecker = []
+    // this way of checking dupes doesnt work because same images are still different urls
     for (const i of albumData) {
       if (!duplicateChecker.includes(i.images[3])) {
         albums = [...albums, i]

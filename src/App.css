@@ -97,23 +97,24 @@ body {
 }
 
 #artists-pic{
-  width: 150px;
-  height: 150px;
+  width: 20%;
+  /* height: 150px; */
+
 }
 
 #my-artists-content{
-  width: 400px;
+  width: 55%;
   height: 140px;
   overflow-y: scroll;
 }
 
 #my-artists-button-container{
-  width: 100px;
-  padding-top: 25px;
+  width: 10%;
+  padding-top: 15px;
 }
 
 #my-artists-button{
-  width: 100px;
+  width: 90%;
   height: 40px;
   margin-top: 5px;
   margin-right: 5px;
