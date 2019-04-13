@@ -18,7 +18,7 @@ class MySongsContainer extends Component {
 
     return (
       <Item.Group divided>
-        <Header id="my-music-header" as="h2" float="middle" dividing>My Songs</Header>
+        <Header id="my-music-header" as="h2" dividing>My Songs</Header>
         <SortMenu />
         {this.props.songs.map(s => <SongItem key={s.id} song={s} />)}
       </Item.Group>

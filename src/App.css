@@ -84,8 +84,10 @@ body {
   padding-right: 1.5em;
 }
 
-#my-album-dropdown-image{
-  display: inline-block;
+#my-music-header{
+  padding-top: 5px;
+  color: darkblue;
+  padding-left: 100px;
 }
 
 #my-artists-item{
@@ -99,7 +101,6 @@ body {
 #artists-pic{
   width: 20%;
   /* height: 150px; */
-
 }
 
 #my-artists-content{
@@ -126,8 +127,18 @@ body {
   margin: 0px auto -5px auto;
 }
 
-#my-music-header{
-  padding-top: 5px;
-  color: darkblue;
-  padding-left: 100px;
+#my-albums-image{
+  width: 20%;
+}
+
+#my-albums-content{
+  width: 55%;
+}
+
+#my-albums-button-container{
+  width: 10%;
+}
+
+#my-albums-button{
+  width: 90%;
 }
