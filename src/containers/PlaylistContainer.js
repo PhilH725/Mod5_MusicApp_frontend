@@ -2,14 +2,14 @@
 import React, {Component, Fragment} from 'react'
 import PlaylistList from './PlaylistList'
 import SelectedPlaylist from './SelectedPlaylist'
-import {Grid} from 'semantic-ui-react'
+import {Grid, Header} from 'semantic-ui-react'
 
 class PlaylistContainer extends Component {
 
   render() {
     return (
       <Fragment>
-        <h2>Playlists:</h2>
+        <Header id="my-music-header" as="h2" float="middle" dividing>My Playlists</Header>
         <Grid celled>
           <PlaylistList />
           <SelectedPlaylist />

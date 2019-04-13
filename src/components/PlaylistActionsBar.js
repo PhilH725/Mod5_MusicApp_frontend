@@ -8,7 +8,7 @@ import {deletePlaylist} from '../redux/actionCreators'
 const PlaylistActionsBar = (props) => {
 
   return (
-    <div>
+    <div id="playlist-list-action-bar" >
       <Link to="/playlists/new"><Button floated="left" size="mini" icon><Icon name="plus"/></Button></Link>
       <Button floated='right' size="mini" onClick={() => props.deletePlaylist(props.selectedPlaylist)}>Delete Playlist</Button>
     </div>

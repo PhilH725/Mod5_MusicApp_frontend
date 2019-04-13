@@ -10,7 +10,7 @@ class PlaylistList extends Component {
   render() {
     return (
       this.props.playlists.length > 0 ?
-      <Grid.Column floated="left" width={4}>
+      <Grid.Column id="playlist-list-container" floated="left" width={4}>
         <List celled id="playlist-list">
           {this.props.playlists.map(p => <PlaylistItem key={p.id} data={p}/>)}
         </List>

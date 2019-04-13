@@ -65,6 +65,19 @@ body {
   height: 400px;
 }
 
+#playlist-list-container {
+  padding: 5px;
+}
+
+#playlist-list-item {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#playlist-list-action-bar {
+  padding-left: 25px;
+}
+
 .ui.celled.list>.item, .ui.celled.list>.list {
   /* find music results list */
   padding-left: 1.5em;
@@ -113,6 +126,7 @@ body {
 }
 
 #my-music-header{
+  padding-top: 5px;
   color: darkblue;
   padding-left: 100px;
 }

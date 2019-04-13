@@ -1,17 +1,20 @@
 
 import React from 'react'
-import {List} from 'semantic-ui-react'
+import {List, Header} from 'semantic-ui-react'
 import {changeSelectedPlaylist} from '../redux/actionCreators'
 import { connect } from 'react-redux'
 
 const PlaylistItem = (props) => {
-
   return (
-    <List.Item onClick={props.changeSelectedPlaylist}>
-      <h4>{props.data.name}</h4>
+    <List.Item id="playlist-list-item" onClick={props.changeSelectedPlaylist}>
+      <Header as="h4" color={props.color}> {props.data.name} </Header>
     </List.Item>
   )
 }
+
+const mapStateToProps = (state, ownProps) => ({
+  color: state.selectedPlaylist.id === ownProps.data.id ? "blue" : "black"
+})
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -19,4 +22,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(PlaylistItem)
+export default connect(mapStateToProps, mapDispatchToProps)(PlaylistItem)
