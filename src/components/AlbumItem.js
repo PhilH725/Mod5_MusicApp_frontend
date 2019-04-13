@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import AlbumTracklistModal from './AlbumTracklistModal'
-import {Item, Button, Modal} from 'semantic-ui-react'
+import {Item, Button, Modal, Header} from 'semantic-ui-react'
 import {unfavoriteAlbum} from '../redux/actionCreators'
 import {createLastFMClient} from '../LastFM'
 import {connect} from 'react-redux'
@@ -15,7 +15,6 @@ class AlbumItem extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     createLastFMClient().albumInfo({ name: this.props.album.name, artistName: this.props.album.artistName }, (err, data) => {
       this.setState({albumInfo: data})
     })
@@ -23,24 +22,22 @@ class AlbumItem extends Component {
 
   render() {
     return (
-      <Item.Group>
-        <Item>
-          <Item.Image id="my-albums-image" size="tiny" src={this.props.album.image} alt={"album-art"} />
-          <Item.Content id="my-albums-content">
-            <Item.Header>{this.props.album.name}</Item.Header>
-            <Item.Description>
-              <p>Artist: Descendents</p>
-              <p>Release Date: 1999</p>
-            </Item.Description>
-          </Item.Content>
-          <Item.Content id="my-albums-button-container">
-            <Modal trigger={<Button id="my-albums-button">More Info</Button>} centered={false}>
-              <AlbumTracklistModal album={this.props.album} />
-            </Modal>
-            <Button id="my-albums-button" onClick={() => this.props.unfavoriteAlbum(this.props.album, this.props.user.id)}> Unfavorite</Button>
-          </Item.Content>
-        </Item>
-      </Item.Group>
+      <Item>
+        <Item.Image id="my-albums-image" src={this.props.album.image} alt={"album-art"} />
+        <Item.Content id="my-albums-content">
+          <Item.Header>{this.props.album.name} - {this.props.album.artistName}</Item.Header>
+          <Item.Description>
+            {this.state.albumInfo.summary}
+          </Item.Description>
+        </Item.Content>
+        <Item.Content id="my-albums-button-container">
+          <Modal trigger={<Button id="my-albums-button">Tracklist</Button>} centered={false}>
+            <Header as="h2">{this.props.album.name}</Header>
+            <AlbumTracklistModal album={this.state.albumInfo} />
+          </Modal>
+          <Button id="my-albums-button" onClick={() => this.props.unfavoriteAlbum(this.props.album, this.props.user.id)}> Unfavorite</Button>
+        </Item.Content>
+      </Item>
     )
   }
 }

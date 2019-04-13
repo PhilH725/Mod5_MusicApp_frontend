@@ -1,17 +1,19 @@
 
-import React from 'react'
-import AlbumItem from '../components/AlbumItem'
-import AlbumItemTracklist from '../components/AlbumItemTracklist'
-import {List} from 'semantic-ui-react'
+// import React from 'react'
+// import AlbumItem from '../components/AlbumItem'
+// import AlbumItemTracklist from '../components/AlbumItemTracklist'
+// import {Item} from 'semantic-ui-react'
+//
+// // <AlbumItemTracklist album={props.album} />
+// const AlbumItemContainer = (props) => {
+//
+//   return (
+//     <Item.Group divided>
+//       <AlbumItem album={props.album} />
+//     </Item.Group>
+//   )
+// }
+//
+// export default AlbumItemContainer
 
-// <AlbumItemTracklist album={props.album} />
-const AlbumItemContainer = (props) => {
-
-  return (
-    <List.Item>
-      <AlbumItem album={props.album} />
-    </List.Item>
-  )
-}
-
-export default AlbumItemContainer
+//deprecated since im no longer splitting the item up into multiple layers of components horizontally

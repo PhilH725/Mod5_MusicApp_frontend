@@ -133,6 +133,8 @@ body {
 
 #my-albums-content{
   width: 55%;
+  height: 140px;
+  overflow-y: scroll;
 }
 
 #my-albums-button-container{
@@ -141,4 +143,12 @@ body {
 
 #my-albums-button{
   width: 90%;
+  float: right;
+  height: 40px;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+#track-info {
+  font-size: 18px;
 }
