@@ -1,6 +1,6 @@
 
-import React, {Component, Fragment} from 'react'
-import {Item, Header} from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {Item} from 'semantic-ui-react'
 import AlbumTracklistModalItem from './AlbumTracklistModalItem'
 
 class AlbumTracklistModal extends Component {

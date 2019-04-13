@@ -4,10 +4,7 @@ import SongItemModal from './SongItemModal'
 import {Item, Button, Modal} from 'semantic-ui-react'
 import {unfavoriteSong} from '../redux/actionCreators'
 import {connect} from 'react-redux'
-// trigger={<Button size="tiny" compact>More Info</Button>}
-// <Modal open={this.state.open} onClose={this.onClose} centered={false}>
-//   <SongItemModal song={this.props.song} />
-// </Modal>
+
 class SongItem extends Component {
   state = {
     open: false
