@@ -450,4 +450,9 @@ function updateSortType(choice) {
   return { type: "UPDATE_SORT_TYPE", payload: choice }
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType }
+function resetSearchParameters() {
+  console.log('hi')
+  return { type: "RESET_SEARCH_PARAMETERS" }
+}
+
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters }

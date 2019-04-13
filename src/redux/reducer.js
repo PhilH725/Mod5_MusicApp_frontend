@@ -121,6 +121,8 @@ const searchTypeReducer = (oldState="songs", action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_TYPE":
       return action.payload
+    case "RESET_SEARCH_PARAMETERS":
+      return "songs"
     default:
       return oldState
   }
@@ -238,6 +240,8 @@ const songSearchResultsReducer = (oldState=[], action) => {
       return action.payload
     case "FETCHED_SINGLE_SONG_QUERY_DATA":
       return [...oldState, action]
+    case "RESET_SEARCH_PARAMETERS":
+      return []
     default:
       return oldState
   }
@@ -247,6 +251,8 @@ const artistSearchResultsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_ARTIST_QUERY_DATA":
       return action.payload
+    case "RESET_SEARCH_PARAMETERS":
+      return []
     default:
       return oldState
   }
@@ -256,6 +262,8 @@ const albumSearchResultsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_ALBUM_QUERY_DATA":
       return action.payload
+    case "RESET_SEARCH_PARAMETERS":
+      return []
     default:
       return oldState
   }
