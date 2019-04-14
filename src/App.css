@@ -52,15 +52,6 @@ body {
   margin: 0px 0px 0px 25px
 }
 
-.ui.accordion {
-  text-align: left;
-}
-
-.ui.accordion .title:not(.ui) {
-  /* accordion dropdown main items */
-  font-size: 1.2em;
-}
-
 #playlist-list {
   height: 400px;
 }
@@ -100,7 +91,7 @@ body {
 
 #artists-pic{
   width: 20%;
-  /* height: 150px; */
+  max-height: 100px;
 }
 
 #my-artists-content{
@@ -129,6 +120,7 @@ body {
 
 #my-albums-image{
   width: 20%;
+  max-height: 150px;
 }
 
 #my-albums-content{
@@ -151,4 +143,17 @@ body {
 
 #track-info {
   font-size: 18px;
+}
+
+#search-header {
+  margin-left: 150px;
+  color: darkblue;
+}
+
+#search-song-text {
+  font-size: 18px;
+}
+
+#no-results-header {
+  margin-left: 50px;
 }

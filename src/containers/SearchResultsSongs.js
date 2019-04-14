@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import SongItemFind from '../components/SongItemFind'
-import {List} from 'semantic-ui-react'
+import {List, Header} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class SearchResultsSongs extends Component {
@@ -9,10 +9,10 @@ class SearchResultsSongs extends Component {
   render() {
     return (
       <List celled>
-        {this.props.songs ?
+        {this.props.songs.length > 0 ?
         this.props.songs.map((s, index) => <SongItemFind key={index} song={s} />)
         :
-        "No results"}
+        <Header id="no-results-header" as="h4">No results</Header>}
       </List>
     )
   }

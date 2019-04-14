@@ -22,10 +22,10 @@ class SongItem extends Component {
           <Item.Header>{this.props.song.name.slice(0,60)}</Item.Header>
           <Item.Meta>{this.props.song.artist} - {this.props.song.album.name}</Item.Meta>
         </Item.Content>
-        <Modal trigger={<Button size="tiny" compact>More Info</Button>} centered={false}>
+        <Modal trigger={<Button inverted color="vk" size="tiny" compact>More Info</Button>} centered={false}>
           <SongItemModal song={this.props.song} />
         </Modal>
-        <Button size="mini" floated="right" onClick={()=>this.props.unfavoriteSong(this.props.song, this.props.user.id)}>Unfavorite</Button>
+        <Button inverted color="linkedin" size="mini" floated="right" onClick={()=>this.props.unfavoriteSong(this.props.song, this.props.user.id)}>Unfavorite</Button>
       </Item>
     )
   }

@@ -2,7 +2,24 @@
 import React, {Component} from 'react'
 import {Modal, Header} from 'semantic-ui-react'
 
+// , {
+//   headers: {ab: 'GET'},
+//   body: JSON.stringify({songName: this.props.song.name, artistName: this.props.song.artistName})
+// })
 class SongItemModal extends Component {
+
+  componentDidMount() {
+    fetch('http://localhost/3000/users/get_song_url', {
+      method: 'POST',
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        songName: this.props.song.name,
+        artistName: this.props.song.artist
+      })
+    })
+    .then(res => res.json())
+    .then(id => console.log(id))
+  }
 
   render() {
     return (

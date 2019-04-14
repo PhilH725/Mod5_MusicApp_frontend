@@ -4,6 +4,7 @@ import SearchResultsSongs from './SearchResultsSongs'
 import SearchResultsArtists from './SearchResultsArtists'
 import SearchResultsAlbums from './SearchResultsAlbums'
 import SearchResultsGenres from './SearchResultsGenres'
+import {Header} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class SearchRotary extends Component {
@@ -13,28 +14,28 @@ class SearchRotary extends Component {
       case "songs":
         return (
           <div>
-            Searching songs
+            <Header id="search-header" >Searching songs</Header>
             <SearchResultsSongs />
           </div>
         )
       case "artists":
         return (
           <div>
-            Searching artists
+            <Header id="search-header" >Searching artists</Header>
             <SearchResultsArtists />
           </div>
         )
       case "albums":
         return (
           <div>
-            Searching albums
+            <Header id="search-header" >Searching albums</Header>
             <SearchResultsAlbums />
           </div>
         )
       case "genres":
         return (
           <div>
-            Searching genres
+            <Header id="search-header" >Searching genres</Header>
             <SearchResultsGenres />
           </div>
         )

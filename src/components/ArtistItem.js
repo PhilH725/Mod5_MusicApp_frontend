@@ -18,13 +18,13 @@ const ArtistItem = (props) => {
         </Item.Description>
       </Item.Content>
       <Item.Content id="my-artists-button-container">
-        <Modal trigger={<Button id="my-artists-button" floated="right" size="mini">More Info</Button>} centered={false}>
+        <Modal trigger={<Button id="my-artists-button" inverted color="facebook" floated="right" size="mini">More Info</Button>} centered={false}>
           <ArtistInfoModal artist={props.artist} />
         </Modal>
-        <Modal trigger={<Button id="my-artists-button" floated="right" size="mini">View Albums</Button>} centered={false}>
+        <Modal trigger={<Button id="my-artists-button" inverted color="vk" floated="right" size="mini">View Albums</Button>} centered={false}>
           <ArtistAlbumsModal artist={props.artist} />
         </Modal>
-        <Button id="my-artists-button" floated="right" size="mini" onClick={()=>props.unfavoriteArtist(props.artist, props.user.id)}>Unfavorite</Button>
+        <Button id="my-artists-button" inverted color="linkedin" floated="right" size="mini" onClick={()=>props.unfavoriteArtist(props.artist, props.user.id)}>Unfavorite</Button>
       </Item.Content>
     </Item>
   )

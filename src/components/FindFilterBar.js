@@ -1,6 +1,6 @@
 
-import React, {Component, Fragment} from 'react'
-import {Form, Button} from 'semantic-ui-react'
+import React, {Component} from 'react'
+import {Form, Button, Divider} from 'semantic-ui-react'
 import {changeSearchType, queryLastFM} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
@@ -23,22 +23,31 @@ class FindFilterBar extends Component {
 
   render() {
     return (
-      <Fragment>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
-            <label>Search</label>
+      <div className="ui equal width aligned padded grid">
+        <div className="row">
+          <div className="three wide column">
+            <Form className="ui form" onSubmit={this.handleSubmit}>
+            <div className="field">
+            <label className="label">Search</label>
             <input placeholder='search' onChange={(e) => this.handleChange(e.target.value)}/>
-          </Form.Field>
-          <Button type='submit'>Submit</Button>
-        </Form>
+            </div>
+            <Button type='submit' className="mini ui primary basic button">Submit</Button>
+            </Form>
+          </div>
+        </div>
+        <div className="row">
+        <div className="three wide column">
         <Button.Group>
-          <Button onClick={() => this.props.changeSearchType('songs')}>Songs</Button>
-          <Button.Or />
-          <Button onClick={() => this.props.changeSearchType('artists')}>Artists</Button>
-          <Button.Or />
-          <Button onClick={() => this.props.changeSearchType('albums')}>Albums</Button>
+        <Button inverted color="facebook" onClick={() => this.props.changeSearchType('songs')}>Songs</Button>
+        <Button.Or />
+        <Button inverted color="vk" onClick={() => this.props.changeSearchType('artists')}>Artists</Button>
+        <Button.Or />
+        <Button inverted color="linkedin" onClick={() => this.props.changeSearchType('albums')}>Albums</Button>
         </Button.Group>
-      </Fragment>
+        </div>
+        </div>
+        <Divider/>
+      </div>
     )
   }
 }

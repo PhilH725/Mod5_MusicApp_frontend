@@ -1,7 +1,7 @@
 
 import React from 'react'
 import AlbumItemFind from '../components/AlbumItemFind'
-import {List} from 'semantic-ui-react'
+import {List, Header} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 const SearchResultsAlbums = (props) => {
@@ -11,7 +11,7 @@ const SearchResultsAlbums = (props) => {
       {props.albums.length > 0 ?
       props.albums.map((a, index) => <AlbumItemFind key={index} album={a}/>)
       :
-      "No results"}
+      <Header id="no-results-header" as="h4">No results</Header>}
     </List>
   )
 }
