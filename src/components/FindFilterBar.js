@@ -1,34 +1,55 @@
 
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
+import {Form, Button} from 'semantic-ui-react'
+import {changeSearchType, queryLastFM} from '../redux/actionCreators'
 import {connect} from 'react-redux'
-import {changeSearchText, changeSearchType, queryLastFM} from '../redux/actionCreators'
 
 class FindFilterBar extends Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchText: ""
+    }
+  }
+
+  handleChange = (searchText) => {
+    this.setState({searchText})
+  }
+
+  handleSubmit = () => {
+    this.props.queryLastFM(this.state.searchText, this.props.searchType)
+  }
+
   render() {
     return (
-      <div>
-        <input type='text' value={this.props.searchVal} onChange={(e) => {this.props.changeSearchText(e.target.value)}} />
-        <select onChange={(e)=>this.props.changeSearchType(e.target.value)}>
-          <option value="songs">Songs</option>
-          <option value="artists">Artists</option>
-          <option value="albums">Albums</option>
-        </select>
-        <button onClick={() => this.props.queryLastFM(this.props.searchVal, this.props.searchType)}>Submit</button>
-      </div>
+      <Fragment>
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>Search</label>
+            <input placeholder='search' onChange={(e) => this.handleChange(e.target.value)}/>
+          </Form.Field>
+          <Button type='submit'>Submit</Button>
+        </Form>
+        <Button.Group>
+          <Button onClick={() => this.props.changeSearchType('songs')}>Songs</Button>
+          <Button.Or />
+          <Button onClick={() => this.props.changeSearchType('artists')}>Artists</Button>
+          <Button.Or />
+          <Button onClick={() => this.props.changeSearchType('albums')}>Albums</Button>
+        </Button.Group>
+      </Fragment>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  searchVal: state.searchText,
   searchType: state.searchType
 })
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    changeSearchText: text => dispatch(changeSearchText(text)),
-    changeSearchType: type => dispatch(changeSearchType(type)),
+    changeSearchType: (searchType) => dispatch(changeSearchType(searchType)),
     queryLastFM: (searchVal, searchType) => dispatch(queryLastFM(searchVal, searchType))
   }
 }

@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 const AlbumItemFind = (props) => {
 
   return (
-    <List.Item onClick={ () => console.log(props.album)}>
+    <List.Item>
       <List.Content floated="right">
         <button onClick={()=>props.addFavoriteAlbum(props.album, props.user.id)}>Add to Favorites</button>
       </List.Content>

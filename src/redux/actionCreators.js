@@ -451,7 +451,6 @@ function updateSortType(choice) {
 }
 
 function resetSearchParameters() {
-  console.log('hi')
   return { type: "RESET_SEARCH_PARAMETERS" }
 }
 
