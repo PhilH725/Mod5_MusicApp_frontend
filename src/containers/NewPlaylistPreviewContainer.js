@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import NewPlaylistSongItem from '../components/NewPlaylistSongItem'
-import {List} from 'semantic-ui-react'
+import {List, Header} from 'semantic-ui-react'
 import {removeNewPlaylistSong} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
@@ -9,9 +9,17 @@ class NewPlaylistPreviewContainer extends Component {
 
   render() {
     return (
-      <List divided>
-        {this.props.newPlaylistSongs.map(s => <NewPlaylistSongItem key={s.id} song={s} handleClick={this.props.removeNewPlaylistSong} buttonText={'minus'}/>)}
-      </List>
+      this.props.newPlaylistSongs.length > 0 ?
+      <div id="new-playlist-preview-container">
+        <Header id="new-playlist-header" as="h4">Included songs</Header>
+        <List divided>
+          {this.props.newPlaylistSongs.map(s => <NewPlaylistSongItem key={s.id} song={s} handleClick={this.props.removeNewPlaylistSong} buttonText={'minus'}/>)}
+        </List>
+      </div>
+      :
+      <div id="new-playlist-preview-container">
+        <Header id="new-playlist-header" as="h4">Add songs from your library</Header>
+      </div>
     )
   }
 }

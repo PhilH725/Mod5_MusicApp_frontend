@@ -158,6 +158,28 @@ body {
   margin-left: 50px;
 }
 
-#playlist-song-item{
-  floated: "left"
+#new-playlist-form{
+  margin-left: 40px;
+}
+
+#new-playlist-form-field{
+  margin-bottom: 2px;
+}
+
+#new-playlist-name-input{
+  width: 350px;
+}
+
+#new-playlist-preview-container{
+  height: 250px;
+  overflow-y: scroll;
+  padding-left: 20px;
+}
+
+#new-playlist-my-songs-container{
+  padding-left: 20px;
+}
+
+#new-playlist-header{
+  margin-left: 50px;
 }

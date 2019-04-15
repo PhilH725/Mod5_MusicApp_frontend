@@ -1,9 +1,9 @@
 
-import React, { Component } from 'react'
-import NewPlaylistNameBar from '../components/NewPlaylistNameBar'
+import React, { Component, Fragment } from 'react'
 import NewPlaylistPreviewContainer from './NewPlaylistPreviewContainer'
 import NewPlaylistAddSongsContainer from './NewPlaylistAddSongsContainer'
-import {Link} from 'react-router-dom'
+import NewPlaylistForm from '../components/NewPlaylistForm'
+import {Header, Divider} from 'semantic-ui-react'
 import {creatingNewPlaylist} from '../redux/actionCreators'
 import { connect } from 'react-redux'
 
@@ -12,16 +12,14 @@ class NewPlaylistContainer extends Component {
   render() {
 
     return (
-      <div>
-        <h1>Create a New Playlist</h1>
-        <NewPlaylistAddSongsContainer />
-        <NewPlaylistNameBar />
+      <Fragment>
+        <Header id="my-music-header" as="h2" dividing>Create A Playlist</Header>
+        <NewPlaylistForm />
+        <Divider />
         <NewPlaylistPreviewContainer />
-        <Link to="/my_playlists"><button onClick={() => {
-          this.props.creatingNewPlaylist(this.props.newPlaylistNameText, this.props.newPlaylistSongs, this.props.user.id)
-          }
-        }>Create New Playlist</button></Link>
-      </div>
+        <Divider />
+        <NewPlaylistAddSongsContainer />
+      </Fragment>
     )
   }
 }
