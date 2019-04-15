@@ -1,12 +1,9 @@
 
 import React, {Component} from 'react'
-import { withRouter } from "react-router"
-import { Button, Form, Segment } from "semantic-ui-react"
-import {Link} from 'react-router-dom'
-import {authenticatingUser} from '../redux/actionCreators'
-import {connect} from 'react-redux'
+import {Form, Button, Segment} from 'semantic-ui-react'
 
-class LoginContainer extends Component {
+class SignupForm extends Component {
+
   state = {
     username: "",
     password: ""
@@ -16,11 +13,11 @@ class LoginContainer extends Component {
     this.setState({ [name]: value });
   };
 
-  render(){
+  render() {
     return (
       <Segment>
         <Form
-          onSubmit={() => this.props.authenticatingUser(this.state.username, this.state.password)}
+          onSubmit={null}
           size="mini"
           key="mini"
         >
@@ -41,18 +38,11 @@ class LoginContainer extends Component {
               value={this.state.password}
             />
           </Form.Group>
-          <Button type="submit">Login</Button>
-          <Link to="/create_account"><Button floated="right">Create New Account</Button></Link>
+          <Button type="submit">Create Account</Button>
         </Form>
       </Segment>
     )
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    authenticatingUser: (username, password) => dispatch(authenticatingUser(username, password))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(withRouter(LoginContainer))
+export default SignupForm

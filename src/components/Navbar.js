@@ -45,7 +45,7 @@ const Navbar = (props) => {
           </Link>
         </Dropdown.Menu>
       </Dropdown>
-      <Link to={"/public_playlists"} >
+      <Link to={"/published_playlists"} >
         <Menu.Item>
           Playlists
         </Menu.Item>
