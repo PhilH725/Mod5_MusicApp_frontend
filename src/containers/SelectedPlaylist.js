@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import PlaylistSongItem from '../components/PlaylistSongItem'
-import {Header, Grid, List} from 'semantic-ui-react'
+import {Header, Grid, Item} from 'semantic-ui-react'
 import {orderPlaylist} from '../redux/actionCreators'
 // import Sortable from 'react-sortablejs'
 // import uniqueId from 'lodash/uniqueId'
@@ -27,16 +27,15 @@ import { connect } from 'react-redux'
 class SelectedPlaylist extends Component {
 
   render() {
-    console.log(this.props.selectedPlaylist)
     return (
       this.props.selectedPlaylist ?
       <Grid.Column floated="right" width={12}>
         <Header as="h3">
           {this.props.selectedPlaylist.name}
         </Header>
-        <List animated divided verticalAlign='middle'>
+        <Item.Group divided>
           {this.props.selectedPlaylist.songs.map(s => <PlaylistSongItem key={s.id} song={s} />)}
-        </List>
+        </Item.Group>
       </Grid.Column>
       :
       <Grid.Column floated="right" width={12}>

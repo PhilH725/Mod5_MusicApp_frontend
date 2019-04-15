@@ -1,18 +1,48 @@
 
-import React from 'react'
+import React, {Component} from 'react'
 import {Button, Icon} from 'semantic-ui-react'
-import {Link} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {deletePlaylist} from '../redux/actionCreators'
 
-const PlaylistActionsBar = (props) => {
+class PlaylistActionsBar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      redirect: false
+    }
+  }
 
-  return (
-    <div id="playlist-list-action-bar" >
-      <Link to="/playlists/new"><Button floated="left" size="mini" icon><Icon name="plus"/></Button></Link>
-      <Button floated='right' size="mini" onClick={() => props.deletePlaylist(props.selectedPlaylist)}>Delete Playlist</Button>
-    </div>
-  )
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/playlists/new' />
+    }
+  }
+
+  render() {
+    return (
+      <div id="playlist-list-action-bar" >
+      {this.renderRedirect()}
+        <Button.Group>
+          <Button floated="right" size="large" icon onClick={this.setRedirect}>
+            <Icon name="plus"/>
+          </Button>
+          <Button floated='right' size="large" onClick={() => this.props.deletePlaylist(this.props.selectedPlaylist)} icon>
+            <Icon name="ellipsis horizontal" />
+          </Button>
+          <Button floated="right" size="large" icon>
+            <Icon name="minus" />
+          </Button>
+        </Button.Group>
+      </div>
+    )
+  }
 }
 
 const mapStateToProps = state => ({

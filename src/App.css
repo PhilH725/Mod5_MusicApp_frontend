@@ -157,3 +157,7 @@ body {
 #no-results-header {
   margin-left: 50px;
 }
+
+#playlist-song-item{
+  floated: "left"
+}
