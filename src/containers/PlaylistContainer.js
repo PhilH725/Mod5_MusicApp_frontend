@@ -9,7 +9,7 @@ class PlaylistContainer extends Component {
   render() {
     return (
       <Fragment>
-        <Header id="my-music-header" as="h2" float="middle" dividing>My Playlists</Header>
+        <Header id="my-music-header" as="h2">My Playlists</Header>
         <Grid celled>
           <PlaylistList />
           <SelectedPlaylist />
