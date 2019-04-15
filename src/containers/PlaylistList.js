@@ -11,7 +11,7 @@ class PlaylistList extends Component {
     return (
       this.props.playlists.length > 0 ?
       <Grid.Column id="playlist-list-container" floated="left" width={4}>
-        <List celled id="playlist-list">
+        <List divided id="playlist-list">
           {this.props.playlists.map(p => <PlaylistItem key={p.id} data={p}/>)}
         </List>
         <PlaylistActionsBar />

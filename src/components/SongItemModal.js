@@ -28,7 +28,6 @@ class SongItemModal extends Component {
       <Modal.Content>
         <Modal.Description>
           <Header>{this.props.song.name}</Header>
-          {console.log(this.state.videoId)}
           <iframe title="song" width="600" height="300" src={`https://www.youtube.com/embed/${this.state.videoId}`}>
           </iframe>
         </Modal.Description>
@@ -38,7 +37,5 @@ class SongItemModal extends Component {
 }
 // src="https://www.youtube.com/embed/emGri7i8Y2Y"
 // https://www.youtube.com/watch?v=emGri7i8Y2Y
-
-//track info doesnt really give me anything extra, so i dont know what 'more info' would be. im thinking about making this where i can play a single song by using this modal to house a youtube player...
 
 export default SongItemModal
