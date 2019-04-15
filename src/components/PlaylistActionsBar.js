@@ -9,7 +9,8 @@ class PlaylistActionsBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      redirect: false
+      redirect: false,
+      path: 'new'
     }
   }
 
@@ -21,7 +22,11 @@ class PlaylistActionsBar extends Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/playlists/new' />
+      if (this.state.path === 'new') {
+        return <Redirect to='/playlists/new' />
+      } else if (this.state.path === 'edit' && this.props.selectedPlaylist) {
+        return <Redirect to='/playlists/edit' />
+      }
     }
   }
 
@@ -30,13 +35,13 @@ class PlaylistActionsBar extends Component {
       <div id="playlist-list-action-bar" >
       {this.renderRedirect()}
         <Button.Group>
-          <Button floated="right" size="large" icon onClick={this.setRedirect}>
+          <Button size="medium" inverted color="facebook" icon onClick={()=>this.setRedirect('add')}>
             <Icon name="plus"/>
           </Button>
-          <Button floated='right' size="large" onClick={() => this.props.deletePlaylist(this.props.selectedPlaylist)} icon>
+          <Button size="medium" inverted color="vk" icon>
             <Icon name="ellipsis horizontal" />
           </Button>
-          <Button floated="right" size="large" icon>
+          <Button size="medium" inverted color="linkedin" icon onClick={() => this.props.deletePlaylist(this.props.selectedPlaylist)}>
             <Icon name="minus" />
           </Button>
         </Button.Group>

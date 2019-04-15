@@ -302,6 +302,15 @@ const sortTypeReducer = (oldState="name", action) => {
   }
 }
 
+const publishedPlaylistsReducer = (oldState=[], action) => {
+  switch(action.type) {
+    case "FETCHED_PUBLISHED_PLAYLISTS":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const rootReducer = combineReducers({
   user: userReducer,
   searchText: searchTextReducer,
@@ -325,7 +334,8 @@ const rootReducer = combineReducers({
   artistSearchResults: artistSearchResultsReducer,
   albumSearchResults: albumSearchResultsReducer,
   genreSearchResults: genreSearchResultsReducer,
-  sortType: sortTypeReducer
+  sortType: sortTypeReducer,
+  publishedPlaylists: publishedPlaylistsReducer
 })
 
 export default rootReducer

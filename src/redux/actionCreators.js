@@ -151,6 +151,20 @@ function fetchingPlaylists(userId) {
   }
 }
 
+function fetchedPublishedPlaylists(playlists) {
+  return { type: "FETCHED_PUBLISHED_PLAYLISTS", payload: playlists }
+}
+
+function fetchingPublishedPlaylists() {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/published_playlists`)
+    .then(res => res.json())
+    .then(data => {
+      dispatch(fetchedPublishedPlaylists(data))
+    })
+  }
+}
+
 function creatingNewPlaylist(name, songs, userId) {
   return (dispatch) => {
     fetch('http://localhost:3000/playlists', {
@@ -459,4 +473,4 @@ function orderPlaylist(songs) {
   return { type: "ORDER_PLAYLIST", payload: songs }
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist }
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists }

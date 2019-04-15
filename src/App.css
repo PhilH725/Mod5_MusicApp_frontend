@@ -183,3 +183,8 @@ body {
 #new-playlist-header{
   margin-left: 50px;
 }
+
+#selected-playlist-container{
+  max-height: 450px;
+  overflow-y: scroll;
+}

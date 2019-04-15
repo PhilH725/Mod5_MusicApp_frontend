@@ -13,7 +13,7 @@ const PlaylistItem = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  color: state.selectedPlaylist.id === ownProps.data.id ? "blue" : "black"
+  color: state.selectedPlaylist ? state.selectedPlaylist.id === ownProps.data.id ? "blue" : "black" : 'black'
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => {
