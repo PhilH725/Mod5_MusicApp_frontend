@@ -1,17 +1,22 @@
 
 import React, {Component} from 'react'
 import SongItemModal from './SongItemModal'
-import {Item, Button, Modal} from 'semantic-ui-react'
+import {Item, Button, Modal, Icon} from 'semantic-ui-react'
 import {unfavoriteSong} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
 class SongItem extends Component {
-  state = {
-    open: false
-  }
 
-  onClose = () => this.setState({open: false});
-  openModal = () => this.setState({open: true})
+  playButton = () => {
+    return (
+      <Button inverted color="vk" size="tiny" compact animated>
+        <Button.Content visible>Preview</Button.Content>
+        <Button.Content hidden>
+          <Icon name="play" />
+        </Button.Content>
+      </Button>
+    )
+  }
 
   render() {
     return (
@@ -22,7 +27,7 @@ class SongItem extends Component {
           <Item.Header>{this.props.song.name.slice(0,60)}</Item.Header>
           <Item.Meta>{this.props.song.artist} - {this.props.song.album.name}</Item.Meta>
         </Item.Content>
-        <Modal trigger={<Button inverted color="vk" size="tiny" compact>More Info</Button>} centered={false}>
+        <Modal trigger={this.playButton()} centered={false}>
           <SongItemModal song={this.props.song} />
         </Modal>
         <Button inverted color="linkedin" size="mini" floated="right" onClick={()=>this.props.unfavoriteSong(this.props.song, this.props.user.id)}>Unfavorite</Button>

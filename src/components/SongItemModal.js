@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react'
-import {Modal, Header} from 'semantic-ui-react'
+import {Modal, Header, Divider} from 'semantic-ui-react'
 
 class SongItemModal extends Component {
   constructor(props) {
@@ -27,9 +27,14 @@ class SongItemModal extends Component {
     return (
       <Modal.Content>
         <Modal.Description>
-          <Header>{this.props.song.name}</Header>
+          <Header as="h2">{this.props.song.name}</Header>
+          <Header as="h3">{this.props.song.artist} - {this.props.song.album.name}</Header>
+          <Divider />
+          {this.state.videoId.length > 0 ?
           <iframe title="song" width="600" height="300" src={`https://www.youtube.com/embed/${this.state.videoId}`}>
           </iframe>
+          :
+          <h2>Loading video...</h2>}
         </Modal.Description>
       </Modal.Content>
     )
