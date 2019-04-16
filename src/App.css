@@ -44,7 +44,7 @@ body {
 
 .ui.items>.item>.image {
   /* item image - margin pushes text content as well */
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .ui.items>.item .meta {
@@ -187,4 +187,14 @@ body {
 #selected-playlist-container{
   max-height: 450px;
   overflow-y: scroll;
+}
+
+#create-playlist-text{
+  width: 80%
+}
+
+#create-playlist-button-container{
+  width: 7%;
+  float: right;
+  display: inline-block;
 }
