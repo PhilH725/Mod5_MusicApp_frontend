@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
-import {Item, Button} from 'semantic-ui-react'
-// <Button floated="right" onClick={()=>console.log(this.props.song)}>info</Button>
+import {Item} from 'semantic-ui-react'
+
 class PlaylistSongItem extends Component {
 
   render() {

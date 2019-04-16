@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react'
-import {Modal, List, Image} from 'semantic-ui-react'
+import ArtistAlbumsModalItem from './ArtistAlbumsModalItem'
+import {Modal, Table, Header} from 'semantic-ui-react'
 import {createLastFMClient} from '../LastFM'
 
 class ArtistAlbumsModal extends Component {
@@ -20,34 +21,35 @@ class ArtistAlbumsModal extends Component {
   }
 
   filterSearchResults(albumData) {
-    albumData = albumData.filter(a => a.listeners > 100000 && a.name !== "(null)")
-    let albums = []
-    let duplicateChecker = []
-    // this way of checking dupes doesnt work because same images are still different urls
-    for (const i of albumData) {
-      if (!duplicateChecker.includes(i.images[3])) {
-        albums = [...albums, i]
-        duplicateChecker = [...duplicateChecker, i.images[3]]
-      }
-    }
-    return albums
+    return albumData.filter(a => a.listeners > 100000 && a.name !== "(null)")
   }
 
   render() {
-    // console.log(this.state.albums)
     return (
       <Modal.Content>
         <Modal.Description>
           <Modal.Header>{this.props.artist.name}</Modal.Header>
-            <List celled>
-              {this.state.albums.map((a, index) => <List.Item key={index}><Image src={a.images[3]} size='mini'/>{a.name}</List.Item>)}
-            </List>
+          <Header as="h3">Similar Artists:</Header>
+          <Table celled selectable>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Album Art</Table.HeaderCell>
+                <Table.HeaderCell>Album Name</Table.HeaderCell>
+                <Table.HeaderCell>Favorite</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {this.state.albums.map((a, index) => <ArtistAlbumsModalItem key={index} album={a} />)}
+            </Table.Body>
+          </Table>
+
         </Modal.Description>
       </Modal.Content>
     )
   }
 }
-
-//refactor list of albums into own component when i style them
+// <List celled>
+//   {this.state.albums.map((a, index) => <List.Item key={index}><Image src={a.images[3]} size='mini'/>{a.name}</List.Item>)}
+// </List>
 
 export default ArtistAlbumsModal

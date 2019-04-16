@@ -1,6 +1,7 @@
 
 import React from 'react'
-import ArtistInfoModal from './ArtistInfoModal'
+import ArtistTopTracksModal from './ArtistTopTracksModal'
+import ArtistSimilarArtistsModal from './ArtistSimilarArtistsModal'
 import ArtistAlbumsModal from './ArtistAlbumsModal'
 import {Item, Button, Modal} from 'semantic-ui-react'
 import {unfavoriteArtist} from '../redux/actionCreators'
@@ -18,13 +19,16 @@ const ArtistItem = (props) => {
         </Item.Description>
       </Item.Content>
       <Item.Content id="my-artists-button-container">
-        <Modal trigger={<Button id="my-artists-button" inverted color="facebook" floated="right" size="mini">More Info</Button>} centered={false}>
-          <ArtistInfoModal artist={props.artist} />
+        <Modal trigger={<Button id="my-artists-button" inverted color="facebook" floated="right" size="mini" compact>Top Tracks</Button>} centered={false}>
+          <ArtistTopTracksModal artist={props.artist} />
         </Modal>
-        <Modal trigger={<Button id="my-artists-button" inverted color="vk" floated="right" size="mini">View Albums</Button>} centered={false}>
+        <Modal trigger={<Button id="my-artists-button" inverted color="twitter" floated="right" size="mini" compact>Similar Artists</Button>} centered={false}>
+          <ArtistSimilarArtistsModal artist={props.artist} />
+        </Modal>
+        <Modal trigger={<Button id="my-artists-button" inverted color="vk" floated="right" size="mini" compact>View Albums</Button>} centered={false}>
           <ArtistAlbumsModal artist={props.artist} />
         </Modal>
-        <Button id="my-artists-button" inverted color="linkedin" floated="right" size="mini" onClick={()=>props.unfavoriteArtist(props.artist, props.user.id)}>Unfavorite</Button>
+        <Button id="my-artists-button" inverted color="linkedin" floated="right" size="mini" compact onClick={()=>props.unfavoriteArtist(props.artist, props.user.id)}>Unfavorite</Button>
       </Item.Content>
     </Item>
   )

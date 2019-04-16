@@ -102,13 +102,13 @@ body {
 
 #my-artists-button-container{
   width: 10%;
-  padding-top: 15px;
+  padding-top: 0px;
 }
 
 #my-artists-button{
   width: 90%;
   height: 40px;
-  margin-top: 5px;
+  margin-top: 2px;
   margin-right: 5px;
 }
 
