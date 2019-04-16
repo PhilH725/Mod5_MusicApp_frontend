@@ -29,8 +29,8 @@ class SelectedPlaylist extends Component {
   render() {
     return (
       this.props.selectedPlaylist ?
-      <Grid.Column floated="right" width={12} id="selected-playlist-container">
-        <Header as="h3">
+      <Grid.Column  width={12} id="selected-playlist-container">
+        <Header as="h2">
           {this.props.selectedPlaylist.name}
         </Header>
         <Item.Group divided>

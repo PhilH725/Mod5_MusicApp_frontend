@@ -41,8 +41,8 @@ class LoginContainer extends Component {
               value={this.state.password}
             />
           </Form.Group>
-          <Button type="submit">Login</Button>
-          <Link to="/create_account"><Button floated="right">Create New Account</Button></Link>
+          <Button type="submit" inverted color="vk">Login</Button>
+          <Link to="/create_account"><Button floated="right" inverted color="linkedin">Create New Account</Button></Link>
         </Form>
       </Segment>
     )

@@ -1,7 +1,7 @@
 
 import React, {Component, Fragment} from 'react'
 import PublishedPlaylistItem from '../components/PublishedPlaylistItem'
-import {Item, List, Header} from 'semantic-ui-react'
+import {Item, Header} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class PublishedPlaylistsContainer extends Component {

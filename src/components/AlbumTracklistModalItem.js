@@ -19,13 +19,13 @@ const AlbumTracklistModalItem = (props) => {
     if (props.favoriteSongs.map(s => s.name).includes(props.track.name)) {
       //unfavorite song needs rewritten to work without needing the id passed in
       return (
-        <Button icon onClick={() => {"unfavoriteSong()"}} >
+        <Button icon inverted color="linkedin" onClick={() => {"unfavoriteSong()"}} >
           <Icon name="star" />
         </Button>
       )
     } else {
       return (
-        <Button icon onClick={() => {props.addingFavoriteSong(props.track.name, props.track.artistName, props.user.id)}} >
+        <Button icon  onClick={() => {props.addingFavoriteSong(props.track.name, props.track.artistName, props.user.id)}} >
           <Icon name="star outline" />
         </Button>
       )

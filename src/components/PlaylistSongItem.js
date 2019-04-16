@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import {Item, Button} from 'semantic-ui-react'
-
+// <Button floated="right" onClick={()=>console.log(this.props.song)}>info</Button>
 class PlaylistSongItem extends Component {
 
   render() {
@@ -13,7 +13,6 @@ class PlaylistSongItem extends Component {
           <Item.Meta>{this.props.song.artist.slice(0,22)} - {this.props.song.album.slice(0,30)}</Item.Meta>
         </Item.Content>
         <Item.Content>
-        <Button floated="right" onClick={()=>console.log(this.props.song)}>info</Button>
         </Item.Content>
       </Item>
     )

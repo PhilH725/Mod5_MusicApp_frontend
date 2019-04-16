@@ -5,9 +5,9 @@ import {List} from 'semantic-ui-react'
 const PublishedPlaylistSongItem = (props) => {
 
   return (
-    <div>
+    <List.Item>
       {props.song.name}
-    </div>
+    </List.Item>
   )
 }
 

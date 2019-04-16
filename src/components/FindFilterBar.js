@@ -28,10 +28,10 @@ class FindFilterBar extends Component {
           <div className="three wide column">
             <Form className="ui form" onSubmit={this.handleSubmit}>
             <div className="field">
-            <label className="label">Search</label>
+
             <input placeholder='search' onChange={(e) => this.handleChange(e.target.value)}/>
             </div>
-            <Button type='submit' className="mini ui primary basic button">Submit</Button>
+            <Button type='submit' className="mini ui primary basic button">Find</Button>
             </Form>
           </div>
         </div>

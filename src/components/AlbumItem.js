@@ -31,11 +31,11 @@ class AlbumItem extends Component {
           </Item.Description>
         </Item.Content>
         <Item.Content id="my-albums-button-container">
-          <Modal trigger={<Button id="my-albums-button">Tracklist</Button>} centered={false}>
+          <Modal trigger={<Button id="my-albums-button" inverted color="vk" >Tracklist</Button>} centered={false}>
             <Header as="h2">{this.props.album.name}</Header>
             <AlbumTracklistModal album={this.state.albumInfo} />
           </Modal>
-          <Button id="my-albums-button" onClick={() => this.props.unfavoriteAlbum(this.props.album, this.props.user.id)}> Unfavorite</Button>
+          <Button id="my-albums-button" inverted color="linkedin" onClick={() => this.props.unfavoriteAlbum(this.props.album, this.props.user.id)}> Unfavorite</Button>
         </Item.Content>
       </Item>
     )
