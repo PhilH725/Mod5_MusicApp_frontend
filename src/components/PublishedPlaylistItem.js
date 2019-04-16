@@ -2,8 +2,30 @@
 import React, {Component, Fragment} from 'react'
 import PublishedPlaylistSongItem from './PublishedPlaylistSongItem'
 import {Table, Header, Button, Icon} from 'semantic-ui-react'
+import {sharingPlaylist} from '../redux/actionCreators'
+import {connect} from 'react-redux'
 
 class PublishedPlaylistItem extends Component {
+
+  myPlaylist = () => {
+    return this.props.user.username === this.props.playlist.user.user
+  }
+
+  likeButton = () => {
+    return (
+      <Button inverted color={this.myPlaylist() ? "linkedin" : 'blue'} icon>
+        <Icon name="heart" />
+      </Button>
+    )
+  }
+
+  shareButton = () => {
+    return (
+      <Button inverted color="linkedin" icon onClick={()=> this.props.sharingPlaylist(this.props.playlist)}>
+        <Icon name="share" />
+      </Button>
+    )
+  }
 
   render() {
     return (
@@ -14,7 +36,7 @@ class PublishedPlaylistItem extends Component {
             <Table.Row>
               <Table.HeaderCell>Created By</Table.HeaderCell>
               <Table.HeaderCell>Likes</Table.HeaderCell>
-              <Table.HeaderCell>Liked?</Table.HeaderCell>
+              <Table.HeaderCell>{this.myPlaylist() ? "Un-share?" : "Liked?"}</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -22,7 +44,7 @@ class PublishedPlaylistItem extends Component {
             <Table.Row id="published-playlists-song-header">
               <Table.Cell>{this.props.playlist.user.user}</Table.Cell>
               <Table.Cell>500</Table.Cell>
-              <Table.Cell><Button inverted color="linkedin" icon><Icon name="heart"/></Button></Table.Cell>
+              <Table.Cell>{this.myPlaylist() ? this.shareButton() : this.likeButton()}</Table.Cell>
             </Table.Row>
           </Table.Body>
 
@@ -43,26 +65,14 @@ class PublishedPlaylistItem extends Component {
   }
 }
 
-export default PublishedPlaylistItem
+const mapStateToProps = state => ({
+  user: state.user
+})
 
-// <Item>
-//   <Header as="h4">{this.props.playlist.name} - {this.props.playlist.user.user}</Header>
-//   <List>
-//     {this.props.playlist.songs.map(s => <PublishedPlaylistSongItem key={s.id} song={s}/>)}
-//   </List>
-// </Item>
-// <Table color={color} key={color}>
-//
-//         <Table.Body>
-//           <Table.Row>
-//             <Table.Cell>Apples</Table.Cell>
-//             <Table.Cell>200</Table.Cell>
-//             <Table.Cell>0g</Table.Cell>
-//           </Table.Row>
-//           <Table.Row>
-//             <Table.Cell>Orange</Table.Cell>
-//             <Table.Cell>310</Table.Cell>
-//             <Table.Cell>0g</Table.Cell>
-//           </Table.Row>
-//         </Table.Body>
-//       </Table>
+const mapDispatchToProps = dispatch => {
+  return {
+    sharingPlaylist: (playlist) => dispatch(sharingPlaylist(playlist))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PublishedPlaylistItem)
