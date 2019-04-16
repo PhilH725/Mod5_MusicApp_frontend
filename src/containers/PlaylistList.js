@@ -12,7 +12,7 @@ class PlaylistList extends Component {
       this.props.playlists.length > 0 ?
       <Grid.Column id="playlist-list-container" width={4}>
         <List divided id="playlist-list">
-          {this.props.playlists.map(p => <PlaylistItem key={p.id} data={p}/>)}
+          {this.props.playlists.sort((a,b) => a.id - b.id).map(p => <PlaylistItem key={p.id} data={p}/>)}
         </List>
         <PlaylistActionsBar />
       </Grid.Column>

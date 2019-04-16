@@ -473,4 +473,24 @@ function orderPlaylist(songs) {
   return { type: "ORDER_PLAYLIST", payload: songs }
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists }
+function sharedPlaylist(playlist) {
+  return { type: "SHARED_PLAYLIST", payload: playlist }
+}
+
+function sharingPlaylist(playlist) {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/playlists/${playlist.id}`, {
+      method: "PATCH",
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        published: !playlist.published
+      })
+    })
+    .then(res => res.json())
+    .then(playlist => {
+      dispatch(sharedPlaylist(playlist))
+    })
+  }
+}
+
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists, sharingPlaylist }

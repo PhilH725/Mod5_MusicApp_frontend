@@ -306,6 +306,12 @@ const publishedPlaylistsReducer = (oldState=[], action) => {
   switch(action.type) {
     case "FETCHED_PUBLISHED_PLAYLISTS":
       return action.payload
+    case "SHARED_PLAYLIST":
+      if (action.payload.published) {
+        return [...oldState, action.payload]
+      } else {
+        return oldState.filter(p => p.id !== action.payload.id)
+      }
     default:
       return oldState
   }

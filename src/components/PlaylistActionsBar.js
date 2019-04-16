@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 import {Button, Icon} from 'semantic-ui-react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {deletePlaylist} from '../redux/actionCreators'
+import {deletePlaylist, sharingPlaylist} from '../redux/actionCreators'
 
 class PlaylistActionsBar extends Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class PlaylistActionsBar extends Component {
           <Button size="medium" inverted color="linkedin" icon onClick={() => this.props.deletePlaylist(this.props.selectedPlaylist)}>
             <Icon name="minus" />
           </Button>
-          <Button size="medium" inverted color="twitter" icon>
+          <Button size="medium" inverted color="twitter" icon onClick={() => this.props.sharingPlaylist(this.props.selectedPlaylist)} >
             <Icon name="share" />
           </Button>
         </Button.Group>
@@ -59,7 +59,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    deletePlaylist: (playlist) => dispatch(deletePlaylist(playlist))
+    deletePlaylist: (playlist) => dispatch(deletePlaylist(playlist)),
+    sharingPlaylist: (playlist) => dispatch(sharingPlaylist(playlist))
   }
 }
 
