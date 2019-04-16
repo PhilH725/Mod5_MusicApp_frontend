@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react'
-import {Form, Button, Divider} from 'semantic-ui-react'
+import {Form, Button, Divider, Icon} from 'semantic-ui-react'
 import {changeSearchType, queryLastFM} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
@@ -31,7 +31,12 @@ class FindFilterBar extends Component {
 
             <input placeholder='search' onChange={(e) => this.handleChange(e.target.value)}/>
             </div>
-            <Button type='submit' className="mini ui primary basic button">Find</Button>
+            <Button type='submit' id="find-music-button" className="mini ui primary basic button" animated>
+              <Button.Content visible>Find</Button.Content>
+              <Button.Content hidden>
+                <Icon name="music" />
+              </Button.Content>
+            </Button>
             </Form>
           </div>
         </div>

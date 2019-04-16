@@ -89,9 +89,9 @@ body {
   text-align: left;
 }
 
-#artists-pic{
+.my-music-image{
   width: 20%;
-  max-height: 100px;
+  max-height: 85px;
 }
 
 #my-artists-content{
@@ -150,8 +150,20 @@ body {
   color: darkblue;
 }
 
-#search-song-text {
+#search-songs-text {
   font-size: 18px;
+}
+
+#search-artists-text {
+  font-size: 18px;
+}
+
+#search-albums-text {
+  font-size: 18px;
+}
+
+#find-music-button {
+  width: 80px;
 }
 
 #no-results-header {
@@ -203,10 +215,6 @@ body {
   margin-left: 50px;
 }
 
-/* #published-playlists-info-header{
-  background-color: lightblue;
-} */
-
 #published-playlists-song-header{
   width: 100%;
 }
@@ -214,10 +222,9 @@ body {
 #published-playlists-table{
   margin:auto;
   width: 95%;
-
 }
 
-#test{
-  max-height: 300px;
-  overflow-y: scroll;
+#youtube-video-player{
+  width: 50%;
+  margin: auto;
 }

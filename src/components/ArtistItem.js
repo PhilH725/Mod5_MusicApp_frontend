@@ -11,7 +11,7 @@ const ArtistItem = (props) => {
 
   return (
     <Item id="my-artists-item">
-      <Item.Image id="artists-pic" src={props.artist.image} alt={'artist-pic'} />
+      <Item.Image className="my-music-image" src={props.artist.image} alt={'artist-pic'} />
       <Item.Content id="my-artists-content">
         <Item.Header as="h2">{props.artist.name}</Item.Header>
         <Item.Description >

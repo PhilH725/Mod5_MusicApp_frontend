@@ -23,7 +23,7 @@ class AlbumItem extends Component {
   render() {
     return (
       <Item>
-        <Item.Image id="my-albums-image" src={this.props.album.image} alt={"album-art"} />
+        <Item.Image className="my-music-image" src={this.props.album.image} alt={"album-art"} />
         <Item.Content id="my-albums-content">
           <Item.Header>{this.props.album.name} - {this.props.album.artistName}</Item.Header>
           <Item.Description>

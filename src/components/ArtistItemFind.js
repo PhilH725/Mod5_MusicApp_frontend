@@ -1,6 +1,6 @@
 
 import React from 'react'
-import {List, Image} from 'semantic-ui-react'
+import {List, Image, Button} from 'semantic-ui-react'
 import {addingFavoriteArtist} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
@@ -9,11 +9,11 @@ const ArtistItemFind = (props) => {
   return (
     <List.Item>
       <List.Content floated="right">
-        <button onClick={()=>props.addingFavoriteArtist(props.artist, props.user.id)}>Add to Favorites</button>
+        <Button inverted color="linkedin" onClick={()=>props.addingFavoriteArtist(props.artist, props.user.id)}>Add to Favorites</Button>
       </List.Content>
       <List.Content floated="left" verticalAlign="middle">
       <Image src={props.artist.images[3]} size="mini" floated="left"/>
-      <span>{props.artist.name}</span>
+      <span id="search-artists-text" >{props.artist.name}</span>
       </List.Content>
     </List.Item>
   )

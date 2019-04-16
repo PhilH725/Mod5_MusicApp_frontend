@@ -31,7 +31,7 @@ class SongItemModal extends Component {
           <Header as="h3">{this.props.song.artist} - {this.props.song.album.name}</Header>
           <Divider />
           {this.state.videoId.length > 0 ?
-          <iframe title="song" width="600" height="300" src={`https://www.youtube.com/embed/${this.state.videoId}`}>
+          <iframe id="youtube-video-player" title="song" width="600" height="300" src={`https://www.youtube.com/embed/${this.state.videoId}`}>
           </iframe>
           :
           <h2>Loading video...</h2>}
