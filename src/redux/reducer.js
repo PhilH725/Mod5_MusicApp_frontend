@@ -312,6 +312,8 @@ const publishedPlaylistsReducer = (oldState=[], action) => {
       } else {
         return oldState.filter(p => p.id !== action.payload.id)
       }
+    case "LIKED_PLAYLIST":
+      return [...oldState.filter(p => p.id !== action.payload.id), action.payload]
     default:
       return oldState
   }

@@ -2,7 +2,7 @@
 import React, {Component, Fragment} from 'react'
 import PublishedPlaylistSongItem from './PublishedPlaylistSongItem'
 import {Table, Header, Button, Icon} from 'semantic-ui-react'
-import {sharingPlaylist} from '../redux/actionCreators'
+import {sharingPlaylist, likePlaylist} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
 class PublishedPlaylistItem extends Component {
@@ -11,9 +11,9 @@ class PublishedPlaylistItem extends Component {
     return this.props.user.username === this.props.playlist.user.user
   }
 
-  likeButton = () => {
+  voteButton = () => {
     return (
-      <Button inverted color={this.myPlaylist() ? "linkedin" : 'blue'} icon>
+      <Button inverted color="linkedin" icon onClick={() => this.props.likePlaylist(this.props.playlist)}>
         <Icon name="heart" />
       </Button>
     )
@@ -36,15 +36,15 @@ class PublishedPlaylistItem extends Component {
             <Table.Row>
               <Table.HeaderCell>Created By</Table.HeaderCell>
               <Table.HeaderCell>Likes</Table.HeaderCell>
-              <Table.HeaderCell>{this.myPlaylist() ? "Un-share?" : "Liked?"}</Table.HeaderCell>
+              <Table.HeaderCell>{this.myPlaylist() ? "Un-share?" : "Vote"}</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
 
           <Table.Body>
             <Table.Row id="published-playlists-song-header">
               <Table.Cell>{this.props.playlist.user.user}</Table.Cell>
-              <Table.Cell>500</Table.Cell>
-              <Table.Cell>{this.myPlaylist() ? this.shareButton() : this.likeButton()}</Table.Cell>
+              <Table.Cell>{this.props.playlist.likes}</Table.Cell>
+              <Table.Cell>{this.myPlaylist() ? this.shareButton() : this.voteButton()}</Table.Cell>
             </Table.Row>
           </Table.Body>
 
@@ -71,7 +71,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    sharingPlaylist: (playlist) => dispatch(sharingPlaylist(playlist))
+    sharingPlaylist: (playlist) => dispatch(sharingPlaylist(playlist)),
+    likePlaylist: (playlist) => dispatch(likePlaylist(playlist))
   }
 }
 
