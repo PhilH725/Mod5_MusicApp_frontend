@@ -44,6 +44,9 @@ class PlaylistActionsBar extends Component {
           <Button size="medium" inverted color="linkedin" icon onClick={() => this.props.deletePlaylist(this.props.selectedPlaylist)}>
             <Icon name="minus" />
           </Button>
+          <Button size="medium" inverted color="twitter" icon>
+            <Icon name="share" />
+          </Button>
         </Button.Group>
       </div>
     )

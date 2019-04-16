@@ -198,3 +198,26 @@ body {
   float: right;
   display: inline-block;
 }
+
+#published-playlists-name-header{
+  margin-left: 50px;
+}
+
+/* #published-playlists-info-header{
+  background-color: lightblue;
+} */
+
+#published-playlists-song-header{
+  width: 100%;
+}
+
+#published-playlists-table{
+  margin:auto;
+  width: 95%;
+
+}
+
+#test{
+  max-height: 300px;
+  overflow-y: scroll;
+}

@@ -1,7 +1,7 @@
 
 import React, {Component, Fragment} from 'react'
 import PublishedPlaylistItem from '../components/PublishedPlaylistItem'
-import {Item, Header} from 'semantic-ui-react'
+import {Header} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class PublishedPlaylistsContainer extends Component {
@@ -10,9 +10,7 @@ class PublishedPlaylistsContainer extends Component {
     return (
       <Fragment>
         <Header id="my-music-header" as="h2" dividing>Top Playlists</Header>
-        <Item.Group divided>
-          {this.props.playlists.map(p => <PublishedPlaylistItem key={p.id} playlist={p}/>)}
-        </Item.Group>
+        {this.props.playlists.map(p => <PublishedPlaylistItem key={p.id} playlist={p}/>)}
       </Fragment>
     )
   }
