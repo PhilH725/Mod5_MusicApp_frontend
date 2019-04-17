@@ -72,7 +72,7 @@ function fetchedSongs(songs) {
 
 function fetchingSongs() {
   return (dispatch) => {
-    dispatch(loadingSongs())
+    // dispatch(loadingSongs())
     fetch('http://localhost:3000/songs')
     .then(res => res.json())
     .then(songs => {
@@ -217,8 +217,8 @@ function fetchingPlaylistToEdit(id) {
   }
 }
 
-function loadingSongs() {
-  return { type: "LOADING_SONGS"}
+function loadingData() {
+  return { type: "LOADING_DATA"}
 }
 
 function changeSearchText(text) {
@@ -504,4 +504,4 @@ function likePlaylist(playlist) {
   return { type: "LIKED_PLAYLIST", payload: {...playlist, likes: playlist.likes + 1} }
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists, sharingPlaylist, likePlaylist }
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, loadingData, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists, sharingPlaylist, likePlaylist }

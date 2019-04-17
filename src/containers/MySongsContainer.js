@@ -17,6 +17,9 @@ class MySongsContainer extends Component {
     }
 
     return (
+      this.props.loading ?
+      <div>loading</div>
+      :
       this.props.songs.length > 0 ?
       <Item.Group divided>
         <Header id="my-music-header" as="h2" dividing>My Songs</Header>
@@ -36,6 +39,7 @@ class MySongsContainer extends Component {
 
 const mapStateToProps = state => {
   return ({
+    loading: state.loading,
     songs: state.mySongs,
     sortType: state.sortType
   })

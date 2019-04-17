@@ -4,15 +4,12 @@ import Navbar from './components/Navbar'
 import MainContainer from './containers/MainContainer'
 import './App.css';
 import {connect} from 'react-redux'
-import { fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, fetchingFavorites, fetchingPublishedPlaylists, authenticatingToken} from './redux/actionCreators'
+import { fetchingFavorites, loadingData, fetchingPublishedPlaylists, authenticatingToken} from './redux/actionCreators'
 
 class App extends Component {
 
   componentDidMount() {
-    // this.props.fetchingSongs()
-    // this.props.fetchingArtists()
-    // this.props.fetchingAlbums()
-    // this.props.fetchingGenres()
+    this.props.loadingData()
     this.props.fetchingPublishedPlaylists()
     let token = localStorage.getItem('token')
     if (token) {
@@ -38,10 +35,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingSongs: () => dispatch(fetchingSongs()),
-    fetchingArtists: () => dispatch(fetchingArtists()),
-    fetchingAlbums: () => dispatch(fetchingAlbums()),
-    fetchingGenres: () => dispatch(fetchingGenres()),
+    loadingData: () => dispatch(loadingData()),
     fetchingFavorites: () => dispatch(fetchingFavorites()),
     fetchingPublishedPlaylists: () => dispatch(fetchingPublishedPlaylists()),
     authenticatingToken: (token) => dispatch(authenticatingToken(token))

@@ -129,10 +129,11 @@ const searchTypeReducer = (oldState="songs", action) => {
 }
 
 const loadingReducer = (oldState=false, action) => {
+  // debugger
   switch (action.type) {
-    case "LOADING_SONGS":
+    case "LOADING_DATA":
       return true
-    case "FETCHED_SONGS":
+    case "FETCHED_FAVORITES":
       return false
     default:
       return oldState
