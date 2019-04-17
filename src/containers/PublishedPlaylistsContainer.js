@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 class PublishedPlaylistsContainer extends Component {
 
   render() {
-    console.log(this.props.playlists)
     return (
       <Fragment>
         <Header id="my-music-header" as="h2" dividing>Top Playlists</Header>
