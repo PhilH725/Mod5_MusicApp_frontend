@@ -17,6 +17,4 @@ class FindMusicContainer extends Component {
   }
 }
 
-
-
 export default FindMusicContainer

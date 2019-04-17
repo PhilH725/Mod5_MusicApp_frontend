@@ -17,7 +17,7 @@ const SearchResultsAlbums = (props) => {
 }
 
 const mapStateToProps = state => ({
-  albums: state.albumSearchResults
+  albums: state.albumSearchResults.filter(a => !state.myAlbums.map(al => al.name).includes(a.name))
 })
 
 export default connect(mapStateToProps)(SearchResultsAlbums)
