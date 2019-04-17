@@ -17,11 +17,19 @@ class MySongsContainer extends Component {
     }
 
     return (
+      this.props.songs.length > 0 ?
       <Item.Group divided>
         <Header id="my-music-header" as="h2" dividing>My Songs</Header>
         <SortMenu />
         {this.props.songs.map(s => <SongItem key={s.id} song={s} />)}
       </Item.Group>
+      :
+      <div>
+        <Header id="my-music-header" as="h2" dividing>My Songs</Header>
+        <Header id="subheader-notice" as="h3">
+          Doesn't look like there's anything here. Favorite some songs to get started!
+        </Header>
+      </div>
     )
   }
 }

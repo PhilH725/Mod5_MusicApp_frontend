@@ -11,7 +11,7 @@ class MyTempMusicContainer extends Component {
     return (
       <div>
         <Header id="my-music-header" as="h2" dividing>My Music</Header>
-        <Header id="guest-warning" sub>You are browsing as a guest user. Sign in or create an account to save favorites or create a playlist</Header>
+        <Header id="subheader-notice" sub>You are browsing as a guest user. Sign in or create an account to save favorites or create a playlist</Header>
         <br/><br/>
         <GuestSongsContainer/>
         <br/>

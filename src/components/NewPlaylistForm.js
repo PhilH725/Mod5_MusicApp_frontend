@@ -54,7 +54,7 @@ class NewPlaylistForm extends Component {
           <label>Enter playlist name:</label>
           <input id="new-playlist-name-input" placeholder='...' onChange={this.handleChange}/>
         </Form.Field>
-        <Button type="submit">Create</Button>
+        <Button type="submit" inverted color="linkedin">Create</Button>
       </Form>
       </Fragment>
     )
