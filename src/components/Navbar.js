@@ -76,6 +76,11 @@ const Navbar = (props) => {
             Login
           </Menu.Item>
         </Link>
+        <Link to={"/create_account"}>
+          <Menu.Item>
+            Create Account
+          </Menu.Item>
+        </Link>
       </Menu.Menu>
     </Menu>
   )
