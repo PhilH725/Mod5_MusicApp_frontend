@@ -6,16 +6,6 @@ import {isEmpty} from 'lodash'
 import {logoutUser} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
-// <div className="ui menu small">
-//   <Link to={"/my_songs"} className="item">My Songs</Link>
-//   <Link to={"/my_playlists"} className="item">My Playlists</Link>
-//   <Link to={"/my_artists"} className="item">My Artists</Link>
-//   <Link to={"/my_albums"} className="item">My Albums</Link>
-//   <Link to={"/my_genres"} className="item">My Genres</Link>
-//   <Link to={"/find_music"} className="item">Find Music</Link>
-//   <Link to={"/login"} className="item" onClick={props.logoutUser}>Logout</Link>
-// </div>
-
 const Navbar = (props) => {
 
   return (
@@ -65,6 +55,16 @@ const Navbar = (props) => {
     </Menu>
     :
     <Menu className="ui small menu">
+      <Link to ={"my_temp_music"}>
+        <Menu.Item>
+          My Music
+        </Menu.Item>
+      </Link>
+      <Link to={"published_playlists"}>
+        <Menu.Item>
+          View Playlists
+        </Menu.Item>
+      </Link>
       <Link to={"/find_music"}>
         <Menu.Item>
           Find Music

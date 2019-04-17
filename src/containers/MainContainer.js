@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import FindMusicContainer from './FindMusicContainer'
 import PlaylistContainer from './PlaylistContainer'
 import PublishedPlaylistsContainer from './PublishedPlaylistsContainer'
+import MyTempMusicContainer from './MyTempMusicContainer'
 import SongShow from '../components/SongShow'
 import ArtistShow from '../components/ArtistShow'
 import AlbumShow from '../components/AlbumShow'
@@ -48,6 +49,9 @@ class MainContainer extends Component {
           <Route path="/playlists/new" component={NewPlaylistContainer} />
           <Route exact path="/login" render = { (props) => {
             return isEmpty(this.props.user) ? <LoginContainer/> : <Redirect to="/my_songs"/>
+          }} />
+          <Route exact path="/my_temp_music" render={ () => {
+            return isEmpty(this.props.user) ? <MyTempMusicContainer/> : <Redirect to="/my_songs"/>
           }} />
           <Route exact path="/create_account" component={SignupForm} />
           <Route exact path="/published_playlists" component={PublishedPlaylistsContainer} />

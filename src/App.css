@@ -28,6 +28,7 @@ body {
   height: 50px;
   width: 50px;
   margin: 0px;
+  transform: rotate(180deg);
 }
 
 #site-name{
@@ -92,6 +93,12 @@ body {
   padding-left: 100px;
 }
 
+#my-music-subheader{
+  padding-top: 5px;
+  color: darkblue;
+  padding-left: 50px;
+}
+
 #my-artists-item{
   height: 180px;
 }
@@ -107,7 +114,7 @@ body {
 
 #my-artists-content{
   width: 55%;
-  height: 140px;
+  height: 150px;
   overflow-y: scroll;
 }
 
@@ -136,7 +143,7 @@ body {
 
 #my-albums-content{
   width: 55%;
-  height: 140px;
+  height: 150px;
   overflow-y: scroll;
 }
 
@@ -236,6 +243,10 @@ body {
 }
 
 #youtube-video-player{
-  width: 50%;
-  margin: auto;
+  /* width: 50%; */
+  /* margin: auto; */
+}
+
+#guest-warning{
+  margin-left: 40px;
 }
