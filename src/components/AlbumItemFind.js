@@ -13,7 +13,7 @@ const AlbumItemFind = (props) => {
       </List.Content>
       <List.Content floated="left" verticalAlign="middle">
         <Image src={props.album.images[3]} size="mini" floated="left"/>
-        <span id="search-albums-text" >{props.album.name} - {props.album.artistName}</span>
+        <span id="search-albums-text" >{props.album.name.slice(0,50)} - {props.album.artistName.slice(0,50)}</span>
       </List.Content>
     </List.Item>
 

@@ -15,21 +15,17 @@ const AlbumTracklistModalItem = (props) => {
     return `${minutes}:${seconds}`
   }
 
-  function toggleFavorite() {
-    if (props.favoriteSongs.map(s => s.name).includes(props.track.name)) {
-      //unfavorite song needs rewritten to work without needing the id passed in
-      return (
-        <Button icon inverted color="linkedin" onClick={() => {"unfavoriteSong()"}} >
-          <Icon name="star" />
-        </Button>
-      )
-    } else {
-      return (
-        <Button icon  onClick={() => {props.addingFavoriteSong(props.track.name, props.track.artistName, props.user.id)}} >
-          <Icon name="star outline" />
-        </Button>
-      )
-    }
+  const favoriteButton = () => {
+    return (
+      !props.mySongs.map(s => s.name).includes(props.track.name) ?
+      <Button inverted color="linkedin" icon onClick={()=>props.addingFavoriteSong(props.track.name, props.track.artistName, props.user.id)}>
+        <Icon name="star outline"/>
+      </Button>
+      :
+      <Button inverted color="linkedin" disabled icon>
+        <Icon name="star" />
+      </Button>
+    )
   }
 
   return (
@@ -38,14 +34,14 @@ const AlbumTracklistModalItem = (props) => {
       <Item.Content verticalAlign="middle">
         <Item.Header id="track-info" >{props.trackNumber}. &ensp; {props.track.name.slice(0,60)}  -  {convertDurationToTime()}</Item.Header>
       </Item.Content>
-      {toggleFavorite()}
+      {favoriteButton()}
     </Item>
   )
 }
 
 const mapStateToProps = (state) => ({
   user: state.user,
-  favoriteSongs: state.mySongs
+  mySongs: state.mySongs
 })
 
 const mapDispatchToProps = dispatch => {

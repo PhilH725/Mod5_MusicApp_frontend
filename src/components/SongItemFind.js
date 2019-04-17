@@ -13,7 +13,7 @@ const SongItemFind = (props) => {
       </List.Content>
       <List.Content id="search-song-item" floated="left">
         <Image src={props.song.images[3]} size="mini" floated="left"/>
-        <span id="search-songs-text" >{props.song.name} - {props.song.artistName}</span>
+        <span id="search-songs-text" >{props.song.name.slice(0,65)} - {props.song.artistName}</span>
       </List.Content>
     </List.Item>
   )
