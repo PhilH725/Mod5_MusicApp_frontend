@@ -250,3 +250,15 @@ body {
 #subheader-notice{
   margin-left: 40px;
 }
+
+#artist-top-tracks-song-row{
+  padding-left: 15px;
+}
+
+#table-button{
+  padding-left: 5.5px;
+}
+
+#artist-top-tracts-listeners-row{
+  padding-right: 8px;
+}

@@ -19,7 +19,7 @@ class MyArtistsContainer extends Component {
       <div>
         <Header id="my-music-header" as="h2" dividing>My Artists</Header>
         <Header id="subheader-notice" as="h3">
-          Doesn't look like there's anything here. Favorite some songs to get started!
+          Doesn't look like there's anything here. Favorite some artists to get started!
         </Header>
       </div>
     )
