@@ -26,12 +26,11 @@ class ArtistSimilarArtistsModal extends Component {
         <Modal.Description>
           <Modal.Header as="h2">{this.props.artist.name}</Modal.Header>
           <Header as="h3">Similar Artists:</Header>
-          <Table celled selectable>
+          <Table celled selectable striped>
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>Artist Name</Table.HeaderCell>
-                <Table.HeaderCell>something</Table.HeaderCell>
-                <Table.HeaderCell>Favorite</Table.HeaderCell>
+                <Table.HeaderCell width={1}>Add</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>

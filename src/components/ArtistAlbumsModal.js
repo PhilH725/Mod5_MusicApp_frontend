@@ -30,12 +30,12 @@ class ArtistAlbumsModal extends Component {
         <Modal.Description>
           <Modal.Header>{this.props.artist.name}</Modal.Header>
           <Header as="h3">Similar Artists:</Header>
-          <Table celled selectable>
+          <Table celled selectable striped>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>Album Art</Table.HeaderCell>
+                <Table.HeaderCell width={2}>Album Art</Table.HeaderCell>
                 <Table.HeaderCell>Album Name</Table.HeaderCell>
-                <Table.HeaderCell>Favorite</Table.HeaderCell>
+                <Table.HeaderCell width={1}>Add</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -48,8 +48,5 @@ class ArtistAlbumsModal extends Component {
     )
   }
 }
-// <List celled>
-//   {this.state.albums.map((a, index) => <List.Item key={index}><Image src={a.images[3]} size='mini'/>{a.name}</List.Item>)}
-// </List>
 
 export default ArtistAlbumsModal
