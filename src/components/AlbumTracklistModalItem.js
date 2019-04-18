@@ -1,6 +1,6 @@
 
 import React from 'react'
-import {Item, Button, Icon} from 'semantic-ui-react'
+import {Table, Button, Icon} from 'semantic-ui-react'
 import {addingFavoriteSong} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
@@ -29,13 +29,12 @@ const AlbumTracklistModalItem = (props) => {
   }
 
   return (
-    <Item>
-      <Item.Image size='mini' src={props.image} alt={'album-art'} />
-      <Item.Content verticalAlign="middle">
-        <Item.Header id="track-info" >{props.trackNumber}. &ensp; {props.track.name.slice(0,60)}  -  {convertDurationToTime()}</Item.Header>
-      </Item.Content>
-      {favoriteButton()}
-    </Item>
+    <Table.Row>
+      <Table.HeaderCell textAlign="center">{props.trackNumber}</Table.HeaderCell>
+      <Table.HeaderCell textAlign="center">{convertDurationToTime()}</Table.HeaderCell>
+      <Table.HeaderCell>{props.track.name.slice(0,60)}</Table.HeaderCell>
+      <Table.HeaderCell textAlign="center">{favoriteButton()}</Table.HeaderCell>
+    </Table.Row>
   )
 }
 

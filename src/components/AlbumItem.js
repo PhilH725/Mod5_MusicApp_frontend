@@ -1,7 +1,7 @@
 
 import React, {Component} from 'react'
 import AlbumTracklistModal from './AlbumTracklistModal'
-import {Item, Button, Modal, Header} from 'semantic-ui-react'
+import {Item, Button, Modal} from 'semantic-ui-react'
 import {unfavoriteAlbum} from '../redux/actionCreators'
 import {createLastFMClient} from '../LastFM'
 import {connect} from 'react-redux'
@@ -32,7 +32,6 @@ class AlbumItem extends Component {
         </Item.Content>
         <Item.Content id="my-albums-button-container">
           <Modal trigger={<Button id="my-albums-button" inverted color="vk" >Tracklist</Button>} centered={false}>
-            <Header as="h2">{this.props.album.name}</Header>
             <AlbumTracklistModal album={this.state.albumInfo} />
           </Modal>
           <Button id="my-albums-button" inverted color="linkedin" onClick={() => this.props.unfavoriteAlbum(this.props.album, this.props.user.id)}> Unfavorite</Button>
