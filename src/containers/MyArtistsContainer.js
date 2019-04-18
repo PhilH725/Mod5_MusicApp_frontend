@@ -8,6 +8,14 @@ class MyArtistsContainer extends Component {
 
   render() {
     return (
+      this.props.loading ?
+      <div>
+        <Header id="my-music-header" as="h2" dividing>My Artists</Header>
+        <Header id="subheader-notice" as="h3">
+          Loading favorites...
+        </Header>
+      </div>
+      :
       this.props.artists.length > 0 ?
       <Fragment>
         <Header id="my-music-header" as="h2" dividing>My Artists</Header>
@@ -28,6 +36,7 @@ class MyArtistsContainer extends Component {
 
 const mapStateToProps = state => {
   return ({
+    loading: state.loading,
     artists: state.myArtists
   })
 }

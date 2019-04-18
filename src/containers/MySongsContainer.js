@@ -18,7 +18,12 @@ class MySongsContainer extends Component {
 
     return (
       this.props.loading ?
-      <div>loading</div>
+      <div>
+        <Header id="my-music-header" as="h2" dividing>My Songs</Header>
+        <Header id="subheader-notice" as="h3">
+          Loading favorites...
+        </Header>
+      </div>
       :
       this.props.songs.length > 0 ?
       <Item.Group divided>
