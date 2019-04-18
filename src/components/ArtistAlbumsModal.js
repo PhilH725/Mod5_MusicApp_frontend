@@ -28,8 +28,8 @@ class ArtistAlbumsModal extends Component {
     return (
       <Modal.Content>
         <Modal.Description>
-          <Modal.Header>{this.props.artist.name}</Modal.Header>
-          <Header as="h3">Similar Artists:</Header>
+          <Modal.Header as="h2">{this.props.artist.name}</Modal.Header>
+          <Header as="h3">Top Albums:</Header>
           <Table celled selectable striped>
             <Table.Header>
               <Table.Row>

@@ -266,3 +266,11 @@ body {
 #my-artists-similar-artists-name{
   padding-left: 20px;
 }
+
+#find-music-search-input{
+  width: 400px;
+}
+
+#find-music-filter-buttons{
+  width: 400px;
+}

@@ -18,11 +18,6 @@ const Navbar = (props) => {
               My Songs
             </Dropdown.Item>
           </Link>
-          <Link to={"/my_playlists"} >
-            <Dropdown.Item>
-              My Playlists
-            </Dropdown.Item>
-          </Link>
           <Link to={"/my_artists"} >
             <Dropdown.Item>
               My Artists
@@ -31,6 +26,11 @@ const Navbar = (props) => {
           <Link to={"/my_albums"} >
             <Dropdown.Item>
               My Albums
+            </Dropdown.Item>
+          </Link>
+          <Link to={"/my_playlists"} >
+            <Dropdown.Item>
+              My Playlists
             </Dropdown.Item>
           </Link>
         </Dropdown.Menu>

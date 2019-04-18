@@ -27,29 +27,28 @@ class FindFilterBar extends Component {
         <div className="row">
           <div className="three wide column">
             <Form className="ui form" onSubmit={this.handleSubmit}>
-            <div className="field">
-
-            <input placeholder='search' onChange={(e) => this.handleChange(e.target.value)}/>
-            </div>
-            <Button type='submit' id="find-music-button" className="mini ui primary basic button" animated>
-              <Button.Content visible>Find</Button.Content>
-              <Button.Content hidden>
-                <Icon name="music" />
-              </Button.Content>
-            </Button>
+              <div className="field">
+                <input id="find-music-search-input" placeholder='search' onChange={(e) => this.handleChange(e.target.value)}/>
+              </div>
+              <Button type='submit' id="find-music-button" className="mini ui primary basic button" animated>
+                <Button.Content visible>Find</Button.Content>
+                <Button.Content hidden>
+                  <Icon name="music" />
+                </Button.Content>
+              </Button>
             </Form>
           </div>
         </div>
         <div className="row">
-        <div className="three wide column">
-        <Button.Group>
-        <Button inverted color="facebook" onClick={() => this.props.changeSearchType('songs')}>Songs</Button>
-        <Button.Or />
-        <Button inverted color="vk" onClick={() => this.props.changeSearchType('artists')}>Artists</Button>
-        <Button.Or />
-        <Button inverted color="linkedin" onClick={() => this.props.changeSearchType('albums')}>Albums</Button>
-        </Button.Group>
-        </div>
+          <div className="three wide column">
+            <Button.Group id="find-music-filter-buttons" >
+              <Button inverted color="facebook" onClick={() => this.props.changeSearchType('songs')}>Songs</Button>
+              <Button.Or />
+              <Button inverted color="vk" onClick={() => this.props.changeSearchType('artists')}>Artists</Button>
+              <Button.Or />
+              <Button inverted color="linkedin" onClick={() => this.props.changeSearchType('albums')}>Albums</Button>
+            </Button.Group>
+          </div>
         </div>
         <Divider/>
       </div>
