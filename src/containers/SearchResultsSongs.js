@@ -19,7 +19,7 @@ class SearchResultsSongs extends Component {
 }
 
 const mapStateToProps = state => ({
-  songs: state.songSearchResults.filter(s => !state.mySongs.map(a => a.name).includes(s.name) && !state.mySongs.map(a => a.artist).includes(s.artistName))
+  songs: state.songSearchResults.filter(s => !state.mySongs.map(a => a.name).includes(s.name) && !state.mySongs.map(a => a.artist).includes(s.artist))
 })
 
 export default connect(mapStateToProps)(SearchResultsSongs)

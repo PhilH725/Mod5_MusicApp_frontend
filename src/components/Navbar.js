@@ -46,6 +46,11 @@ const Navbar = (props) => {
         </Menu.Item>
       </Link>
       <Menu.Menu position="right">
+        <Link to={"/login"} onClick={props.logoutUser} >
+        <Menu.Item>
+          {`Logged in as ${props.user.username}`}
+        </Menu.Item>
+        </Link>
         <Link to={"/login"} onClick={props.logoutUser}>
           <Menu.Item>
             Logout
