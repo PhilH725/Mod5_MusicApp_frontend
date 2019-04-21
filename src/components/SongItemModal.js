@@ -27,12 +27,14 @@ class SongItemModal extends Component {
     return (
       <Modal.Content>
         <Modal.Description>
-          <Header as="h2">{this.props.song.name}</Header>
-          <Header as="h3">{this.props.song.artist} - {this.props.song.album.name}</Header>
+          <Header id="youtube-modal-name-header" as="h2">{this.props.song.name}</Header>
+          <Header id="youtube-modal-info-header" as="h3">{this.props.song.artist} - {this.props.song.album.name}</Header>
           <Divider />
           {this.state.videoId.length > 0 ?
-          <iframe id="youtube-video-player" title="song" width="600" height="300" src={`https://www.youtube.com/embed/${this.state.videoId}`}>
+          <div id="youtube-video-container">
+          <iframe id="youtube-video-player" title="song" src={`https://www.youtube.com/embed/${this.state.videoId}`}>
           </iframe>
+          </div>
           :
           <h2>Loading video...</h2>}
         </Modal.Description>
