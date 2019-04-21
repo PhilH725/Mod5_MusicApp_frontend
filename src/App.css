@@ -5,8 +5,8 @@ body {
 
 .main-container {
   background-color: white;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 60px;
+  margin-right: 60px;
   min-height: 600px;
   padding-bottom: 25px;
 }
@@ -40,8 +40,8 @@ body {
 .ui.small.menu {
   /* navbar */
   color: white;
-  margin-left: 40px;
-  margin-right: 40px;
+  margin-left: 60px;
+  margin-right: 60px;
   margin-bottom: 5px;
   font-size: 12px;
   height: 20px;

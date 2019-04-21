@@ -1,10 +1,10 @@
 
 import React, {Component} from 'react'
-import {Menu} from 'semantic-ui-react'
-import {updateSortType} from '../redux/actionCreators'
+import {Menu, Input} from 'semantic-ui-react'
+import {updateSortType, updateSortSearchText} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
-class SortMenu extends Component {
+class SongsSortMenu extends Component {
 
   render() {
     const { activeItem } = this.props.sortType
@@ -27,19 +27,25 @@ class SortMenu extends Component {
           active={activeItem === 'album'}
           onClick={()=> this.props.updateSortType('album')}
         />
+        <Menu.Item header>&ensp;Search</Menu.Item>
+        <Menu.Item>
+          <Input icon='search' placeholder='Search...' value={this.props.sortSearchText} onChange={(e) => this.props.updateSortSearchText(e.target.value)}/>
+        </Menu.Item>
       </Menu>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  sortType: state.sortType
+  sortType: state.sortType,
+  sortSearchText: state.sortSearchText
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateSortType: (choice) => dispatch(updateSortType(choice))
+    updateSortType: (choice) => dispatch(updateSortType(choice)),
+    updateSortSearchText: (text) => dispatch(updateSortSearchText(text))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SortMenu)
+export default connect(mapStateToProps, mapDispatchToProps)(SongsSortMenu)
