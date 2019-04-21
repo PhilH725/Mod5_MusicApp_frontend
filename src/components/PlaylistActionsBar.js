@@ -14,8 +14,9 @@ class PlaylistActionsBar extends Component {
     }
   }
 
-  setRedirect = () => {
+  setRedirect = (path) => {
     this.setState({
+      path: path,
       redirect: true
     })
   }
@@ -25,20 +26,21 @@ class PlaylistActionsBar extends Component {
       if (this.state.path === 'new') {
         return <Redirect to='/playlists/new' />
       } else if (this.state.path === 'edit' && this.props.selectedPlaylist) {
-        return <Redirect to='/playlists/edit' />
+        return <Redirect to={`/playlists/edit/${this.props.selectedPlaylist.id}`} />
       }
     }
   }
 
   render() {
+    console.log(this.props.selectedPlaylist)
     return (
       <div id="playlist-list-action-bar" >
       {this.renderRedirect()}
         <Button.Group>
-          <Button size="medium" inverted color="facebook" icon onClick={()=>this.setRedirect('add')}>
+          <Button size="medium" inverted color="facebook" icon onClick={()=>this.setRedirect('new')}>
             <Icon name="plus"/>
           </Button>
-          <Button size="medium" inverted color="vk" icon>
+          <Button size="medium" inverted color="vk" icon onClick={()=>this.setRedirect('edit')}>
             <Icon name="ellipsis horizontal" />
           </Button>
           <Button size="medium" inverted color="linkedin" icon onClick={() => this.props.deletePlaylist(this.props.selectedPlaylist)}>

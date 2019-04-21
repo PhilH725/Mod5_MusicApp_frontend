@@ -23,9 +23,7 @@ class MainContainer extends Component {
         <Switch>
 
           <Route path="/playlists/edit/:id" render={ (props) => {
-            let playlistId = props.match.params.id
-            playlistId=1
-            return <EditPlaylist id={playlistId} />
+            return <EditPlaylist id={props.match.params.id} />
           }} />
 
           <Route path="/playlists/new" component={NewPlaylistContainer} />
