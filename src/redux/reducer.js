@@ -61,7 +61,6 @@ const myArtistsReducer = (oldState=[], action) => {
 }
 
 const myAlbumsReducer = (oldState=[], action) => {
-  // debugger
   switch (action.type) {
     case "FETCHED_FAVORITES":
       return action.payload.my_albums
@@ -103,6 +102,8 @@ const myPlaylistsReducer = (oldState=[], action) => {
       return oldState.filter(p => p.id !== action.payload.id)
     case "ADDED_SONGS_TO_PLAYLIST":
       return [...oldState, action.payload]
+    case "UPDATED_PLAYLIST_NAME":
+      return [...oldState.filter(p => p.id !== action.payload.id), action.payload]
     default:
       return oldState
   }
@@ -188,7 +189,6 @@ const activeItemReducer = (oldState={}, action) => {
 }
 
 const selectedPlaylistReducer = (oldState=null, action) => {
-  // debugger
   switch (action.type) {
     case "FETCHED_PLAYLISTS":
       return action.payload.length > 0 ? action.payload[0] : null
@@ -219,6 +219,8 @@ const newPlaylistTextReducer = (oldState="", action) => {
 const editingPlaylistReducer = (oldState={}, action) => {
   switch (action.type) {
     case "FETCHED_PLAYLIST_TO_EDIT":
+      return action.payload
+    case "UPDATED_PLAYLIST_NAME":
       return action.payload
     default:
       return oldState

@@ -295,3 +295,7 @@ body {
 #find-music-filter-buttons{
   width: 400px;
 }
+
+#edit-playlist-name-input{
+  width: 400px;
+}
