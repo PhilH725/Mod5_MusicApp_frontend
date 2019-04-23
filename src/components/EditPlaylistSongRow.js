@@ -17,6 +17,9 @@ const EditPlaylistSongRow = (props) => {
         <Button icon>
           <Icon name="arrow up" />
         </Button>
+        <Button icon>
+          <Icon name="minus" />
+        </Button>
       </Table.HeaderCell>
     </Table.Row>
   )

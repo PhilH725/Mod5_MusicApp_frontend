@@ -2,7 +2,8 @@
 import React, { Component } from 'react'
 import EditPlaylistNameForm from '../components/EditPlaylistNameForm'
 import EditPlaylistSongRow from '../components/EditPlaylistSongRow'
-import {Header, Divider, Table} from 'semantic-ui-react'
+import EditPlaylistAddSongModal from '../components/EditPlaylistAddSongModal'
+import {Header, Divider, Table, Button, Modal} from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import {fetchingPlaylistToEdit} from '../redux/actionCreators'
 
@@ -27,13 +28,17 @@ class EditPlaylist extends Component {
               <Table.HeaderCell width={6}>Song Name</Table.HeaderCell>
               <Table.HeaderCell width={4}>Artist</Table.HeaderCell>
               <Table.HeaderCell width={3}>Album</Table.HeaderCell>
-              <Table.HeaderCell width={2}>Actions</Table.HeaderCell>
+              <Table.HeaderCell width={3}>Actions</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>
             {this.props.editingPlaylist.songs.map((s, index) => <EditPlaylistSongRow key={index} song={s} trackNumber={index+1}/>)}
           </Table.Body>
         </Table>
+        <Modal trigger={<Button>Add New Songs</Button>} centered={false} dimmer='inverted' basic>
+          <EditPlaylistAddSongModal songs={this.props.editingPlaylist.songs}/>
+        </Modal>
+
       </div>
       :
       <h3>loading...</h3>
