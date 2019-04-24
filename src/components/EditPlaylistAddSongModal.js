@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 class EditPlaylistAddSongModal extends Component {
 
   render() {
-    debugger
     return (
       <Modal.Content>
         {this.props.availableSongs.map((s,index) => <EditPlaylistAddSongModalItem key={index} song={s} />)}

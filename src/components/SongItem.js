@@ -9,8 +9,8 @@ class SongItem extends Component {
 
   playButton = () => {
     return (
-      <Button inverted color="vk" size="tiny" compact animated>
-        <Button.Content visible>Preview</Button.Content>
+      <Button id="play-button" inverted color="vk" size="tiny" compact animated>
+        <Button.Content visible>Play</Button.Content>
         <Button.Content hidden>
           <Icon name="play" />
         </Button.Content>
@@ -27,7 +27,7 @@ class SongItem extends Component {
           <Item.Header>{this.props.song.name.slice(0,60)}</Item.Header>
           <Item.Meta>{this.props.song.artist} - {this.props.song.album.name}</Item.Meta>
         </Item.Content>
-        <Modal trigger={this.playButton()} centered={false} basic>
+        <Modal trigger={this.playButton()} centered={false} basic closeIcon>
           <SongItemModal song={this.props.song} />
         </Modal>
         <Button inverted color="linkedin" size="mini" floated="right" onClick={()=>this.props.unfavoriteSong(this.props.song, this.props.user.id)}>Unfavorite</Button>
