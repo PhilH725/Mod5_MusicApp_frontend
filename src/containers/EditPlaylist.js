@@ -24,10 +24,10 @@ class EditPlaylist extends Component {
         <Table celled selectable striped>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell width={1} textAlign='center'>#</Table.HeaderCell>
+              <Table.HeaderCell textAlign='center'>#</Table.HeaderCell>
               <Table.HeaderCell width={6}>Song Name</Table.HeaderCell>
               <Table.HeaderCell width={4}>Artist</Table.HeaderCell>
-              <Table.HeaderCell width={3}>Album</Table.HeaderCell>
+              <Table.HeaderCell width={4}>Album</Table.HeaderCell>
               <Table.HeaderCell width={3}>Actions</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
@@ -35,7 +35,7 @@ class EditPlaylist extends Component {
             {this.props.editingPlaylist.songs.map((s, index) => <EditPlaylistSongRow key={index} song={s} trackNumber={index+1}/>)}
           </Table.Body>
         </Table>
-        <Modal trigger={<Button>Add New Songs</Button>} centered={false} dimmer='inverted' basic>
+        <Modal trigger={<Button>Add New Songs</Button>} centered={false} basic>
           <EditPlaylistAddSongModal songs={this.props.editingPlaylist.songs}/>
         </Modal>
 
