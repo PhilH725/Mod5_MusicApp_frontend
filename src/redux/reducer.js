@@ -130,7 +130,6 @@ const searchTypeReducer = (oldState="songs", action) => {
 }
 
 const loadingReducer = (oldState=false, action) => {
-  // debugger
   switch (action.type) {
     case "LOADING_DATA":
       return true
@@ -222,6 +221,8 @@ const editingPlaylistReducer = (oldState={}, action) => {
       return action.payload
     case "UPDATED_PLAYLIST_NAME":
       return action.payload
+    case "REMOVE_EDIT_PLAYLIST_SONG":
+      return {...oldState, songs: oldState.songs.filter(s => s.id !== action.payload.id)}
     default:
       return oldState
   }

@@ -40,7 +40,9 @@ class MainContainer extends Component {
           <Route exact path="/my_artists" component={MyArtistsContainer} />
           <Route exact path="/my_albums" component={MyAlbumsContainer} />
           <Route exact path="/find_music" component={FindMusicContainer} />
-          <Route exact path="/" />
+          <Route exact path="/" render = { (props) => {
+            return isEmpty(this.props.user) ? <LoginContainer/> : <Redirect to="/my_songs"/>
+          }} />
         </Switch>
       </div>
     )

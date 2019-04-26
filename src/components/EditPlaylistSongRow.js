@@ -1,6 +1,8 @@
 
 import React from 'react'
 import {Table, Button, Icon} from 'semantic-ui-react'
+import {removeEditPlaylistSong} from '../redux/actionCreators'
+import {connect} from 'react-redux'
 
 const EditPlaylistSongRow = (props) => {
 
@@ -17,7 +19,7 @@ const EditPlaylistSongRow = (props) => {
         <Button icon>
           <Icon name="arrow up" />
         </Button>
-        <Button icon>
+        <Button icon onClick={() => props.removeEditPlaylistSong(props.song)}>
           <Icon name="minus" />
         </Button>
       </Table.HeaderCell>
@@ -25,4 +27,8 @@ const EditPlaylistSongRow = (props) => {
   )
 }
 
-export default EditPlaylistSongRow
+const mapDispatchToProps = dispatch => ({
+  removeEditPlaylistSong: (song) => dispatch(removeEditPlaylistSong(song))
+})
+
+export default connect(null, mapDispatchToProps)(EditPlaylistSongRow)

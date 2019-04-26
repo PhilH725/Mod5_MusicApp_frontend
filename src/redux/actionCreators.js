@@ -518,4 +518,12 @@ function changePlaylistName(playlist, name) {
   return { type: "UPDATED_PLAYLIST_NAME", payload: {...playlist, name: name} }
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, loadingData, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists, sharingPlaylist, likePlaylist, updateSortSearchText, changePlaylistName }
+function removeEditPlaylistSong(song) {
+  return { type: "REMOVE_EDIT_PLAYLIST_SONG", payload: song }
+}
+
+function addEditPlaylistSong(song) {
+  return { type: "ADD_EDIT_PLAYLIST_SONG", payload: song}
+}
+
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, loadingData, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists, sharingPlaylist, likePlaylist, updateSortSearchText, changePlaylistName, removeEditPlaylistSong, addEditPlaylistSong }
