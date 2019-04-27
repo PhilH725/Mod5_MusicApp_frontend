@@ -1,6 +1,8 @@
 
 import React from 'react'
 import {Table, Button, Icon} from 'semantic-ui-react'
+import {addEditPlaylistSong} from '../redux/actionCreators'
+import {connect} from 'react-redux'
 
 const EditPlaylistAddSongModalItem = (props) => {
 
@@ -10,7 +12,7 @@ const EditPlaylistAddSongModalItem = (props) => {
       <Table.HeaderCell>{props.song.artist}</Table.HeaderCell>
       <Table.HeaderCell>{props.song.album.name}</Table.HeaderCell>
       <Table.HeaderCell textAlign='center'>
-        <Button icon>
+        <Button icon onClick={() => props.addEditPlaylistSong(props.song)}>
           <Icon name="plus" />
         </Button>
       </Table.HeaderCell>
@@ -18,4 +20,8 @@ const EditPlaylistAddSongModalItem = (props) => {
   )
 }
 
-export default EditPlaylistAddSongModalItem
+const mapDispatchToProps = dispatch => ({
+  addEditPlaylistSong: (song) => dispatch(addEditPlaylistSong(song))
+})
+
+export default connect(null, mapDispatchToProps)(EditPlaylistAddSongModalItem)

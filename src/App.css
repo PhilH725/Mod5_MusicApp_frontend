@@ -303,3 +303,8 @@ body {
 #edit-playlist-name-input{
   width: 400px;
 }
+
+#edit-playlist-save-button{
+  display: block;
+  margin-top: 12px;
+}

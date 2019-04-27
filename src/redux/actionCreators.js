@@ -203,7 +203,7 @@ function addingSongsToPlaylist(playlist, songs) {
 }
 
 function fetchedPlaylistToEdit(playlist) {
-  return { type: "FETCHED_PLAYLIST_TO_EDIT", payload: playlist }
+  return { type: "FETCHED_PLAYLIST_TO_EDIT", payload: {...playlist} }
 }
 
 function fetchingPlaylistToEdit(id) {
@@ -523,7 +523,18 @@ function removeEditPlaylistSong(song) {
 }
 
 function addEditPlaylistSong(song) {
-  return { type: "ADD_EDIT_PLAYLIST_SONG", payload: song}
+  let songReformat = {
+    id: song.id,
+    name: song.name,
+    artist: song.artist,
+    album: song.album.name,
+    albumImage: song.album.image
+  }
+  return { type: "ADD_EDIT_PLAYLIST_SONG", payload: songReformat}
 }
 
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, loadingData, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists, sharingPlaylist, likePlaylist, updateSortSearchText, changePlaylistName, removeEditPlaylistSong, addEditPlaylistSong }
+function savePlaylistChanges(playlist) {
+  return { type: "SAVE_PLAYLIST_CHANGES", payload: playlist }
+}
+
+export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, loadingData, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists, sharingPlaylist, likePlaylist, updateSortSearchText, changePlaylistName, removeEditPlaylistSong, addEditPlaylistSong, savePlaylistChanges }

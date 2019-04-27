@@ -32,7 +32,6 @@ class PlaylistActionsBar extends Component {
   }
 
   render() {
-    console.log(this.props.selectedPlaylist)
     return (
       <div id="playlist-list-action-bar" >
       {this.renderRedirect()}

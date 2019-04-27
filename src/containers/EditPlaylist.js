@@ -5,7 +5,7 @@ import EditPlaylistSongRow from '../components/EditPlaylistSongRow'
 import EditPlaylistAddSongModal from '../components/EditPlaylistAddSongModal'
 import {Header, Divider, Table, Button, Modal} from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import {fetchingPlaylistToEdit} from '../redux/actionCreators'
+import {fetchingPlaylistToEdit, savePlaylistChanges} from '../redux/actionCreators'
 
 class EditPlaylist extends Component {
 
@@ -38,6 +38,9 @@ class EditPlaylist extends Component {
         <Modal trigger={<Button>Add New Songs</Button>} centered={false} basic>
           <EditPlaylistAddSongModal songs={this.props.editingPlaylist.songs}/>
         </Modal>
+        <Button id='edit-playlist-save-button' inverted color="linkedin" onClick={() => this.props.savePlaylistChanges(this.props.editingPlaylist)}>
+          Save Changes
+        </Button>
 
       </div>
       :
@@ -56,7 +59,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchingPlaylistToEdit: (id) => dispatch(fetchingPlaylistToEdit(id))
+    fetchingPlaylistToEdit: (id) => dispatch(fetchingPlaylistToEdit(id)),
+    savePlaylistChanges: (playlist) => dispatch(savePlaylistChanges(playlist))
   }
 }
 

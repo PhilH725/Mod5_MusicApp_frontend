@@ -102,7 +102,8 @@ const myPlaylistsReducer = (oldState=[], action) => {
       return oldState.filter(p => p.id !== action.payload.id)
     case "ADDED_SONGS_TO_PLAYLIST":
       return [...oldState, action.payload]
-    case "UPDATED_PLAYLIST_NAME":
+    case "SAVE_PLAYLIST_CHANGES":
+      debugger
       return [...oldState.filter(p => p.id !== action.payload.id), action.payload]
     default:
       return oldState
@@ -223,6 +224,8 @@ const editingPlaylistReducer = (oldState={}, action) => {
       return action.payload
     case "REMOVE_EDIT_PLAYLIST_SONG":
       return {...oldState, songs: oldState.songs.filter(s => s.id !== action.payload.id)}
+    case "ADD_EDIT_PLAYLIST_SONG":
+      return {...oldState, songs: [...oldState.songs, action.payload]}
     default:
       return oldState
   }
