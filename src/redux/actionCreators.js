@@ -1,9 +1,30 @@
 
 import {createLastFMClient} from '../LastFM'
 
-function authenticatedUser(user) {
-  return { type: "AUTHENTICATED_USER", payload: user }
+// ########
+// misc
+// ########
+
+// boolean used to display a loading screen while fetch calls take place
+function loadingData() {
+  return { type: "LOADING_DATA"}
 }
+
+// my songs menu option used to sort by name/album/artist
+function updateSortType(choice) {
+  return { type: "UPDATE_SORT_TYPE", payload: choice }
+}
+
+// my songs menu option used to filter by name
+function updateSortSearchText(text) {
+  return { type: "UPDATE_SORT_SEARCH_TEXT", payload: text }
+}
+
+// ###########
+
+// ########
+// login/auth
+// ########
 
 function authenticatingUser(username, password) {
   return (dispatch) => {
@@ -29,8 +50,8 @@ function authenticatingUser(username, password) {
   }
 }
 
-function authenticatedToken(user) {
-  return { type: "AUTHENTICATED_TOKEN", payload: user }
+function authenticatedUser(user) {
+  return { type: "AUTHENTICATED_USER", payload: user }
 }
 
 function authenticatingToken(token) {
@@ -47,14 +68,20 @@ function authenticatingToken(token) {
   }
 }
 
+function authenticatedToken(user) {
+  return { type: "AUTHENTICATED_TOKEN", payload: user }
+}
+
 function logoutUser() {
   localStorage.removeItem('token')
   return { type: "LOGOUT_USER" }
 }
 
-function fetchedFavorites(favorites) {
-  return { type: "FETCHED_FAVORITES", payload: favorites }
-}
+//############
+
+// ########
+// retrieve user/site data
+// ########
 
 function fetchingFavorites(userId) {
   return (dispatch) => {
@@ -66,78 +93,8 @@ function fetchingFavorites(userId) {
   }
 }
 
-function fetchedSongs(songs) {
-  return { type: "FETCHED_SONGS", payload: songs}
-}
-
-function fetchingSongs() {
-  return (dispatch) => {
-    fetch('http://localhost:3000/songs')
-    .then(res => res.json())
-    .then(songs => {
-      dispatch(fetchedSongs(songs))
-    })
-  }
-}
-
-function fetchedArtists(artists) {
-  return { type: "FETCHED_ARTISTS", payload: artists}
-}
-
-function fetchingArtists() {
-  return (dispatch) => {
-    fetch('http://localhost:3000/artists')
-    .then(res => res.json())
-    .then(artists => {
-      dispatch(fetchedArtists(artists))
-    })
-  }
-}
-
-function fetchedAlbums(albums) {
-  return { type: "FETCHED_ALBUMS", payload: albums}
-}
-
-function fetchingAlbums() {
-  return (dispatch) => {
-    fetch('http://localhost:3000/albums')
-    .then(res => res.json())
-    .then(albums => {
-      dispatch(fetchedAlbums(albums))
-    })
-  }
-}
-
-function fetchedGenres(genres) {
-  return { type: "FETCHED_GENRES", payload: genres}
-}
-
-function fetchingGenres() {
-  return (dispatch) => {
-    fetch('http://localhost:3000/genres')
-    .then(res => res.json())
-    .then(genres => {
-      dispatch(fetchedGenres(genres))
-    })
-  }
-}
-
-function fetchedItem(item) {
-  return { type: "FETCHED_ITEM", payload: item }
-}
-
-function fetchingItem(itemType, id) {
-  return (dispatch) => {
-    fetch(`http://localhost:3000/${itemType}/${id}`)
-    .then(res => res.json())
-    .then(item => {
-      dispatch(fetchedItem(item))
-    })
-  }
-}
-
-function fetchedPlaylists(playlists) {
-  return { type: "FETCHED_PLAYLISTS", payload: playlists }
+function fetchedFavorites(favorites) {
+  return { type: "FETCHED_FAVORITES", payload: favorites }
 }
 
 function fetchingPlaylists(userId) {
@@ -150,8 +107,8 @@ function fetchingPlaylists(userId) {
   }
 }
 
-function fetchedPublishedPlaylists(playlists) {
-  return { type: "FETCHED_PUBLISHED_PLAYLISTS", payload: playlists }
+function fetchedPlaylists(playlists) {
+  return { type: "FETCHED_PLAYLISTS", payload: playlists }
 }
 
 function fetchingPublishedPlaylists() {
@@ -164,94 +121,40 @@ function fetchingPublishedPlaylists() {
   }
 }
 
-function creatingNewPlaylist(name, songs, userId) {
+function fetchedPublishedPlaylists(playlists) {
+  return { type: "FETCHED_PUBLISHED_PLAYLISTS", payload: playlists }
+}
+
+//############
+
+// ########
+// add/remove favorites
+// ########
+
+// ###
+// songs
+// ###
+
+// basic song data is retrieved from the LastFM API through song name/artist name
+function addingFavoriteSong(songName, artistName, userId) {
   return (dispatch) => {
-    fetch('http://localhost:3000/playlists', {
-      method: 'POST',
-      headers: {"Content-Type":"application/json", Accept:"application/json"},
-      body: JSON.stringify({
-        name: name,
-        user_id: userId
-      })
-    })
-    .then(res => res.json())
-    .then(playlist => {
-      dispatch(addingSongsToPlaylist(playlist, songs))
+    createLastFMClient().trackInfo({ name: songName, artistName: artistName }, (err, data) => {
+      dispatch(addArtistDataToFavoriteSong(data, artistName, userId))
     })
   }
 }
 
-function addedNewSongsToPlaylist(playlist, songs) {
-  return { type: "ADDED_SONGS_TO_PLAYLIST", payload: {...playlist, songs} }
-}
-
-function addingSongsToPlaylist(playlist, songs) {
+// artist data is added to the song data in case song's artist hasn't been created locally
+function addArtistDataToFavoriteSong(songData, artistName, userId) {
   return (dispatch) => {
-    fetch('http://localhost:3000/playlist_songs', {
-      method: 'POST',
-      headers: {"Content-Type":"application/json", Accept:"application/json"},
-      body: JSON.stringify({
-        playlist_id: playlist.id,
-        songs: songs
-      })
-    })
-    .then(res => res.json())
-    .then(songs => {
-      dispatch(addedNewSongsToPlaylist(playlist, songs))
+    createLastFMClient().artistInfo({ name: artistName }, (err, artistData) => {
+      dispatch(addFavoriteSong(songData, artistData, userId))
     })
   }
 }
 
-function fetchedPlaylistToEdit(playlist) {
-  return { type: "FETCHED_PLAYLIST_TO_EDIT", payload: {...playlist} }
-}
-
-function fetchingPlaylistToEdit(id) {
-  return (dispatch) => {
-    fetch(`http://localhost:3000/playlists/${id}`)
-    .then(res => res.json())
-    .then(playlist => {
-      dispatch(fetchedPlaylistToEdit(playlist))
-    })
-  }
-}
-
-function loadingData() {
-  return { type: "LOADING_DATA"}
-}
-
-function changeSearchText(text) {
-  return { type: "CHANGE_SEARCH_TEXT", payload: text }
-}
-
-function changeSearchType(type) {
-  return { type: "CHANGE_SEARCH_TYPE", payload: type }
-}
-
-function resetActiveItem() {
-  return { type: "RESET_ACTIVE_ITEM" }
-}
-
-function updateNewPlaylistText(text) {
-  return { type: "UPDATE_NEW_PLAYLIST_TEXT", payload: text }
-}
-
-function changeSelectedPlaylist(playlist) {
-  return { type: "CHANGE_SELECTED_PLAYLIST", payload: playlist }
-}
-
-function addNewPlaylistSong(song) {
-  return { type: "ADD_NEW_PLAYLIST_SONG", payload: song }
-}
-
-function removeNewPlaylistSong(song) {
-  return { type: "REMOVE_NEW_PLAYLIST_SONG", payload: song }
-}
-
-function addedFavoriteSong(song) {
-  return { type: "ADD_FAVORITE_SONG", payload: song }
-}
-
+// song data and artist data (required album data is also present) are all sent to the backend to create a new song
+// once a song is created (or if it already existed,) the song is added to the users favorites
 function addFavoriteSong(songData, artistData, id) {
   return (dispatch) => {
     fetch('http://localhost:3000/user_songs', {
@@ -270,24 +173,36 @@ function addFavoriteSong(songData, artistData, id) {
   }
 }
 
-function addArtistDataToFavoriteSong(songData, artistName, userId) {
-  return (dispatch) => {
-    createLastFMClient().artistInfo({ name: artistName }, (err, artistData) => {
-      dispatch(addFavoriteSong(songData, artistData, userId))
-    })
-  }
+function addedFavoriteSong(song) {
+  return { type: "ADD_FAVORITE_SONG", payload: song }
 }
 
-function addingFavoriteSong(songName, artistName, userId) {
-  return (dispatch) => {
-    createLastFMClient().trackInfo({ name: songName, artistName: artistName }, (err, data) => {
-      dispatch(addArtistDataToFavoriteSong(data, artistName, userId))
+// song unfavorites are optimistically rendered, with the backend updating behind the scenes
+function unfavoriteSong(song, id) {
+  fetch('http://localhost:3000/user_songs', {
+    method: "DELETE",
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      user_id: id,
+      song_id: song.id
     })
-  }
+  })
+  return { type: "REMOVE_FAVORITE_SONG", payload: song }
 }
 
-function addedFavoriteArtist(artistData) {
-  return { type: "ADD_FAVORITE_ARTIST", payload: artistData }
+// #####
+
+// ###
+// artists
+// ###
+
+// full artist data is gathered before the post request is dispatched
+function addingFavoriteArtist(artist, userId) {
+  return (dispatch) => {
+    createLastFMClient().artistInfo({ name: artist.name }, (err, artistData) => {
+      dispatch(addFavoriteArtist(artistData, userId))
+    })
+  }
 }
 
 function addFavoriteArtist(artistData, id) {
@@ -307,19 +222,48 @@ function addFavoriteArtist(artistData, id) {
   }
 }
 
-function addingFavoriteArtist(artist, userId) {
+function addedFavoriteArtist(artistData) {
+  return { type: "ADD_FAVORITE_ARTIST", payload: artistData }
+}
+
+// artist unfavorites are rendered optimistically, and removed on the backend behind the scenes
+function unfavoriteArtist(artist, id) {
+  fetch('http://localhost:3000/user_artists', {
+    method: "DELETE",
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      user_id: id,
+      artist_id: artist.id
+    })
+  })
+  return { type: "REMOVE_FAVORITE_ARTIST", payload: artist }
+}
+
+// #####
+
+// ###
+// albums
+// ###
+
+// basic album info is gathered using album and artist name
+function addingFavoriteAlbum(album, id) {
   return (dispatch) => {
-    createLastFMClient().artistInfo({ name: artist.name }, (err, artistData) => {
-      dispatch(addFavoriteArtist(artistData, userId))
+    createLastFMClient().albumInfo({ name: album.name, artistName: album.artistName }, (err, albumData) => {
+      dispatch(addArtistInfoToNewAlbum(albumData, id))
     })
   }
 }
 
-function addedFavoriteAlbum(albumData) {
-  return { type: "ADD_FAVORITE_ALBUM", payload: albumData }
+// artist info is added in case artist hasn't been created in the backend
+function addArtistInfoToNewAlbum(albumData, id) {
+  return (dispatch) => {
+    createLastFMClient().artistInfo({ name: albumData.artistName }, (err, artistData) => {
+      dispatch(addFavoriteAlbum(albumData, artistData, id))
+    })
+  }
 }
 
-function addingFavoriteAlbum(albumData, artistData, id) {
+function addFavoriteAlbum(albumData, artistData, id) {
   return (dispatch) => {
     fetch('http://localhost:3000/user_albums', {
       method: 'POST',
@@ -337,57 +281,42 @@ function addingFavoriteAlbum(albumData, artistData, id) {
   }
 }
 
-function addArtistInfoToNewAlbum(albumData, id) {
-  return (dispatch) => {
-    createLastFMClient().artistInfo({ name: albumData.artistName }, (err, artistData) => {
-      dispatch(addingFavoriteAlbum(albumData, artistData, id))
-    })
-  }
+function addedFavoriteAlbum(albumData) {
+  return { type: "ADD_FAVORITE_ALBUM", payload: albumData }
 }
 
-function addFavoriteAlbum(album, id) {
-  return (dispatch) => {
-    createLastFMClient().albumInfo({ name: album.name, artistName: album.artistName }, (err, albumData) => {
-      dispatch(addArtistInfoToNewAlbum(albumData, id))
-    })
-  }
-}
-
-function addFavoriteGenre(genre, id) {
-  fetch('http://localhost:3000/user_genres', {
-    method: 'POST',
+// album unfavorites are rendered optimistically, and deleted in the backend behind the scenes
+function unfavoriteAlbum(album, id) {
+  fetch('http://localhost:3000/user_albums', {
+    method: "DELETE",
     headers: {"Content-Type":"application/json", Accept:"application/json"},
     body: JSON.stringify({
       user_id: id,
-      genre_id: genre.id
+      album_id: album.id
     })
   })
-  return { type: "ADD_FAVORITE_GENRE", payload: genre }
+  return { type: "REMOVE_FAVORITE_ALBUM", payload: album }
 }
 
-function deletePlaylist(playlist) {
-  fetch(`http://localhost:3000/playlists/${playlist.id}`, {
-    method: "DELETE"
-  })
-  return { type: "DELETE_PLAYLIST", payload: playlist }
+// ####
+
+//############
+
+// ########
+// search actions
+// ########
+
+// controls search input in find music
+function changeSearchText(text) {
+  return { type: "CHANGE_SEARCH_TEXT", payload: text }
 }
 
-function fetchedSongQueryData(data) {
-  return { type: "FETCHED_SONG_QUERY_DATA", payload: data }
+// controls whether user searches for songs/artists/albums in find music
+function changeSearchType(type) {
+  return { type: "CHANGE_SEARCH_TYPE", payload: type }
 }
 
-function fetchedArtistQueryData(data) {
-  return { type: "FETCHED_ARTIST_QUERY_DATA", payload: data }
-}
-
-function fetchedAlbumQueryData(data) {
-  return { type: "FETCHED_ALBUM_QUERY_DATA", payload: data }
-}
-
-function fetchedGenreQueryData(data) {
-  return { type: "FETCHED_GENRE_QUERY_DATA", payload: data }
-}
-
+// queries the LastFM database based on the entered search term and search type
 function queryLastFM(searchVal, searchType) {
   if (searchVal === "") {
     searchVal = " "
@@ -411,71 +340,170 @@ function queryLastFM(searchVal, searchType) {
           dispatch(fetchedAlbumQueryData(data.result))
         })
       }
-    case "genres":
-      return (dispatch) => {
-        createLastFMClient().tagTopArtists({ tag: searchVal }, (err, data) => {
-          dispatch(fetchedGenreQueryData(data.artist))
-        })
-      }
     default:
       console.log('error becase searchType was passed in with an invalid value')
       return null
   }
 }
 
-function unfavoriteSong(song, id) {
-  fetch('http://localhost:3000/user_songs', {
-    method: "DELETE",
+function fetchedSongQueryData(data) {
+  return { type: "FETCHED_SONG_QUERY_DATA", payload: data }
+}
+
+function fetchedArtistQueryData(data) {
+  return { type: "FETCHED_ARTIST_QUERY_DATA", payload: data }
+}
+
+function fetchedAlbumQueryData(data) {
+  return { type: "FETCHED_ALBUM_QUERY_DATA", payload: data }
+}
+
+//############
+
+// ########
+// playlist actions
+// ########
+
+// ###
+// general
+// ###
+
+function changeSelectedPlaylist(playlist) {
+  return { type: "CHANGE_SELECTED_PLAYLIST", payload: playlist }
+}
+
+// #####
+
+// ###
+// new playlist
+// ###
+
+function updateNewPlaylistText(text) {
+  return { type: "UPDATE_NEW_PLAYLIST_TEXT", payload: text }
+}
+
+function addNewPlaylistSong(song) {
+  return { type: "ADD_NEW_PLAYLIST_SONG", payload: song }
+}
+
+function removeNewPlaylistSong(song) {
+  return { type: "REMOVE_NEW_PLAYLIST_SONG", payload: song }
+}
+
+// a new playlist instance is created with the name and user id (songs are only passed along at this stage)
+function creatingNewPlaylist(name, songs, userId) {
+  return (dispatch) => {
+    fetch('http://localhost:3000/playlists', {
+      method: 'POST',
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        name: name,
+        user_id: userId
+      })
+    })
+    .then(res => res.json())
+    .then(playlist => {
+      dispatch(addingSongsToPlaylist(playlist, songs))
+    })
+  }
+}
+
+// songs are added to the new playlist
+function addingSongsToPlaylist(playlist, songs) {
+  return (dispatch) => {
+    fetch('http://localhost:3000/playlist_songs', {
+      method: 'POST',
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        playlist_id: playlist.id,
+        songs: songs
+      })
+    })
+    .then(res => res.json())
+    .then(songs => {
+      dispatch(addedNewSongsToPlaylist(playlist, songs))
+    })
+  }
+}
+
+function addedNewSongsToPlaylist(playlist, songs) {
+  return { type: "ADDED_SONGS_TO_PLAYLIST", payload: {...playlist, songs} }
+}
+
+// #####
+
+// ###
+// edit playlist
+// ###
+
+// fetches the chosen playlist from the backend
+function fetchingPlaylistToEdit(id) {
+  return (dispatch) => {
+    fetch(`http://localhost:3000/playlists/${id}`)
+    .then(res => res.json())
+    .then(playlist => {
+      dispatch(fetchedPlaylistToEdit(playlist))
+    })
+  }
+}
+
+// sets a dummy playlist in state that can be edited without changes being permanent
+function fetchedPlaylistToEdit(playlist) {
+  return { type: "FETCHED_PLAYLIST_TO_EDIT", payload: {...playlist} }
+}
+
+function removeEditPlaylistSong(song) {
+  return { type: "REMOVE_EDIT_PLAYLIST_SONG", payload: song }
+}
+
+// songs added to the playlist need slightly reformatted in order to optimistically render
+function addEditPlaylistSong(song) {
+  let songReformat = {
+    id: song.id,
+    name: song.name,
+    artist: song.artist,
+    album: song.album.name,
+    albumImage: song.album.image
+  }
+  return { type: "ADD_EDIT_PLAYLIST_SONG", payload: songReformat}
+}
+
+function changePlaylistName(playlist, name) {
+  return { type: "UPDATED_PLAYLIST_NAME", payload: {...playlist, name: name} }
+}
+
+// changes arent persisted to the backend until the save button is clicked
+function savePlaylistChanges(playlist) {
+  fetch(`http://localhost:3000/playlists/${playlist.id}`, {
+    method: "PATCH",
     headers: {"Content-Type":"application/json", Accept:"application/json"},
     body: JSON.stringify({
-      user_id: id,
-      song_id: song.id
+      playlist: playlist
     })
   })
-  return { type: "REMOVE_FAVORITE_SONG", payload: song }
+  return { type: "SAVE_PLAYLIST_CHANGES", payload: playlist }
 }
 
-function unfavoriteArtist(artist, id) {
-  fetch('http://localhost:3000/user_artists', {
-    method: "DELETE",
-    headers: {"Content-Type":"application/json", Accept:"application/json"},
-    body: JSON.stringify({
-      user_id: id,
-      artist_id: artist.id
-    })
+// #####
+
+// ###
+// delete playlist
+// ###
+
+function deletePlaylist(playlist) {
+  fetch(`http://localhost:3000/playlists/${playlist.id}`, {
+    method: "DELETE"
   })
-  return { type: "REMOVE_FAVORITE_ARTIST", payload: artist }
+  return { type: "DELETE_PLAYLIST", payload: playlist }
 }
 
-function unfavoriteAlbum(album, id) {
-  fetch('http://localhost:3000/user_albums', {
-    method: "DELETE",
-    headers: {"Content-Type":"application/json", Accept:"application/json"},
-    body: JSON.stringify({
-      user_id: id,
-      album_id: album.id
-    })
-  })
-  return { type: "REMOVE_FAVORITE_ALBUM", payload: album }
-}
+// #####
 
-function updateSortType(choice) {
-  return { type: "UPDATE_SORT_TYPE", payload: choice }
-}
+// ###
+// share playlist
+// ###
 
-function resetSearchParameters() {
-  return { type: "RESET_SEARCH_PARAMETERS" }
-}
-
-function orderPlaylist(songs) {
-  console.log(songs)
-  return { type: "ORDER_PLAYLIST", payload: songs }
-}
-
-function sharedPlaylist(playlist) {
-  return { type: "SHARED_PLAYLIST", payload: playlist }
-}
-
+// clicking the share button toggles the published status
 function sharingPlaylist(playlist) {
   return (dispatch) => {
     fetch(`http://localhost:3000/playlists/${playlist.id}`, {
@@ -492,6 +520,17 @@ function sharingPlaylist(playlist) {
   }
 }
 
+function sharedPlaylist(playlist) {
+  return { type: "SHARED_PLAYLIST", payload: playlist }
+}
+
+// #####
+
+// ###
+// like playlist
+// ###
+
+// result of clicking the like button on a published playlist
 function likePlaylist(playlist) {
   fetch(`http://localhost:3000/playlists/${playlist.id}`, {
     method: "PATCH",
@@ -503,38 +542,8 @@ function likePlaylist(playlist) {
   return { type: "LIKED_PLAYLIST", payload: {...playlist, likes: playlist.likes + 1} }
 }
 
-function updateSortSearchText(text) {
-  return { type: "UPDATE_SORT_SEARCH_TEXT", payload: text }
-}
+// #####
 
-function changePlaylistName(playlist, name) {
-  return { type: "UPDATED_PLAYLIST_NAME", payload: {...playlist, name: name} }
-}
+//############
 
-function removeEditPlaylistSong(song) {
-  return { type: "REMOVE_EDIT_PLAYLIST_SONG", payload: song }
-}
-
-function addEditPlaylistSong(song) {
-  let songReformat = {
-    id: song.id,
-    name: song.name,
-    artist: song.artist,
-    album: song.album.name,
-    albumImage: song.album.image
-  }
-  return { type: "ADD_EDIT_PLAYLIST_SONG", payload: songReformat}
-}
-
-function savePlaylistChanges(playlist) {
-  fetch(`http://localhost:3000/playlists/${playlist.id}`, {
-    method: "PATCH",
-    headers: {"Content-Type":"application/json", Accept:"application/json"},
-    body: JSON.stringify({
-      playlist: playlist
-    })
-  })
-  return { type: "SAVE_PLAYLIST_CHANGES", payload: playlist }
-}
-
-export { authenticatingUser, authenticatingToken, logoutUser, fetchingSongs, fetchingArtists, fetchingAlbums, fetchingGenres, loadingData, fetchingFavorites, fetchingItem, fetchingPlaylists, changeSearchText, changeSearchType, resetActiveItem, changeSelectedPlaylist, updateNewPlaylistText, creatingNewPlaylist, deletePlaylist, fetchingPlaylistToEdit, addNewPlaylistSong, removeNewPlaylistSong, addingFavoriteSong, addingFavoriteArtist, addFavoriteAlbum, addFavoriteGenre, queryLastFM, unfavoriteSong, unfavoriteArtist, unfavoriteAlbum, updateSortType, resetSearchParameters, orderPlaylist, fetchingPublishedPlaylists, sharingPlaylist, likePlaylist, updateSortSearchText, changePlaylistName, removeEditPlaylistSong, addEditPlaylistSong, savePlaylistChanges }
+export { loadingData, updateSortType, updateSortSearchText, authenticatingUser, authenticatingToken, logoutUser, fetchingFavorites, fetchingPlaylists, fetchingPublishedPlaylists, addingFavoriteSong, unfavoriteSong, addingFavoriteArtist, unfavoriteArtist, addingFavoriteAlbum, unfavoriteAlbum, changeSearchText, changeSearchType, queryLastFM, changeSelectedPlaylist, updateNewPlaylistText, addNewPlaylistSong, removeNewPlaylistSong, creatingNewPlaylist, fetchingPlaylistToEdit, removeEditPlaylistSong, addEditPlaylistSong, changePlaylistName, savePlaylistChanges, deletePlaylist, sharingPlaylist, likePlaylist }

@@ -2,7 +2,6 @@
 import React, {Component} from 'react'
 import PlaylistSongItem from '../components/PlaylistSongItem'
 import {Header, Grid, Item} from 'semantic-ui-react'
-import {orderPlaylist} from '../redux/actionCreators'
 import { connect } from 'react-redux'
 
 class SelectedPlaylist extends Component {
@@ -31,10 +30,4 @@ const mapStateToProps = state => ({
   items: state.selectedPlaylist
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    orderPlaylist: (songs) => dispatch(orderPlaylist(songs))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(SelectedPlaylist)
+export default connect(mapStateToProps)(SelectedPlaylist)

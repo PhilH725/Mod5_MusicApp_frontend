@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {Table, Button, Image, Icon} from 'semantic-ui-react'
-import {addFavoriteAlbum} from '../redux/actionCreators'
+import {addingFavoriteAlbum} from '../redux/actionCreators'
 import {connect} from 'react-redux'
 
 const ArtistAlbumsModalItem = (props) => {
@@ -9,7 +9,7 @@ const ArtistAlbumsModalItem = (props) => {
   const favoriteButton = () => {
     return (
       !props.myAlbums.map(a => a.name).includes(props.album.name) ?
-      <Button inverted color="linkedin" icon onClick={()=>props.addFavoriteAlbum(props.album, props.user.id)}>
+      <Button inverted color="linkedin" icon onClick={()=>props.addingFavoriteAlbum(props.album, props.user.id)}>
         <Icon name="star outline"/>
       </Button>
       :
@@ -41,7 +41,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFavoriteAlbum: (albumData, id) => dispatch(addFavoriteAlbum(albumData, id))
+    addingFavoriteAlbum: (albumData, id) => dispatch(addingFavoriteAlbum(albumData, id))
   }
 }
 

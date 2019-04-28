@@ -196,8 +196,6 @@ const selectedPlaylistReducer = (oldState=null, action) => {
       return action.payload
     case "ADDED_SONGS_TO_PLAYLIST":
       return action.payload
-    case "ORDER_PLAYLIST":
-      return {...oldState, songs: action.payload}
     case "DELETE_PLAYLIST":
       return null
     default:
