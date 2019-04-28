@@ -3,26 +3,7 @@ import React, {Component} from 'react'
 import PlaylistSongItem from '../components/PlaylistSongItem'
 import {Header, Grid, Item} from 'semantic-ui-react'
 import {orderPlaylist} from '../redux/actionCreators'
-// import Sortable from 'react-sortablejs'
-// import uniqueId from 'lodash/uniqueId'
 import { connect } from 'react-redux'
-
-// render() {
-//   const items = this.props.items.songs.map(val => (<li key={uniqueId()} data-id={val}>{`${val.name} - ${val.artist}`}</li>))
-//   console.log(items)
-//   console.log(this.props.selectedPlaylist.songs)
-//   return (
-//     <div>
-//       <Sortable
-//         tag="ul" // Defaults to "div"
-//         onChange={(order, sortable, evt) => this.props.orderPlaylist(order)}
-//         >
-//         {items}
-//       </Sortable>
-//     </div>
-//   );
-// }
-
 
 class SelectedPlaylist extends Component {
 
