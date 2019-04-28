@@ -151,6 +151,7 @@ const publishedPlaylistsReducer = (oldState=[], action) => {
 // find music
 // ########
 
+// tied to the input bar in find_music
 const searchTextReducer = (oldState="", action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_TEXT":
@@ -160,6 +161,7 @@ const searchTextReducer = (oldState="", action) => {
   }
 }
 
+// one of songs/artists/albums
 const searchTypeReducer = (oldState="songs", action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_TYPE":
