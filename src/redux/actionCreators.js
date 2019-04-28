@@ -508,13 +508,6 @@ function updateSortSearchText(text) {
 }
 
 function changePlaylistName(playlist, name) {
-  fetch(`http://localhost:3000/playlists/${playlist.id}`, {
-    method: "PATCH",
-    headers: {"Content-Type":"application/json", Accept:"application/json"},
-    body: JSON.stringify({
-      name: name
-    })
-  })
   return { type: "UPDATED_PLAYLIST_NAME", payload: {...playlist, name: name} }
 }
 
@@ -534,6 +527,13 @@ function addEditPlaylistSong(song) {
 }
 
 function savePlaylistChanges(playlist) {
+  fetch(`http://localhost:3000/playlists/${playlist.id}`, {
+    method: "PATCH",
+    headers: {"Content-Type":"application/json", Accept:"application/json"},
+    body: JSON.stringify({
+      playlist: playlist
+    })
+  })
   return { type: "SAVE_PLAYLIST_CHANGES", payload: playlist }
 }
 
