@@ -1,6 +1,10 @@
 
 import { combineReducers } from 'redux'
 
+// ########
+// user reducer
+// ########
+
 const userReducer = (oldState={}, action) => {
   switch (action.type) {
     case "AUTHENTICATED_USER":
@@ -14,20 +18,39 @@ const userReducer = (oldState={}, action) => {
   }
 }
 
+//############
+
+// ########
+// user favorites
+// ########
+
+// loading status is set to true when favorites are being fetched, and false when that process finishes
+const loadingReducer = (oldState=false, action) => {
+  switch (action.type) {
+    case "LOADING_DATA":
+      return true
+    case "FETCHED_FAVORITES":
+      return false
+    default:
+      return oldState
+  }
+}
+
 const mySongsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_FAVORITES":
       return action.payload.my_songs
     case "ADD_FAVORITE_SONG":
       if (!oldState.map(s => s.id).includes(action.payload.id)) {
-      return [...oldState, {id: action.payload.id,
+      return [...oldState, {
+                            id: action.payload.id,
                             name: action.payload.name,
                             artist: action.payload.artist.name,
                             album: {
                               name: action.payload.album.name,
                               image: action.payload.album.album_image
-                            }
-                          }]
+                              }
+                            }]
           } else {
             return oldState
           }
@@ -83,17 +106,6 @@ const myAlbumsReducer = (oldState=[], action) => {
   }
 }
 
-const myGenresReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_FAVORITES":
-      return action.payload.my_genres
-    case "ADD_FAVORITE_GENRE":
-      return [...oldState, action.payload]
-    default:
-      return oldState
-  }
-}
-
 const myPlaylistsReducer = (oldState=[], action) => {
   switch (action.type) {
     case "FETCHED_PLAYLISTS":
@@ -110,6 +122,35 @@ const myPlaylistsReducer = (oldState=[], action) => {
   }
 }
 
+//############
+
+// ########
+// site data
+// ########
+
+const publishedPlaylistsReducer = (oldState=[], action) => {
+  switch(action.type) {
+    case "FETCHED_PUBLISHED_PLAYLISTS":
+      return action.payload
+    case "SHARED_PLAYLIST":
+      if (action.payload.published) {
+        return [...oldState, action.payload]
+      } else {
+        return oldState.filter(p => p.id !== action.payload.id)
+      }
+    case "LIKED_PLAYLIST":
+      return [...oldState.filter(p => p.id !== action.payload.id), action.payload]
+    default:
+      return oldState
+  }
+}
+
+//############
+
+// ########
+// find music
+// ########
+
 const searchTextReducer = (oldState="", action) => {
   switch (action.type) {
     case "CHANGE_SEARCH_TEXT":
@@ -125,118 +166,6 @@ const searchTypeReducer = (oldState="songs", action) => {
       return action.payload
     case "RESET_SEARCH_PARAMETERS":
       return "songs"
-    default:
-      return oldState
-  }
-}
-
-const loadingReducer = (oldState=false, action) => {
-  switch (action.type) {
-    case "LOADING_DATA":
-      return true
-    case "FETCHED_FAVORITES":
-      return false
-    default:
-      return oldState
-  }
-}
-
-const songsReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_SONGS":
-      return action.payload
-    default:
-      return oldState
-  }
-}
-
-const artistsReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_ARTISTS":
-      return action.payload
-    default:
-      return oldState
-  }
-}
-
-const albumsReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_ALBUMS":
-      return action.payload
-    default:
-      return oldState
-  }
-}
-
-const genresReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "FETCHED_GENRES":
-      return action.payload
-    default:
-      return oldState
-  }
-}
-
-const activeItemReducer = (oldState={}, action) => {
-  switch (action.type) {
-    case "FETCHED_ITEM":
-      return action.payload
-    case "RESET_ACTIVE_ITEM":
-      return {}
-    default:
-      return oldState
-  }
-}
-
-const selectedPlaylistReducer = (oldState=null, action) => {
-  switch (action.type) {
-    case "FETCHED_PLAYLISTS":
-      return action.payload.length > 0 ? action.payload[0] : null
-    case "CHANGE_SELECTED_PLAYLIST":
-      return action.payload
-    case "ADDED_SONGS_TO_PLAYLIST":
-      return action.payload
-    case "DELETE_PLAYLIST":
-      return null
-    default:
-      return oldState
-  }
-}
-
-const newPlaylistTextReducer = (oldState="", action) => {
-  switch (action.type) {
-    case "UPDATE_NEW_PLAYLIST_TEXT":
-      return action.payload
-    case "ADDED_SONGS_TO_PLAYLIST":
-      return ""
-    default:
-      return oldState
-  }
-}
-
-const editingPlaylistReducer = (oldState={}, action) => {
-  switch (action.type) {
-    case "FETCHED_PLAYLIST_TO_EDIT":
-      return action.payload
-    case "UPDATED_PLAYLIST_NAME":
-      return action.payload
-    case "REMOVE_EDIT_PLAYLIST_SONG":
-      return {...oldState, songs: oldState.songs.filter(s => s.id !== action.payload.id)}
-    case "ADD_EDIT_PLAYLIST_SONG":
-      return {...oldState, songs: [...oldState.songs, action.payload]}
-    default:
-      return oldState
-  }
-}
-
-const newPlaylistSongsReducer = (oldState=[], action) => {
-  switch (action.type) {
-    case "ADD_NEW_PLAYLIST_SONG":
-      return [...oldState, action.payload]
-    case "REMOVE_NEW_PLAYLIST_SONG":
-      return oldState.filter(s => s.id !== action.payload.id)
-    case "ADDED_SONGS_TO_PLAYLIST":
-      return []
     default:
       return oldState
   }
@@ -289,9 +218,15 @@ const albumSearchResultsReducer = (oldState=[], action) => {
   }
 }
 
-const genreSearchResultsReducer = (oldState=[], action) => {
+//############
+
+// ########
+// my songs
+// ########
+
+const sortSearchTextReducer = (oldState="", action) => {
   switch (action.type) {
-    case "FETCHED_GENRE_QUERY_DATA":
+    case "UPDATE_SORT_SEARCH_TEXT":
       return action.payload
     default:
       return oldState
@@ -307,27 +242,61 @@ const sortTypeReducer = (oldState="name", action) => {
   }
 }
 
-const sortSearchTextReducer = (oldState="", action) => {
+//############
+
+// ########
+// my playlists
+// ########
+
+const selectedPlaylistReducer = (oldState=null, action) => {
   switch (action.type) {
-    case "UPDATE_SORT_SEARCH_TEXT":
+    case "FETCHED_PLAYLISTS":
+      return action.payload.length > 0 ? action.payload[0] : null
+    case "CHANGE_SELECTED_PLAYLIST":
       return action.payload
+    case "ADDED_SONGS_TO_PLAYLIST":
+      return action.payload
+    case "DELETE_PLAYLIST":
+      return null
     default:
       return oldState
   }
 }
 
-const publishedPlaylistsReducer = (oldState=[], action) => {
-  switch(action.type) {
-    case "FETCHED_PUBLISHED_PLAYLISTS":
+const newPlaylistTextReducer = (oldState="", action) => {
+  switch (action.type) {
+    case "UPDATE_NEW_PLAYLIST_TEXT":
       return action.payload
-    case "SHARED_PLAYLIST":
-      if (action.payload.published) {
-        return [...oldState, action.payload]
-      } else {
-        return oldState.filter(p => p.id !== action.payload.id)
-      }
-    case "LIKED_PLAYLIST":
-      return [...oldState.filter(p => p.id !== action.payload.id), action.payload]
+    case "ADDED_SONGS_TO_PLAYLIST":
+      return ""
+    default:
+      return oldState
+  }
+}
+
+const newPlaylistSongsReducer = (oldState=[], action) => {
+  switch (action.type) {
+    case "ADD_NEW_PLAYLIST_SONG":
+      return [...oldState, action.payload]
+    case "REMOVE_NEW_PLAYLIST_SONG":
+      return oldState.filter(s => s.id !== action.payload.id)
+    case "ADDED_SONGS_TO_PLAYLIST":
+      return []
+    default:
+      return oldState
+  }
+}
+
+const editingPlaylistReducer = (oldState={}, action) => {
+  switch (action.type) {
+    case "FETCHED_PLAYLIST_TO_EDIT":
+      return action.payload
+    case "UPDATED_PLAYLIST_NAME":
+      return action.payload
+    case "REMOVE_EDIT_PLAYLIST_SONG":
+      return {...oldState, songs: oldState.songs.filter(s => s.id !== action.payload.id)}
+    case "ADD_EDIT_PLAYLIST_SONG":
+      return {...oldState, songs: [...oldState.songs, action.payload]}
     default:
       return oldState
   }
@@ -335,30 +304,23 @@ const publishedPlaylistsReducer = (oldState=[], action) => {
 
 const rootReducer = combineReducers({
   user: userReducer,
-  searchText: searchTextReducer,
-  searchType: searchTypeReducer,
-  songs: songsReducer,
-  artists: artistsReducer,
-  albums: albumsReducer,
-  genres: genresReducer,
   loading: loadingReducer,
   mySongs: mySongsReducer,
   myArtists: myArtistsReducer,
   myAlbums: myAlbumsReducer,
-  myGenres: myGenresReducer,
   myPlaylists: myPlaylistsReducer,
-  activeItem: activeItemReducer,
-  selectedPlaylist: selectedPlaylistReducer,
-  newPlaylistNameText: newPlaylistTextReducer,
-  editingPlaylist: editingPlaylistReducer,
-  newPlaylistSongs: newPlaylistSongsReducer,
+  publishedPlaylists: publishedPlaylistsReducer,
+  searchText: searchTextReducer,
+  searchType: searchTypeReducer,
   songSearchResults: songSearchResultsReducer,
   artistSearchResults: artistSearchResultsReducer,
   albumSearchResults: albumSearchResultsReducer,
-  genreSearchResults: genreSearchResultsReducer,
   sortType: sortTypeReducer,
   sortSearchText: sortSearchTextReducer,
-  publishedPlaylists: publishedPlaylistsReducer
+  selectedPlaylist: selectedPlaylistReducer,
+  newPlaylistNameText: newPlaylistTextReducer,
+  newPlaylistSongs: newPlaylistSongsReducer,
+  editingPlaylist: editingPlaylistReducer
 })
 
 export default rootReducer

@@ -1,25 +1,6 @@
 
 import {createLastFMClient} from '../LastFM'
 
-// ########
-// misc
-// ########
-
-// boolean used to display a loading screen while fetch calls take place
-function loadingData() {
-  return { type: "LOADING_DATA"}
-}
-
-// my songs menu option used to sort by name/album/artist
-function updateSortType(choice) {
-  return { type: "UPDATE_SORT_TYPE", payload: choice }
-}
-
-// my songs menu option used to filter by name
-function updateSortSearchText(text) {
-  return { type: "UPDATE_SORT_SEARCH_TEXT", payload: text }
-}
-
 // ###########
 
 // ########
@@ -82,6 +63,11 @@ function logoutUser() {
 // ########
 // retrieve user/site data
 // ########
+
+// boolean used to display a loading screen while main fetch calls take place
+function loadingData() {
+  return { type: "LOADING_DATA"}
+}
 
 function fetchingFavorites(userId) {
   return (dispatch) => {
@@ -356,6 +342,22 @@ function fetchedArtistQueryData(data) {
 
 function fetchedAlbumQueryData(data) {
   return { type: "FETCHED_ALBUM_QUERY_DATA", payload: data }
+}
+
+//############
+
+// ########
+// my song actions
+// ########
+
+// my songs menu option used to filter by name
+function updateSortSearchText(text) {
+  return { type: "UPDATE_SORT_SEARCH_TEXT", payload: text }
+}
+
+// my songs menu option used to sort by name/album/artist
+function updateSortType(choice) {
+  return { type: "UPDATE_SORT_TYPE", payload: choice }
 }
 
 //############
