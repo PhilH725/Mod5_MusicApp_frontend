@@ -304,6 +304,23 @@ const editingPlaylistReducer = (oldState={}, action) => {
   }
 }
 
+//############
+
+// ########
+// music playback
+// ########
+
+const musicPlaybackReducer = (oldState = false, action) => {
+  switch (action.type) {
+    case "TOGGLE_MUSIC_PLAYBACK":
+      return !oldState
+    default:
+      return oldState
+  }
+}
+
+//############
+
 const rootReducer = combineReducers({
   user: userReducer,
   loading: loadingReducer,
@@ -322,7 +339,8 @@ const rootReducer = combineReducers({
   selectedPlaylist: selectedPlaylistReducer,
   newPlaylistNameText: newPlaylistTextReducer,
   newPlaylistSongs: newPlaylistSongsReducer,
-  editingPlaylist: editingPlaylistReducer
+  editingPlaylist: editingPlaylistReducer,
+  musicPlaybackStatus: musicPlaybackReducer
 })
 
 export default rootReducer

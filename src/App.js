@@ -1,7 +1,9 @@
+
 import React, { Component } from 'react';
 import Header from './components/Header'
 import Navbar from './components/Navbar'
 import MainContainer from './containers/MainContainer'
+import MusicPlayer from './components/MusicPlayer'
 import './App.css';
 import {connect} from 'react-redux'
 import { fetchingFavorites, loadingData, fetchingPublishedPlaylists, authenticatingToken} from './redux/actionCreators'
@@ -24,6 +26,7 @@ class App extends Component {
         <Header />
         <Navbar />
         <MainContainer />
+        <MusicPlayer />
       </div>
     );
   }

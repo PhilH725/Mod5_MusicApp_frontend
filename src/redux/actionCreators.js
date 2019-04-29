@@ -548,4 +548,18 @@ function likePlaylist(playlist) {
 
 //############
 
+// ###
+// music playback
+// ###
+
+function toggleMusicPlayback() {
+  return { type: "TOGGLE_MUSIC_PLAYBACK" }
+}
+
+
+
+
+
+//############
+
 export { loadingData, updateSortType, updateSortSearchText, authenticatingUser, authenticatingToken, logoutUser, fetchingFavorites, fetchingPlaylists, fetchingPublishedPlaylists, addingFavoriteSong, unfavoriteSong, addingFavoriteArtist, unfavoriteArtist, addingFavoriteAlbum, unfavoriteAlbum, changeSearchText, changeSearchType, queryLastFM, changeSelectedPlaylist, updateNewPlaylistText, addNewPlaylistSong, removeNewPlaylistSong, creatingNewPlaylist, fetchingPlaylistToEdit, removeEditPlaylistSong, addEditPlaylistSong, changePlaylistName, savePlaylistChanges, deletePlaylist, sharingPlaylist, likePlaylist }
