@@ -552,6 +552,25 @@ function likePlaylist(playlist) {
 // music playback
 // ###
 
+function getVideoId(songName, artistName) {
+  return (dispatch) => {
+    fetch('http://localhost:3000/get_song_url', {
+      method: 'POST',
+      headers: {"Content-Type":"application/json", Accept:"application/json"},
+      body: JSON.stringify({
+        songName: songName,
+        artistName: artistName
+      })
+    })
+    .then(res => res.json())
+    .then(id => dispatch(setVideoId(id.id)))
+  }
+}
+
+function setVideoId(id) {
+  return { type: "SET_VIDEO_ID", payload: id }
+}
+
 function toggleMusicPlayback() {
   return { type: "TOGGLE_MUSIC_PLAYBACK" }
 }
@@ -562,4 +581,4 @@ function toggleMusicPlayback() {
 
 //############
 
-export { loadingData, updateSortType, updateSortSearchText, authenticatingUser, authenticatingToken, logoutUser, fetchingFavorites, fetchingPlaylists, fetchingPublishedPlaylists, addingFavoriteSong, unfavoriteSong, addingFavoriteArtist, unfavoriteArtist, addingFavoriteAlbum, unfavoriteAlbum, changeSearchText, changeSearchType, queryLastFM, changeSelectedPlaylist, updateNewPlaylistText, addNewPlaylistSong, removeNewPlaylistSong, creatingNewPlaylist, fetchingPlaylistToEdit, removeEditPlaylistSong, addEditPlaylistSong, changePlaylistName, savePlaylistChanges, deletePlaylist, sharingPlaylist, likePlaylist }
+export { loadingData, updateSortType, updateSortSearchText, authenticatingUser, authenticatingToken, logoutUser, fetchingFavorites, fetchingPlaylists, fetchingPublishedPlaylists, addingFavoriteSong, unfavoriteSong, addingFavoriteArtist, unfavoriteArtist, addingFavoriteAlbum, unfavoriteAlbum, changeSearchText, changeSearchType, queryLastFM, changeSelectedPlaylist, updateNewPlaylistText, addNewPlaylistSong, removeNewPlaylistSong, creatingNewPlaylist, fetchingPlaylistToEdit, removeEditPlaylistSong, addEditPlaylistSong, changePlaylistName, savePlaylistChanges, deletePlaylist, sharingPlaylist, likePlaylist, getVideoId, toggleMusicPlayback }

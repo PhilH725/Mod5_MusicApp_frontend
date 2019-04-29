@@ -1,14 +1,21 @@
 
-import React from 'react'
+import React, {Component} from 'react'
+import {Button, Sidebar, Menu, Segment, Icon, Header} from 'semantic-ui-react'
+import {connect} from 'react-redux'
 
-const MusicPlayer = props => {
-
-  return (
-    props.musicPlaybackStatus ?
-    <div>music playing</div>
-    :
-    <div>nothing here</div>
-  )
+// <iframe id="youtube-video-player" title="song" src={`https://www.youtube.com/embed/${props.videoId}`}>
+// </iframe>
+class MusicPlayer extends Component {
+  render() {
+    return (
+      
+    )
+  }
 }
 
-export default MusicPlayer
+const mapStateToProps = state => ({
+  videoId: state.videoId,
+  musicPlaybackStatus: state.musicPlaybackStatus
+})
+
+export default connect(mapStateToProps)(MusicPlayer)

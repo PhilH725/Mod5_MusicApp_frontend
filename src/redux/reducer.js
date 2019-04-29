@@ -310,6 +310,15 @@ const editingPlaylistReducer = (oldState={}, action) => {
 // music playback
 // ########
 
+const videoIdReducer = (oldState = "", action) => {
+  switch (action.type) {
+    case "SET_VIDEO_ID":
+      return action.payload
+    default:
+      return oldState
+  }
+}
+
 const musicPlaybackReducer = (oldState = false, action) => {
   switch (action.type) {
     case "TOGGLE_MUSIC_PLAYBACK":
@@ -340,6 +349,7 @@ const rootReducer = combineReducers({
   newPlaylistNameText: newPlaylistTextReducer,
   newPlaylistSongs: newPlaylistSongsReducer,
   editingPlaylist: editingPlaylistReducer,
+  videoId: videoIdReducer,
   musicPlaybackStatus: musicPlaybackReducer
 })
 
